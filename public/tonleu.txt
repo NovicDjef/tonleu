@@ -1,0 +1,41 @@
+ ______
+|__  __|
+   | |
+   | |
+   |_|
+
+The tonleu.txt file explains the team, technology,
+and graphic assets behind this site tonleu.com.
+
+_______________________________________________________________________________
+
+DEVELOPER | デザイナー
+
+Novic Tonleu
+Hand crafted design & web development
+
+Design tools:
+Figma
+Photoshop
+Blender
+
+twitter.com/tonleu
+github.com/novicDjef
+
+_______________________________________________________________________________
+
+TECHNOLOGY | テクノロジー
+
+React
+Remix
+Three.js
+Framer Motion
+
+_______________________________________________________________________________
+
+FONTS | フォント
+
+Gotham
+IPA Gothic Regular
+Hiragino Kaku Gothic W8
+

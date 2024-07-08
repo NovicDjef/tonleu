@@ -47,7 +47,7 @@ export const Uses = () => {
                     <Link href="https://www.figma.com">Figma</Link> is my primary tool for
                     UI design these days. Made the switch from Sketch in 2020 and haven’t
                     looked back. I’ve also created{' '}
-                    <Link href="https://www.figma.com/@tonleunovic">a few plugins</Link> that
+                    <Link href="https://www.figma.com/@novic">a few plugins</Link> that
                     you can install.
                   </ListItem>
                   <ListItem>
@@ -73,7 +73,7 @@ export const Uses = () => {
               <ProjectSectionText as="div">
                 <List>
                   <ListItem>
-                    I use <Link href="https://vscodium.com/">VSCodium</Link> as my text
+                    I use <Link href="https://vscode.com/">VSCode</Link> as my text
                     editor, with the Tokyo Night theme and Operator Mono as my typeface of
                     choice.
                   </ListItem>
@@ -142,7 +142,7 @@ export const Uses = () => {
                   </TableRow>
                   <TableRow>
                     <TableHeadCell>Laptop</TableHeadCell>
-                    <TableCell>Macbook Pro 14″</TableCell>
+                    <TableCell>Macbook Pro M1 13.3″</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableHeadCell>Headphones</TableHeadCell>

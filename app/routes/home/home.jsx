@@ -41,7 +41,7 @@ export const links = () => {
 
 export const meta = () => {
   return baseMeta({
-    title: 'Developer + Mobile',
+    title: 'Developer + Mobile & web',
     description: `Design portfolio of ${config.name} — a product designer working on web & mobile apps with a focus on motion, experience design, and accessibility.`,
   });
 };
@@ -103,7 +103,7 @@ export const Home = () => {
         sectionRef={projectOne}
         visible={visibleSections.includes(projectOne.current)}
         index={1}
-        title="Designing the future of education"
+        title="Design the future through programming"
         description="Designing a platform to help educators build better online courseware"
         buttonText="View project"
         buttonLink="/projects/smart-sparrow"
@@ -124,10 +124,10 @@ export const Home = () => {
         sectionRef={projectTwo}
         visible={visibleSections.includes(projectTwo.current)}
         index={2}
-        title="Video game progress tracking"
-        description="Design and development for a video game tracking app built in React Native"
+        title="kourcier mobile app"
+        description="Design a mobile and web platform to help people order food online and have it delivered to the desired location"
         buttonText="View website"
-        buttonLink="https://gamestack.tonleu.com"
+        buttonLink="https://Kourcier.com"
         model={{
           type: 'phone',
           alt: 'App login screen',

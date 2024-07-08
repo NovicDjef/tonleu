@@ -70,14 +70,15 @@ const EarthSection = lazy(() =>
   import('./earth').then(module => ({ default: module.EarthSection }))
 );
 
-const title = 'Designing the future of education';
+const title = 'Design the future through programming';
 const description =
-  'I worked as the design lead on a major iteration of Smart Sparrow’s product. We took the platform in a bold new direction, focusing on becoming the best tool for learning designers.';
+  'The "no code" movement aims to enable users to create applications, websites, and automations without needing programming skills. Thanks to visual tools and intuitive interfaces, users can assemble predefined elements to build complex technological solutions. This approach makes development accessible to a wider audience, accelerates the creation process, and reduces dependency on professional developers, thus fostering innovation and entrepreneurship.';
 const roles = [
-  'Art Direction',
+  'React Native',
   'UX and UI Design',
-  'Front End Development',
+  'React Js, Next Js',
   'Motion Design',
+  'Redux, API Rest',
 ];
 
 export const meta = () => {
@@ -105,7 +106,7 @@ export const SmartSparrow = () => {
         <ProjectHeader
           title={title}
           description={description}
-          url="https://www.smartsparrow.com/"
+          // url="https://www.smartsparrow.com/"
           roles={roles}
         />
         <ProjectSection padding="top">
@@ -134,13 +135,17 @@ export const SmartSparrow = () => {
           <ProjectTextRow>
             <ProjectSectionHeading>The problem</ProjectSectionHeading>
             <ProjectSectionText>
-              In 2017, Smart Sparrow began a project to build an entirely new platform to
-              from the ground up to serve as the most powerful tool for educators to
-              create online learning experiences. The old platform was built in Flash, and
-              there were a number of user experience problems to solve in the process of
-              moving the platform to Javascript. The primary goals for the project were
-              reducing barriers to collaboration, and making the platform both easier for
-              new users, but with plenty of room to scale for advanced users.
+            WordPress was created to simplify the creation and management 
+            of websites, particularly blogs. Before WordPress, creating a 
+            website required programming and web development skills, 
+            making the task difficult for non-technical users. WordPress 
+            solves this problem by offering an intuitive and user-friendly 
+            platform where users can easily create, publish, and manage content 
+            without needing to code. With a vast library of themes and plugins, 
+            WordPress allows for extensive customization and scalability, meeting 
+            the diverse needs of bloggers, businesses, and developers. As a result, 
+            it has democratized access to website creation, becoming one of the 
+            most popular content management systems in the world.
             </ProjectSectionText>
           </ProjectTextRow>
         </ProjectSection>
