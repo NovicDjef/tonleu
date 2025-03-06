@@ -74,11 +74,11 @@ const title = 'Design the future through programming';
 const description =
   'The "no code" movement aims to enable users to create applications, websites, and automations without needing programming skills. Thanks to visual tools and intuitive interfaces, users can assemble predefined elements to build complex technological solutions. This approach makes development accessible to a wider audience, accelerates the creation process, and reduces dependency on professional developers, thus fostering innovation and entrepreneurship.';
 const roles = [
-  'React Native',
+  'React Native, Redux',
   'UX and UI Design',
-  'React Js, Next Js',
-  'Motion Design',
-  'Redux, API Rest',
+  'React Js,Next Js',
+  'Motion Design, Framer Motion',
+  'Node Js, API Rest',
 ];
 
 export const meta = () => {
@@ -529,7 +529,7 @@ export const SmartSparrow = () => {
         <ProjectSection>
           <ProjectSectionContent>
             <ProjectTextRow center centerMobile noMargin>
-              <svg
+              {/* <svg
                 width="141"
                 height="43"
                 viewBox="0 0 141 43"
@@ -541,15 +541,54 @@ export const SmartSparrow = () => {
                   fillRule="evenodd"
                   d="M35.47 30.82c6.24-11.43 4.15-22.73-4.81-27.77C20.76-2.5 7.84.52 2.28 12.46c-3.84 8.2-2.1 22.48 6.82 27.6 8.92 5.1 20.9.81 26.37-9.23Zm-3.02-12.15c.3-2.3-.24-5.1-2-6.95l-.02-.02c-3.38-3.76-8.06-4-11.02-3.92a16.61 16.61 0 0 0-7.55 2.14c-1.68.86-3.2 2.35-3.81 3.08-.4.47-1.06 1.44-.7 2.31.29.73 1.4.68 1.81.37.22-.16.45-.37.7-.6l.72-.64c2.53-2.07 4.78-3.37 10-3.37 5.23 0 8.06 3.22 8.06 6.09 0 2.87-1.38 4.82-3.97 6.09a10.54 10.54 0 0 1-4.4 1.18c.13-2.78.2-5.41.2-5.41 0-.33.02-.65.03-.96.07-1.55.12-2.72-1.01-2.94-1.36-.27-3.86 0-3.9 1.52-.06-.23.25 12.51.31 12.77l.02.29c.03.32.15.6.35.83a1.38 1.38 0 0 0 .98.41c.28 0 .68-.05 1.09-.16.5-.15 1.02-.39 1.31-.77.15-.2.27-.38.34-.72.04-.24.13-1.72.15-2.15 2.75-.02 5.54-.53 7.67-1.8 2.68-1.62 4.29-4.04 4.64-6.67ZM18.23 32.41a2.12 2.12 0 0 1 1.69 1.99c0 .52-.22.99-.63 1.32-.35.28-.8.43-1.3.43h-.01c-.23 0-.46-.03-.69-.1-.39-.1-.7-.29-.9-.52-.19-.22-.31-.5-.37-.83-.08-.5.05-1.04.36-1.48a1.9 1.9 0 0 1 1.53-.84c.1 0 .22 0 .32.03Z"
                 />
-              </svg>
+              </svg> */}
+               {/* <header className={styles.text}>
+              <h1 className={styles.name} data-visible={visible} id={titleId}>
+                <DecoderText text={config.name} delay={500} />
+              </h1>
+              <Heading level={0} as="h2" className={styles.title}>
+                <VisuallyHidden className={styles.label}>
+                  {`${config.role} + ${introLabel}`}
+                </VisuallyHidden>
+                <span aria-hidden className={styles.row}>
+                  <span
+                    className={styles.word}
+                    data-status={status}
+                    style={cssProps({ delay: tokens.base.durationXS })}
+                  >
+                    {config.role}
+                  </span>
+                  <span className={styles.line} data-status={status} />
+                </span>
+                <div className={styles.row}>
+                  {disciplines.map(item => (
+                    <Transition
+                      unmount
+                      in={item === currentDiscipline}
+                      timeout={{ enter: 3000, exit: 2000 }}
+                      key={item}
+                    >
+                      {({ status, nodeRef }) => (
+                        <span
+                          aria-hidden
+                          ref={nodeRef}
+                          className={styles.word}
+                          data-plus={true}
+                          data-status={status}
+                          style={cssProps({ delay: tokens.base.durationL })}
+                        >
+                          {item}
+                        </span>
+                      )}
+                    </Transition>
+                  ))}
+                </div>
+              </Heading>
+            </header> */}
               <ProjectSectionHeading>Project outcomes</ProjectSectionHeading>
               <ProjectSectionText>
-                Ultimately the project was successful after Smart Sparrow and the aero
-                platform were{' '}
-                <Link href="https://www.prnewswire.com/news-releases/pearson-acquires-interactive-learning-technology-from-smart-sparrow-300987673.html">
-                  acquired by Pearson in 2020
-                </Link>{' '}
-                to become a foundation for their next generation learning platform.
+              Le projet a finalement été un succès, grâce à l'expertise de l'Agence d'Intelligence Commerciale qui a su faire preuve d'efficacité et de professionnalisme.
+              Nous mettons à votre disposition notre savoir-faire et vous accompagnons dans la prise en main des outils et des méthodologies que nous avons développés.
               </ProjectSectionText>
             </ProjectTextRow>
           </ProjectSectionContent>

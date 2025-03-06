@@ -19,7 +19,10 @@ export default defineConfig({
     assetsInlineLimit: 1024,
   },
   server: {
-    port: 7777,
+    host: "0.0.0.0",  // Permet l'accès depuis l'extérieur
+    port: 7777,       // Assure-toi que c'est bien le bon port
+    strictPort: true,
+    allowedHosts: ["novic.dev", "www.novic.dev"] 
   },
   plugins: [
     mdx({
