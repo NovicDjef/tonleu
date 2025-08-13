@@ -6,7 +6,7 @@ import { List, ListItem } from '~/components/list';
 import { Text } from '~/components/text';
 import { Children } from 'react';
 import styles from './post-markdown.module.css';
-import { Link as RouterLink } from '@remix-run/react';
+import { Link as RouterLink } from 'react-router-dom';
 
 const PostHeadingLink = ({ id }) => {
   return (

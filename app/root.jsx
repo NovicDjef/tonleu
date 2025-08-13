@@ -4,12 +4,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useFetcher,
-  useLoaderData,
-  useNavigation,
-  useRouteError,
-} from '@remix-run/react';
-import { createCookieSessionStorage, json } from '@remix-run/cloudflare';
+} from 'react-router-dom';
 import { ThemeProvider, themeStyles } from '~/components/theme-provider';
 import GothamBook from '~/assets/fonts/gotham-book.woff2';
 import GothamMedium from '~/assets/fonts/gotham-medium.woff2';
@@ -46,51 +41,24 @@ export const links = () => [
   { rel: 'author', href: '/tonleu.txt', type: 'text/plain' },
 ];
 
-export const loader = async ({ request, context }) => {
-  const { url } = request;
-  const { pathname } = new URL(url);
-  const pathnameSliced = pathname.endsWith('/') ? pathname.slice(0, -1) : url;
-  const canonicalUrl = `${config.url}${pathnameSliced}`;
-
-  const { getSession, commitSession } = createCookieSessionStorage({
-    cookie: {
-      name: '__session',
-      httpOnly: true,
-      maxAge: 604_800,
-      path: '/',
-      sameSite: 'lax',
-      secrets: [context.cloudflare.env.SESSION_SECRET || ' '],
-      secure: true,
-    },
-  });
-
-  const session = await getSession(request.headers.get('Cookie'));
-  const theme = session.get('theme') || 'dark';
-
-  return json(
-    { canonicalUrl, theme },
-    {
-      headers: {
-        'Set-Cookie': await commitSession(session),
-      },
-    }
-  );
-};
 
 export default function App() {
-  let { canonicalUrl, theme } = useLoaderData();
-  const fetcher = useFetcher();
-  const { state } = useNavigation();
+  // Static data for now since loader was removed
+  const canonicalUrl = config.url;
+  let theme = 'dark';
 
-  if (fetcher.formData?.has('theme')) {
-    theme = fetcher.formData.get('theme');
+  // Try to get theme from localStorage
+  if (typeof window !== 'undefined') {
+    theme = localStorage.getItem('theme') || 'dark';
   }
 
   function toggleTheme(newTheme) {
-    fetcher.submit(
-      { theme: newTheme ? newTheme : theme === 'dark' ? 'light' : 'dark' },
-      { action: '/api/set-theme', method: 'post' }
-    );
+    const nextTheme = newTheme ? newTheme : theme === 'dark' ? 'light' : 'dark';
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('theme', nextTheme);
+      // Force re-render by manually updating the theme
+      window.location.reload();
+    }
   }
 
   useEffect(() => {
@@ -127,7 +95,7 @@ export default function App() {
             id="main-content"
             className={styles.container}
             tabIndex={-1}
-            data-loading={state === 'loading'}
+            data-loading={false}
           >
             <Outlet />
           </main>
@@ -140,7 +108,7 @@ export default function App() {
 }
 
 export function ErrorBoundary() {
-  const error = useRouteError();
+  const error = { status: 500, statusText: 'Internal Server Error' };
 
   return (
     <html lang="en">

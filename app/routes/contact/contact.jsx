@@ -13,7 +13,6 @@ import { useFormInput } from '~/hooks';
 import { useRef, useState } from 'react';
 import { cssProps, msToNum, numToMs } from '~/utils/style';
 import { baseMeta } from '~/utils/meta';
-import { Form } from '@remix-run/react';
 import styles from './contact.module.css';
 import emailjs from '@emailjs/browser';
 
@@ -114,7 +113,7 @@ export const Contact = () => {
       {!success ? (
         <Transition unmount in={!success} timeout={1600}>
           {({ status, nodeRef }) => (
-            <Form
+            <form
               className={styles.form}
               onSubmit={handleSubmit}
               ref={nodeRef}
@@ -191,7 +190,7 @@ export const Contact = () => {
               >
                 Send message
               </Button>
-            </Form>
+            </form>
           )}
         </Transition>
       ) : (

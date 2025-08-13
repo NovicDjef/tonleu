@@ -1,7 +1,7 @@
 import { Icon } from '~/components/icon';
 import { Loader } from '~/components/loader';
 import { Transition } from '~/components/transition';
-import { Link } from '@remix-run/react';
+import { Link } from 'react-router-dom';
 import { forwardRef } from 'react';
 import { classes } from '~/utils/style';
 import styles from './button.module.css';
@@ -17,9 +17,7 @@ export const Button = forwardRef(({ href, ...rest }, ref) => {
 
   return (
     <ButtonContent
-      unstable_viewTransition
       as={Link}
-      prefetch="intent"
       to={href}
       ref={ref}
       {...rest}

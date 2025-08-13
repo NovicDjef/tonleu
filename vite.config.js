@@ -1,7 +1,3 @@
-import {
-  vitePlugin as remix,
-  cloudflareDevProxyVitePlugin as remixCloudflareDevProxy,
-} from '@remix-run/dev';
 import { defineConfig } from 'vite';
 import jsconfigPaths from 'vite-jsconfig-paths';
 import mdx from '@mdx-js/rollup';
@@ -10,6 +6,7 @@ import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 import rehypeImgSize from 'rehype-img-size';
 import rehypeSlug from 'rehype-slug';
 import rehypePrism from '@mapbox/rehype-prism';
+import react from '@vitejs/plugin-react';
 
 const isStorybook = process.argv[1]?.includes('storybook');
 
@@ -17,26 +14,20 @@ export default defineConfig({
   assetsInclude: ['**/*.glb', '**/*.hdr', '**/*.glsl'],
   build: {
     assetsInlineLimit: 1024,
+    outDir: 'dist',
   },
   server: {
-    host: "127.0.0.1",  // Permet l'accès depuis l'extérieur
-    port: 7777,       // Assure-toi que c'est bien le bon port
+    host: "127.0.0.1",
+    port: 7777,
     strictPort: true,
     allowedHosts: ["novic.dev", "www.novic.dev"] 
   },
   plugins: [
+    react(),
     mdx({
       rehypePlugins: [[rehypeImgSize, { dir: 'public' }], rehypeSlug, rehypePrism],
       remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter],
       providerImportSource: '@mdx-js/react',
-    }),
-    remixCloudflareDevProxy(),
-    remix({
-      routes(defineRoutes) {
-        return defineRoutes(route => {
-          route('/', 'routes/home/route.js', { index: true });
-        });
-      },
     }),
     jsconfigPaths(),
   ],

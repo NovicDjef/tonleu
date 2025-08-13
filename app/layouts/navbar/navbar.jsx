@@ -4,7 +4,7 @@ import { useTheme } from '~/components/theme-provider';
 import { tokens } from '~/components/theme-provider/theme';
 import { Transition } from '~/components/transition';
 import { useScrollToHash, useWindowSize } from '~/hooks';
-import { Link as RouterLink, useLocation } from '@remix-run/react';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import { cssProps, media, msToNum, numToMs } from '~/utils/style';
 import { NavToggle } from './nav-toggle';

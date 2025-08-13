@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import { Link as RouterLink } from '@remix-run/react';
+import { Link as RouterLink } from 'react-router-dom';
 import { classes } from '~/utils/style';
 import styles from './link.module.css';
 
@@ -36,7 +36,7 @@ export const Link = forwardRef(
     }
 
     return (
-      <RouterLink unstable_viewTransition prefetch="intent" {...linkProps} to={href}>
+      <RouterLink {...linkProps} to={href}>
         {children}
       </RouterLink>
     );

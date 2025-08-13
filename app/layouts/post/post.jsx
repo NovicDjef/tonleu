@@ -12,7 +12,7 @@ import { clamp } from '~/utils/clamp';
 import { formatDate } from '~/utils/date';
 import { cssProps, msToNum, numToMs } from '~/utils/style';
 import styles from './post.module.css';
-import { Link as RouterLink } from '@remix-run/react';
+import { Link as RouterLink } from 'react-router-dom';
 
 export const Post = ({ children, title, date, banner, timecode }) => {
   const scrollToHash = useScrollToHash();

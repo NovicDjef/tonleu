@@ -1,34 +1,44 @@
-import { useNavigation } from '@remix-run/react';
+import { useLocation } from 'react-router-dom';
 import { useRef, useEffect, useState } from 'react';
 import styles from './progress.module.css';
 
 export function Progress() {
   const [animationComplete, setAnimationComplete] = useState(false);
   const [visible, setVisible] = useState(false);
-  const { state } = useNavigation();
+  const location = useLocation();
   const progressRef = useRef();
   const timeout = useRef(0);
+  const [isNavigating, setIsNavigating] = useState(false);
+
+  useEffect(() => {
+    setIsNavigating(true);
+    const timer = setTimeout(() => {
+      setIsNavigating(false);
+    }, 100);
+    
+    return () => clearTimeout(timer);
+  }, [location]);
 
   useEffect(() => {
     clearTimeout(timeout.current);
 
-    if (state !== 'idle') {
+    if (isNavigating) {
       timeout.current = setTimeout(() => {
         setVisible(true);
-      }, 500);
+      }, 100);
     } else if (animationComplete) {
       timeout.current = setTimeout(() => {
         setVisible(false);
       }, 300);
     }
-  }, [state, animationComplete]);
+  }, [isNavigating, animationComplete]);
 
   useEffect(() => {
     if (!progressRef.current) return;
 
     const controller = new AbortController();
 
-    if (state !== 'idle') {
+    if (isNavigating) {
       return setAnimationComplete(false);
     }
 
@@ -44,12 +54,12 @@ export function Progress() {
     return () => {
       controller.abort();
     };
-  }, [state]);
+  }, [isNavigating]);
 
   return (
     <div
       className={styles.progress}
-      data-status={state}
+      data-status={isNavigating ? 'loading' : 'idle'}
       data-visible={visible}
       data-complete={animationComplete}
       ref={progressRef}

@@ -5,7 +5,7 @@ import { useTheme } from '~/components/theme-provider';
 import { tokens } from '~/components/theme-provider/theme';
 import { Transition } from '~/components/transition';
 import { VisuallyHidden } from '~/components/visually-hidden';
-import { Link as RouterLink } from '@remix-run/react';
+import { Link as RouterLink } from 'react-router-dom';
 import { useInterval, usePrevious, useScrollToHash } from '~/hooks';
 import { Suspense, lazy, useEffect, useState } from 'react';
 import { cssProps } from '~/utils/style';

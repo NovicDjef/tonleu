@@ -1,5 +1,5 @@
 import { useReducedMotion } from 'framer-motion';
-import { useLocation, useNavigate } from '@remix-run/react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useCallback, useRef } from 'react';
 
 export function useScrollToHash() {
@@ -23,7 +23,7 @@ export function useScrollToHash() {
 
           if (window.location.pathname === location.pathname) {
             onDone?.();
-            navigate(`${location.pathname}#${id}`, { scroll: false });
+            navigate(`${location.pathname}#${id}`, { replace: true });
           }
         }, 50);
       };

@@ -8,7 +8,7 @@ import { Section } from '~/components/section';
 import { Text } from '~/components/text';
 import { useReducedMotion } from 'framer-motion';
 import { useWindowSize } from '~/hooks';
-import { Link as RouterLink, useLoaderData } from '@remix-run/react';
+import { Link as RouterLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { formatDate } from '~/utils/date';
 import { classes, cssProps } from '~/utils/style';
@@ -134,7 +134,9 @@ function SkeletonPost({ index }) {
 }
 
 export function Articles() {
-  const { posts, featured } = useLoaderData();
+  // For now using static data since loader was removed
+  const posts = [];
+  const featured = null;
   const { width } = useWindowSize();
   const singleColumnWidth = 1190;
   const isSingleColumn = width <= singleColumnWidth;
@@ -162,7 +164,7 @@ export function Articles() {
     </div>
   );
 
-  const featuredPost = <ArticlesPost {...featured} />;
+  const featuredPost = featured ? <ArticlesPost {...featured} /> : null;
 
   return (
     <article className={styles.articles}>
