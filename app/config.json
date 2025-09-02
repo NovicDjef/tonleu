@@ -1,7 +1,8 @@
 {
   "name": "I'm Novic Tonleu",
-  "role": "Developer",
-  "disciplines": ["React-native", "React Js", "Next Js", "Node Js", "Angular"],
+  "role": "Full Stack Developer JS/TS",
+  "disciplines": ["React Native", "React.js", "Next.js", "Node.js", "Angular"],
+  "subtitle": "フルスタック開発者",
   "url": "https://tonleu.com",
   "twitter": "@NovicDjef",
   "figma": "@tonleu",

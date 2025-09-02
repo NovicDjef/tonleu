@@ -68,10 +68,62 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
                 <DisplacementSphere />
               </Suspense>
             )}
+            <div className={styles.quantumField} data-visible={visible}>
+              <div className={styles.quantumParticle} style={cssProps({ delay: '0s' })}></div>
+              <div className={styles.quantumParticle} style={cssProps({ delay: '2s' })}></div>
+              <div className={styles.quantumParticle} style={cssProps({ delay: '4s' })}></div>
+              <div className={styles.quantumParticle} style={cssProps({ delay: '1s' })}></div>
+              <div className={styles.quantumParticle} style={cssProps({ delay: '3s' })}></div>
+            </div>
+            <div className={styles.dataMatrix} data-visible={visible}>
+              <div className={styles.dataStream} style={cssProps({ delay: '0s' })}>
+                {Array.from({ length: 5 }, (_, i) => (
+                  <span key={i} className={styles.dataChar}>
+                    {Math.random() > 0.5 ? '1' : '0'}
+                  </span>
+                ))}
+              </div>
+              <div className={styles.dataStream} style={cssProps({ delay: '1.5s' })}>
+                {Array.from({ length: 12 }, (_, i) => (
+                  <span key={i} className={styles.dataChar}>
+                    {Math.random() > 0.5 ? '1' : '0'}
+                  </span>
+                ))}
+              </div>
+              <div className={styles.dataStream} style={cssProps({ delay: '3s' })}>
+                {Array.from({ length: 18 }, (_, i) => (
+                  <span key={i} className={styles.dataChar}>
+                    {Math.random() > 0.5 ? '1' : '0'}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div className={styles.hologramGrid} data-visible={visible}>
+              <div className={styles.gridLine} style={cssProps({ direction: 'horizontal', position: '20%' })}></div>
+              <div className={styles.gridLine} style={cssProps({ direction: 'horizontal', position: '40%' })}></div>
+              <div className={styles.gridLine} style={cssProps({ direction: 'horizontal', position: '60%' })}></div>
+              <div className={styles.gridLine} style={cssProps({ direction: 'horizontal', position: '80%' })}></div>
+              <div className={styles.gridLine} style={cssProps({ direction: 'vertical', position: '25%' })}></div>
+              <div className={styles.gridLine} style={cssProps({ direction: 'vertical', position: '50%' })}></div>
+              <div className={styles.gridLine} style={cssProps({ direction: 'vertical', position: '75%' })}></div>
+            </div>
             <header className={styles.text}>
-              <h1 className={styles.name} data-visible={visible} id={titleId}>
-                <DecoderText text={config.name} delay={500} />
-              </h1>
+              <div className={styles.aiIndicator} data-visible={visible}>
+                <span className={styles.aiGlow}>AI</span>
+                <div className={styles.aiPulse}></div>
+                <div className={styles.scanLine}></div>
+              </div>
+              <div className={styles.nameContainer} data-visible={visible}>
+                <div className={styles.glitchOverlay}>
+                  <span className={styles.glitchLayer1}>{config.name}</span>
+                  <span className={styles.glitchLayer2}>{config.name}</span>
+                  <span className={styles.glitchLayer3}>{config.name}</span>
+                </div>
+                <h1 className={styles.name} data-visible={visible} id={titleId}>
+                  <DecoderText text={config.name} delay={500} />
+                </h1>
+                <div className={styles.holographicBorder}></div>
+              </div>
               <Heading level={0} as="h2" className={styles.title}>
                 <VisuallyHidden className={styles.label}>
                   {`${config.role} + ${introLabel}`}
@@ -80,12 +132,17 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
                   <span
                     className={styles.word}
                     data-status={status}
+                    data-main-role={true}
                     style={cssProps({ delay: tokens.base.durationXS })}
                   >
                     {config.role}
                   </span>
+                  
                   <span className={styles.line} data-status={status} />
                 </span>
+                
+
+
                 <div className={styles.row}>
                   {disciplines.map(item => (
                     <Transition
@@ -101,6 +158,7 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
                           className={styles.word}
                           data-plus={true}
                           data-status={status}
+                          data-discipline={true}
                           style={cssProps({ delay: tokens.base.durationL })}
                         >
                           {item}
@@ -110,6 +168,37 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
                   ))}
                 </div>
               </Heading>
+              <div className={styles.tagline} data-visible={visible}>
+                <div className={styles.voiceVisualizerContainer}>
+                  <div className={styles.voiceVisualizer}>
+                    {Array.from({ length: 20 }, (_, i) => (
+                      <div 
+                        key={i} 
+                        className={styles.voiceBar}
+                        style={cssProps({ delay: `${i * 0.1}s` })}
+                      ></div>
+                    ))}
+                  </div>
+                </div>
+                <span className={styles.taglineText}>
+                  <span className={styles.typewriterText} data-text="Crafting intelligent solutions that bridge technology and human needs">
+                    Crafting intelligent solutions that bridge technology and human needs
+                  </span>
+                </span>
+                <div className={styles.quantumEntanglement}>
+                  <div className={styles.neuralNetwork}>
+                    <div className={styles.neuralNode}></div>
+                    <div className={styles.neuralNode}></div>
+                    <div className={styles.neuralNode}></div>
+                    <div className={styles.neuralConnection}></div>
+                    <div className={styles.neuralConnection}></div>
+                  </div>
+                  <div className={styles.dnaHelix}>
+                    <div className={styles.dnaStrand}></div>
+                    <div className={styles.dnaStrand}></div>
+                  </div>
+                </div>
+              </div>
             </header>
             <RouterLink
               to="/#project-1"

@@ -3,6 +3,54 @@
     width: 100%;
     position: relative;
     transition: opacity 0.4s var(--bezierFastoutSlowin);
+    background: 
+      linear-gradient(135deg, rgba(0, 30, 60, 0.02) 0%, rgba(30, 0, 60, 0.02) 100%),
+      radial-gradient(ellipse at center, rgba(0, 255, 255, 0.015) 0%, transparent 60%);
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    &::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(0, 255, 255, 0.03) 0%, transparent 40%),
+        radial-gradient(circle at 80% 20%, rgba(255, 0, 255, 0.03) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(157, 78, 221, 0.02) 0%, transparent 70%);
+      animation: globalBackgroundShift 30s ease-in-out infinite;
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    &::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 3px,
+          rgba(0, 255, 255, 0.003) 3px,
+          rgba(0, 255, 255, 0.003) 6px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 3px,
+          rgba(255, 0, 255, 0.003) 3px,
+          rgba(255, 0, 255, 0.003) 6px
+        );
+      animation: globalScanEffect 12s linear infinite;
+      pointer-events: none;
+      z-index: -1;
+    }
 
     &[data-loading='true'] {
       opacity: 0;
@@ -40,4 +88,224 @@
       z-index: -1;
     }
   }
+}
+
+/* Global Background Animations */
+@keyframes globalBackgroundShift {
+  0%, 100% { 
+    opacity: 0.4; 
+    transform: translateX(0) translateY(0) scale(1);
+  }
+  25% { 
+    opacity: 0.6; 
+    transform: translateX(-0.5%) translateY(-0.5%) scale(1.01);
+  }
+  50% { 
+    opacity: 0.8; 
+    transform: translateX(0.5%) translateY(0.5%) scale(0.99);
+  }
+  75% { 
+    opacity: 0.5; 
+    transform: translateX(-0.3%) translateY(0.3%) scale(1.005);
+  }
+}
+
+@keyframes globalScanEffect {
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 0.3; }
+}
+
+/* Global Particle System */
+.globalParticles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.globalParticle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: radial-gradient(circle, rgba(0, 255, 255, 0.6) 0%, rgba(255, 0, 255, 0.3) 50%, transparent 70%);
+  border-radius: 50%;
+  animation: globalParticleFloat 20s ease-in-out infinite;
+  opacity: 0.4;
+}
+
+.globalParticle:nth-child(1) { 
+  top: 15%; left: 5%; 
+  animation-delay: 0s;
+  animation-duration: 25s;
+}
+
+.globalParticle:nth-child(2) { 
+  top: 75%; left: 90%; 
+  animation-delay: 5s;
+  animation-duration: 18s;
+}
+
+.globalParticle:nth-child(3) { 
+  top: 45%; left: 15%; 
+  animation-delay: 10s;
+  animation-duration: 22s;
+}
+
+.globalParticle:nth-child(4) { 
+  top: 25%; left: 85%; 
+  animation-delay: 15s;
+  animation-duration: 20s;
+}
+
+.globalParticle:nth-child(5) { 
+  top: 65%; left: 25%; 
+  animation-delay: 8s;
+  animation-duration: 24s;
+}
+
+.globalParticle:nth-child(6) { 
+  top: 10%; left: 60%; 
+  animation-delay: 12s;
+  animation-duration: 19s;
+}
+
+@keyframes globalParticleFloat {
+  0%, 100% { 
+    transform: translate(0, 0) scale(1);
+    opacity: 0.2;
+  }
+  25% { 
+    transform: translate(50px, -30px) scale(1.5);
+    opacity: 0.8;
+  }
+  50% { 
+    transform: translate(-30px, 60px) scale(0.8);
+    opacity: 0.4;
+  }
+  75% { 
+    transform: translate(70px, 20px) scale(1.2);
+    opacity: 0.6;
+  }
+}
+
+/* Global Earth Animation */
+.globalEarth {
+  position: fixed;
+  top: 50%;
+  right: -200px;
+  width: 400px;
+  height: 400px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.1;
+}
+
+.earthCore {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: 
+    radial-gradient(circle at 30% 30%, rgba(0, 150, 255, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(0, 255, 100, 0.15) 0%, transparent 40%),
+    conic-gradient(from 0deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1), rgba(0, 255, 255, 0.1));
+  position: relative;
+  animation: earthRotate 40s linear infinite;
+}
+
+.earthGrid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: 
+    repeating-linear-gradient(
+      0deg,
+      transparent 0px,
+      rgba(0, 255, 255, 0.1) 1px,
+      transparent 2px,
+      transparent 20px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      rgba(255, 0, 255, 0.1) 1px,
+      transparent 2px,
+      transparent 20px
+    );
+  animation: earthGridPulse 8s ease-in-out infinite;
+}
+
+.earthData {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  width: 60%;
+  height: 60%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 255, 255, 0.05) 0%, transparent 70%);
+  animation: earthDataFlow 12s ease-in-out infinite;
+}
+
+@keyframes earthRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes earthGridPulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+@keyframes earthDataFlow {
+  0%, 100% { 
+    opacity: 0.2;
+    transform: scale(1) rotate(0deg);
+  }
+  50% { 
+    opacity: 0.6;
+    transform: scale(1.1) rotate(180deg);
+  }
+}
+
+/* Theme-responsive animations */
+[data-theme='light'] .container::before {
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(0, 100, 255, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(255, 100, 0, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(100, 50, 200, 0.03) 0%, transparent 70%);
+}
+
+[data-theme='light'] .container::after {
+  background: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(0, 100, 255, 0.005) 3px,
+      rgba(0, 100, 255, 0.005) 6px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 3px,
+      rgba(255, 100, 0, 0.005) 3px,
+      rgba(255, 100, 0, 0.005) 6px
+    );
+}
+
+[data-theme='light'] .globalParticle {
+  background: radial-gradient(circle, rgba(0, 100, 255, 0.4) 0%, rgba(255, 100, 0, 0.2) 50%, transparent 70%);
+}
+
+[data-theme='light'] .earthCore {
+  background: 
+    radial-gradient(circle at 30% 30%, rgba(0, 100, 255, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(255, 150, 0, 0.1) 0%, transparent 40%),
+    conic-gradient(from 0deg, rgba(0, 150, 255, 0.08), rgba(255, 100, 0, 0.08), rgba(0, 150, 255, 0.08));
 }

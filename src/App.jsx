@@ -70,6 +70,24 @@ function App() {
             Skip to main content
           </VisuallyHidden>
           <Navbar />
+          {/* Global Particle System */}
+          <div className={styles.globalParticles}>
+            <div className={styles.globalParticle}></div>
+            <div className={styles.globalParticle}></div>
+            <div className={styles.globalParticle}></div>
+            <div className={styles.globalParticle}></div>
+            <div className={styles.globalParticle}></div>
+            <div className={styles.globalParticle}></div>
+          </div>
+
+          {/* Global Earth Animation */}
+          <div className={styles.globalEarth}>
+            <div className={styles.earthCore}>
+              <div className={styles.earthGrid}></div>
+              <div className={styles.earthData}></div>
+            </div>
+          </div>
+
           <main
             id="main-content"
             className={styles.container}

@@ -3,7 +3,7 @@ import deliveryHome from '~/assets/Delivery/home.png';
 import deliveryWallet from '~/assets/Delivery/wallet.png';
 import deliveryHome2 from '~/assets/Delivery/home2.png';
 import deliveryScreen5 from '~/assets/Delivery/Simulator Screenshot - iPhone 15 - 2025-08-05 at 01.31.50.png';
-import deliveryScreen6 from '~/assets/Delivery/Simulator Screenshot - iPhone 15 - 2025-08-05 at 01.32.25.png';
+import deliveryScreen6 from '~/assets/Delivery/Simulator Screenshot - iPhone 15 - 2025-08-05 at 01.33.17.png';
 import { Footer } from '~/components/footer';
 import { Image } from '~/components/image';
 import {
