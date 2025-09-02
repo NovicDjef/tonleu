@@ -154,8 +154,8 @@ export const Home = () => {
         index={3}
         title="kourcier mobile app"
         description="Kourcier mobile application to help people order food in one click from the restaurant of their choice and have it delivered to the desired location thanks to integrated geolocation with also an integrated fast parcel delivery service and real-time tracking"
-        buttonText="View website"
-        buttonLink="https://Kourcier.com"
+        buttonText="View project"
+        buttonLink="/projects/koursier"
         model={{
           type: 'phone',
           alt: 'App login screen',
