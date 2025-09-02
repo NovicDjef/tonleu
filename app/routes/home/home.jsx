@@ -6,6 +6,11 @@ import gamestackTexturePlaceholder from '~/assets/gamestack-login-placeholder.jp
 import gamestackTexture from '~/assets/gamestack-login.jpg';
 import reminder1 from '~/assets/reminder1.png';
 import reminder2 from '~/assets/reminder2.png';
+import deliveryHome from '~/assets/Delivery/home.png';
+import deliveryWallet from '~/assets/Delivery/wallet.png';
+import raphycarTexture from '~/assets/raphy/home.png';
+import dashboardTexture from '~/assets/dashb/homeresto.jpg';
+import dashboardUI from '~/assets/dashb/ui-design-dialin-contracts-manager.png';
 import sliceTextureLarge from '~/assets/slice-app-large.jpg';
 import sliceTexturePlaceholder from '~/assets/slice-app-placeholder.jpg';
 import sliceTexture from '~/assets/slice-app.jpg';
@@ -56,10 +61,13 @@ export const Home = () => {
   const projectTwo = useRef();
   const projectThree = useRef();
   const projectFour = useRef();
+  const projectFive = useRef();
+  const projectSix = useRef();
+  const projectSeven = useRef();
   const details = useRef();
 
   useEffect(() => {
-    const sections = [intro, projectOne, projectTwo, projectThree, projectFour, details];
+    const sections = [intro, projectOne, projectTwo, projectThree, projectFour, projectFive, projectSix, projectSeven, details];
 
     const sectionObserver = new IntersectionObserver(
       (entries, observer) => {
@@ -107,13 +115,103 @@ export const Home = () => {
         sectionRef={projectOne}
         visible={visibleSections.includes(projectOne.current)}
         index={1}
-        title="Reminder mobile app"
-        description="Mobile reminder application to help people record their medication intake number of intake per day and the number of days and a reminder and send by push notification at different times record for taking medication and after taking the medication you have the history which says if you took it or name."
-        buttonText="View App"
-        buttonLink="https://play.google.com/store/apps/details?id=com.novic.reminder"
+        title="Multi-Service Delivery Platform"
+        description="A comprehensive mobile delivery platform enabling real-time tracking, multi-category ordering, and seamless user experience for gas, packages, and food delivery services."
+        buttonText="View project"
+        buttonLink="/projects/koursier"
         model={{
           type: 'phone',
-          alt: 'App login screen',
+          alt: 'Koursier app interface',
+          textures: [
+            {
+              srcSet: `${gamestackTexture} 375w, ${gamestackTextureLarge} 750w`,
+              placeholder: gamestackTexturePlaceholder,
+            },
+            {
+              srcSet: `${gamestackTexture2} 375w, ${gamestackTexture2Large} 750w`,
+              placeholder: gamestackTexture2Placeholder,
+            },
+          ],
+        }}
+      />
+      <ProjectSummary
+        id="project-2"
+        sectionRef={projectTwo}
+        visible={visibleSections.includes(projectTwo.current)}
+        index={2}
+        title="Comprehensive Admin Dashboard System"
+        description="A powerful administrative dashboard designed for managing delivery operations, driver coordination, revenue tracking, and comprehensive business analytics for multi-service delivery platforms."
+        buttonText="View project"
+        buttonLink="/projects/admin-dashboard"
+        model={{
+          type: 'laptop',
+          alt: 'Admin dashboard showing comprehensive management interface',
+          textures: [
+            {
+              srcSet: `${dashboardTexture} 800w, ${dashboardUI} 1920w`,
+              placeholder: gamestackTexturePlaceholder,
+            },
+          ],
+        }}
+      />
+      <ProjectSummary
+        id="project-3"
+        alternate
+        sectionRef={projectThree}
+        visible={visibleSections.includes(projectThree.current)}
+        index={3}
+        title="Koursier Delivery Management System"
+        description="Professional delivery driver application for managing orders, real-time tracking, and seamless coordination with the main Koursier platform to ensure efficient delivery operations."
+        buttonText="View project"
+        buttonLink="/projects/koursier-delivery"
+        model={{
+          type: 'phone',
+          alt: 'Koursier Delivery app order management interface',
+          textures: [
+            {
+              srcSet: `${deliveryHome} 375w, ${deliveryWallet} 750w`,
+              placeholder: gamestackTexturePlaceholder,
+            },
+            {
+              srcSet: `${deliveryWallet} 375w, ${deliveryHome} 750w`,
+              placeholder: gamestackTexture2Placeholder,
+            },
+          ],
+        }}
+      />
+      <ProjectSummary
+        id="project-4"
+        sectionRef={projectFour}
+        visible={visibleSections.includes(projectFour.current)}
+        index={4}
+        title="RaphyCar - AI-Powered Vehicle Rental Platform"
+        description="A comprehensive car rental mobile application designed for the Cameroonian market, featuring intelligent filtering, AI-powered chatbot customer support, and complete administrative management for vehicle fleet operations."
+        buttonText="View project"
+        buttonLink="/projects/raphycar"
+        model={{
+          type: 'phone',
+          alt: 'RaphyCar mobile app showing vehicle rental interface with AI chatbot',
+          textures: [
+            {
+              srcSet: `${raphycarTexture} 375w, ${raphycarTexture} 750w`,
+              placeholder: gamestackTexturePlaceholder,
+            },
+          ],
+        }}
+      />
+      <ProjectSummary
+        id="project-5"
+        alternate
+        sectionRef={projectFive}
+        visible={visibleSections.includes(projectFive.current)}
+        index={5}
+        title="Smart Medication Management System"
+        description="A comprehensive mobile application designed to help users manage their medication schedules with intelligent reminders, tracking capabilities, and detailed intake history for improved healthcare compliance."
+        buttonText="View project"
+        buttonLink="/projects/reminder"
+        model={{
+          type: 'phone',
+          alt: 'Reminder app medication management interface',
           textures: [
             {
               srcSet: `${reminder2} 375w, ${gamestackTextureLarge} 750w`,
@@ -127,10 +225,10 @@ export const Home = () => {
         }}
       />
       <ProjectSummary
-        id="project-2"
-        sectionRef={projectTwo}
-        visible={visibleSections.includes(projectTwo.current)}
-        index={2}
+        id="project-6"
+        sectionRef={projectSix}
+        visible={visibleSections.includes(projectSix.current)}
+        index={6}
         title="Design the future through programming"
         description="Designing a platform to help educators build better online courseware"
         buttonText="View project"
@@ -147,35 +245,11 @@ export const Home = () => {
         }}
       />
       <ProjectSummary
-        id="project-3"
+        id="project-7"
         alternate
-        sectionRef={projectThree}
-        visible={visibleSections.includes(projectThree.current)}
-        index={3}
-        title="kourcier mobile app"
-        description="Kourcier mobile application to help people order food in one click from the restaurant of their choice and have it delivered to the desired location thanks to integrated geolocation with also an integrated fast parcel delivery service and real-time tracking"
-        buttonText="View project"
-        buttonLink="/projects/koursier"
-        model={{
-          type: 'phone',
-          alt: 'App login screen',
-          textures: [
-            {
-              srcSet: `${gamestackTexture} 375w, ${gamestackTextureLarge} 750w`,
-              placeholder: gamestackTexturePlaceholder,
-            },
-            {
-              srcSet: `${gamestackTexture2} 375w, ${gamestackTexture2Large} 750w`,
-              placeholder: gamestackTexture2Placeholder,
-            },
-          ],
-        }}
-      />
-      <ProjectSummary
-        id="project-4"
-        sectionRef={projectFour}
-        visible={visibleSections.includes(projectFour.current)}
-        index={4}
+        sectionRef={projectSeven}
+        visible={visibleSections.includes(projectSeven.current)}
+        index={7}
         title="Biomedical image collaboration"
         description="Increasing the amount of collaboration in Slice, an app for biomedical imaging"
         buttonText="View project"

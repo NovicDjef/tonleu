@@ -1,0 +1,1 @@
+export { Raphycar as default, meta } from './raphycar';

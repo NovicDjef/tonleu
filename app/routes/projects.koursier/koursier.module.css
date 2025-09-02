@@ -5,58 +5,37 @@
   --zIndex1: 1;
 }
 
-.columns {
-  align-items: flex-end;
-}
-
-.imagesText {
-  position: relative;
-  grid-column: 1 / 2;
-  max-width: 400px;
-}
-
 .sidebarImages {
-  grid-column: 2 / 3;
-  display: flex;
-  align-items: flex-end;
-  gap: 24px;
+  display: grid;
+  grid-template-columns: repeat(6, [col] 1fr);
+  align-items: center;
+
+  @media (--mediaTablet) {
+    padding: 0 80px;
+    margin-top: 60px;
+  }
+
+  @media (--mediaMobile) {
+    padding: 0 20px;
+    margin-top: 40px;
+  }
 }
 
 .sidebarImage {
-  z-index: var(--zIndex1);
-}
+  &:first-child {
+    grid-column: col 1 / span 4;
+    grid-row: 1;
+    position: relative;
+    top: 5%;
+    opacity: 0.4;
+  }
 
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-}
-
-.gridImage {
-  position: relative;
-  grid-column: 2 / 3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.gridBackground {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
-.gridForeground {
-  position: relative;
-  z-index: var(--zIndex1);
-}
-
-.gridText {
-  grid-column: 1 / 2;
-  position: relative;
-  padding-right: 80px;
+  &:last-child {
+    grid-column: col 3 / span 4;
+    grid-row: 1;
+    position: relative;
+    top: -5%;
+  }
 }
 
 @media (max-width: 1024px) {

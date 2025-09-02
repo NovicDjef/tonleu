@@ -12,6 +12,11 @@ import { Articles } from '../app/routes/articles_._index/articles';
 import { Slice } from '../app/routes/projects.slice/slice';
 import { SmartSparrow } from '../app/routes/projects.smart-sparrow/smart-sparrow';
 import { VolkiharKnight } from '../app/routes/projects.volkihar-knight/volkihar-knight';
+import { Koursier } from '../app/routes/projects.koursier/koursier';
+import { Reminder } from '../app/routes/projects.reminder/reminder';
+import { KoursierDelivery } from '../app/routes/projects.koursier-delivery/koursier-delivery';
+import { Raphycar } from '../app/routes/projects.raphycar/raphycar';
+import { AdminDashboard } from '../app/routes/projects.admin-dashboard/admin-dashboard';
 import config from '../app/config.json';
 import styles from '../app/root.module.css';
 import '../app/reset.module.css';
@@ -79,6 +84,11 @@ function App() {
               <Route path="/projects/slice" element={<Slice />} />
               <Route path="/projects/smart-sparrow" element={<SmartSparrow />} />
               <Route path="/projects/volkihar-knight" element={<VolkiharKnight />} />
+              <Route path="/projects/koursier" element={<Koursier />} />
+              <Route path="/projects/reminder" element={<Reminder />} />
+              <Route path="/projects/koursier-delivery" element={<KoursierDelivery />} />
+              <Route path="/projects/raphycar" element={<Raphycar />} />
+              <Route path="/projects/admin-dashboard" element={<AdminDashboard />} />
               <Route path="*" element={<Error error={{ status: 404, statusText: 'Not Found' }} />} />
             </Routes>
           </main>

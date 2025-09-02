@@ -26,9 +26,9 @@ export const socialLinks = [
     icon: 'twitter',
   },
   {
-    label: 'Figma',
-    url: `https://www.figma.com/${config.figma}`,
-    icon: 'figma',
+    label: 'LinkedIn',
+    url: `https://linkedin.com/in/n-d-melataguia-tonleu`,
+    icon: 'linkedin',
   },
   {
     label: 'Github',

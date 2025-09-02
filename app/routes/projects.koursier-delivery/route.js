@@ -1,0 +1,1 @@
+export { KoursierDelivery as default, meta } from './koursier-delivery';
