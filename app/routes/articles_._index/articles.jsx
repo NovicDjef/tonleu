@@ -93,7 +93,7 @@ function ArticlesPost({ slug, frontmatter, timecode, index }) {
   );
 }
 
-function SkeletonPost({ index }) {
+function SkeletonPost({ index, title, description }) {
   return (
     <article
       aria-hidden="true"
@@ -107,24 +107,18 @@ function SkeletonPost({ index }) {
             <Divider notchWidth="64px" notchHeight="8px" />
             Coming soon...
           </div>
-          <Heading
-            className={styles.skeletonBone}
-            as="h2"
-            level={4}
-            style={{ height: 24, width: '70%' }}
-          />
-          <Text
-            className={styles.skeletonBone}
-            size="s"
-            as="p"
-            style={{ height: 90, width: '100%' }}
-          />
+          <Heading as="h2" level={4}>
+            {title || 'Upcoming Article'}
+          </Heading>
+          <Text size="s" as="p">
+            {description || 'New insights and tutorials about Full Stack JavaScript/TypeScript development, modern frameworks, and cutting-edge web technologies.'}
+          </Text>
           <div className={styles.postFooter}>
             <Button secondary iconHoverShift icon="chevron-right" as="div">
               Read more
             </Button>
             <Text className={styles.timecode} size="s">
-              00:00:00:00
+              Coming soon
             </Text>
           </div>
         </div>
@@ -136,7 +130,17 @@ function SkeletonPost({ index }) {
 export function Articles() {
   // For now using static data since loader was removed
   const posts = [];
-  const featured = null;
+  const featured = {
+    slug: 'modern-styling-in-react',
+    frontmatter: {
+      title: 'Modern Styling in React',
+      abstract: 'A comprehensive guide to modern CSS-in-JS solutions, component styling patterns, and advanced techniques for building scalable React applications with beautiful, maintainable styles.',
+      date: '2024-12-15',
+      featured: true,
+      banner: '/static/modern-styling-in-react-banner.jpg'
+    },
+    timecode: '15:30:20:12'
+  };
   const { width } = useWindowSize();
   const singleColumnWidth = 1190;
   const isSingleColumn = width <= singleColumnWidth;
@@ -156,11 +160,18 @@ export function Articles() {
       {posts.map(({ slug, ...post }, index) => (
         <ArticlesPost key={slug} slug={slug} index={index} {...post} />
       ))}
-      {Array(2)
-        .fill()
-        .map((skeleton, index) => (
-          <SkeletonPost key={index} index={index} />
-        ))}
+      <SkeletonPost 
+        key={0} 
+        index={0} 
+        title="Advanced React Patterns and TypeScript"
+        description="Explore advanced React patterns, custom hooks, and TypeScript best practices for building scalable applications with modern development techniques."
+      />
+      <SkeletonPost 
+        key={1} 
+        index={1} 
+        title="Full Stack Architecture with Node.js"
+        description="Deep dive into modern full stack architecture, API design, database optimization, and deployment strategies using Node.js and cloud technologies."
+      />
     </div>
   );
 

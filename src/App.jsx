@@ -17,6 +17,9 @@ import { Reminder } from '../app/routes/projects.reminder/reminder';
 import { KoursierDelivery } from '../app/routes/projects.koursier-delivery/koursier-delivery';
 import { Raphycar } from '../app/routes/projects.raphycar/raphycar';
 import { AdminDashboard } from '../app/routes/projects.admin-dashboard/admin-dashboard';
+import { ModernStylingInReact } from '../app/routes/articles.modern-styling-in-react/modern-styling-in-react';
+import { CV } from '../app/routes/cv/cv';
+import { About } from '../app/routes/about/about';
 import config from '../app/config.json';
 import styles from '../app/root.module.css';
 import '../app/reset.module.css';
@@ -80,6 +83,33 @@ function App() {
             <div className={styles.globalParticle}></div>
           </div>
 
+          {/* Global Skills Floating System */}
+          <div className="floating-skills">
+            <div className="skill-particle">React.js</div>
+            <div className="skill-particle">TypeScript</div>
+            <div className="skill-particle">Node.js</div>
+            <div className="skill-particle">Next.js</div>
+            <div className="skill-particle">React Native</div>
+            <div className="skill-particle">JavaScript ES6+</div>
+            <div className="skill-particle">MongoDB</div>
+            <div className="skill-particle">Express.js</div>
+            <div className="skill-particle">Angular</div>
+            <div className="skill-particle">Full Stack Dev</div>
+          </div>
+
+          {/* Code Matrix Background */}
+          <div className="code-matrix">
+            <div className="matrix-column">const fullStack = true;</div>
+            <div className="matrix-column">function dev() {'{'} return 'JS/TS'; {'}'}</div>
+            <div className="matrix-column">npm install react</div>
+            <div className="matrix-column">async/await</div>
+            <div className="matrix-column">{'<Component />'}</div>
+            <div className="matrix-column">API RESTful</div>
+            <div className="matrix-column">useState Hook</div>
+            <div className="matrix-column">MongoDB.find()</div>
+            <div className="matrix-column">git commit -m</div>
+          </div>
+
           {/* Global Earth Animation */}
           <div className={styles.globalEarth}>
             <div className={styles.earthCore}>
@@ -107,6 +137,9 @@ function App() {
               <Route path="/projects/koursier-delivery" element={<KoursierDelivery />} />
               <Route path="/projects/raphycar" element={<Raphycar />} />
               <Route path="/projects/admin-dashboard" element={<AdminDashboard />} />
+              <Route path="/articles/modern-styling-in-react" element={<ModernStylingInReact />} />
+              <Route path="/cv" element={<CV />} />
+              <Route path="/about" element={<About />} />
               <Route path="*" element={<Error error={{ status: 404, statusText: 'Not Found' }} />} />
             </Routes>
           </main>
