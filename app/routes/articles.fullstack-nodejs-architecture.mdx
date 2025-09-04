@@ -1,0 +1,684 @@
+---
+title: 'Full Stack Architecture with Node.js'
+abstract: Deep dive into modern full stack architecture, API design, database optimization, and deployment strategies using Node.js and cloud technologies.
+date: '2024-04-01'
+banner: /static/nodejs-backend-banner.jpg
+timecode: '00:22:15:08'
+featured: false
+---
+
+import { Post } from '~/layouts/post';
+
+export const meta = () => {
+  return [
+    { title: frontmatter.title },
+    { name: 'description', content: frontmatter.abstract },
+  ];
+};
+
+export default function MDXContent({ children }) {
+  return (
+    <Post {...frontmatter}>
+      {children}
+    </Post>
+  );
+}
+
+## Modern Full Stack Node.js Architecture in 2024
+
+The Node.js ecosystem has evolved dramatically with new frameworks, tools, and best practices emerging. This comprehensive guide covers the latest trends and architectural patterns for building scalable, production-ready full stack applications.
+
+## Node.js Runtime & Modern Features
+
+### Node.js 20+ Features
+
+Node.js 20 LTS brings significant improvements:
+
+```javascript
+// Built-in test runner (Node.js 18+)
+import { test, describe } from 'node:test';
+import assert from 'node:assert';
+
+describe('User API', () => {
+  test('should create user', async () => {
+    const response = await fetch('/api/users', {
+      method: 'POST',
+      body: JSON.stringify({ name: 'John Doe' })
+    });
+    assert.strictEqual(response.status, 201);
+  });
+});
+```
+
+### ES Modules & Top-Level Await
+
+```javascript
+// package.json
+{
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
+
+// app.js
+import express from 'express';
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
+const app = express();
+
+// Top-level await
+const config = await import('./config.js');
+```
+
+## Modern Web Frameworks
+
+### Next.js 14 App Router + API Routes
+
+The App Router revolutionizes full stack development:
+
+```typescript
+// app/api/users/route.ts
+import { NextRequest, NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
+import { z } from 'zod';
+
+const createUserSchema = z.object({
+  name: z.string().min(2),
+  email: z.string().email(),
+});
+
+export async function POST(request: NextRequest) {
+  try {
+    const body = await request.json();
+    const { name, email } = createUserSchema.parse(body);
+    
+    const user = await prisma.user.create({
+      data: { name, email },
+    });
+    
+    return NextResponse.json(user, { status: 201 });
+  } catch (error) {
+    return NextResponse.json(
+      { error: 'Invalid input' },
+      { status: 400 }
+    );
+  }
+}
+```
+
+### Fastify 4.x - High Performance Alternative
+
+```typescript
+import Fastify, { FastifyInstance } from 'fastify';
+import { PrismaClient } from '@prisma/client';
+
+const fastify: FastifyInstance = Fastify({
+  logger: true
+});
+
+const prisma = new PrismaClient();
+
+// Schema-based validation
+const userSchema = {
+  type: 'object',
+  required: ['name', 'email'],
+  properties: {
+    name: { type: 'string', minLength: 2 },
+    email: { type: 'string', format: 'email' }
+  }
+};
+
+fastify.post('/api/users', {
+  schema: {
+    body: userSchema,
+    response: {
+      201: {
+        type: 'object',
+        properties: {
+          id: { type: 'string' },
+          name: { type: 'string' },
+          email: { type: 'string' }
+        }
+      }
+    }
+  }
+}, async (request, reply) => {
+  const { name, email } = request.body as any;
+  const user = await prisma.user.create({ data: { name, email } });
+  reply.status(201).send(user);
+});
+```
+
+## Database Layer & Modern ORMs
+
+### Prisma ORM - The New Standard
+
+```prisma
+// prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  posts     Post[]
+  profile   Profile?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model Post {
+  id        String   @id @default(cuid())
+  title     String
+  content   String?
+  published Boolean  @default(false)
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  tags      Tag[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("posts")
+}
+```
+
+### Advanced Prisma Patterns
+
+```typescript
+import { PrismaClient, Prisma } from '@prisma/client';
+
+const prisma = new PrismaClient({
+  log: ['query', 'info', 'warn', 'error'],
+});
+
+// Transaction with rollback
+export async function createUserWithProfile(userData: {
+  name: string;
+  email: string;
+  bio?: string;
+}) {
+  return await prisma.$transaction(async (tx) => {
+    const user = await tx.user.create({
+      data: {
+        name: userData.name,
+        email: userData.email,
+      },
+    });
+
+    const profile = await tx.profile.create({
+      data: {
+        bio: userData.bio || '',
+        userId: user.id,
+      },
+    });
+
+    return { user, profile };
+  });
+}
+
+// Advanced queries with relations
+export async function getUserWithPosts(userId: string) {
+  return await prisma.user.findUnique({
+    where: { id: userId },
+    include: {
+      posts: {
+        where: { published: true },
+        orderBy: { createdAt: 'desc' },
+        take: 10,
+        include: {
+          tags: true,
+        },
+      },
+      _count: {
+        select: {
+          posts: { where: { published: true } },
+        },
+      },
+    },
+  });
+}
+```
+
+### Drizzle ORM - Lightweight Alternative
+
+```typescript
+import { drizzle } from 'drizzle-orm/postgres-js';
+import { pgTable, text, timestamp, boolean, uuid } from 'drizzle-orm/pg-core';
+import { eq, desc } from 'drizzle-orm';
+
+export const users = pgTable('users', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  name: text('name').notNull(),
+  email: text('email').unique().notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+});
+
+export const posts = pgTable('posts', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  title: text('title').notNull(),
+  content: text('content'),
+  published: boolean('published').default(false),
+  authorId: uuid('author_id').references(() => users.id),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+});
+
+const db = drizzle(connection);
+
+// Type-safe queries
+export async function getUserPosts(userId: string) {
+  return await db
+    .select()
+    .from(posts)
+    .where(eq(posts.authorId, userId))
+    .orderBy(desc(posts.createdAt));
+}
+```
+
+## Authentication & Security
+
+### Next-Auth.js v5 (Auth.js)
+
+```typescript
+// auth.config.ts
+import { NextAuthConfig } from 'next-auth';
+import GitHub from 'next-auth/providers/github';
+import Google from 'next-auth/providers/google';
+import Credentials from 'next-auth/providers/credentials';
+import { compare } from 'bcryptjs';
+
+export default {
+  providers: [
+    GitHub,
+    Google,
+    Credentials({
+      async authorize(credentials) {
+        const user = await getUserByEmail(credentials.email);
+        if (user && await compare(credentials.password, user.password)) {
+          return { id: user.id, email: user.email, name: user.name };
+        }
+        return null;
+      },
+    }),
+  ],
+  session: { strategy: 'jwt' },
+  callbacks: {
+    async session({ token, session }) {
+      if (token.sub) {
+        session.user.id = token.sub;
+      }
+      return session;
+    },
+  },
+} satisfies NextAuthConfig;
+```
+
+### JWT & Refresh Token Pattern
+
+```typescript
+import jwt from 'jsonwebtoken';
+import { Redis } from 'ioredis';
+
+const redis = new Redis(process.env.REDIS_URL);
+
+export interface TokenPair {
+  accessToken: string;
+  refreshToken: string;
+}
+
+export async function generateTokens(userId: string): Promise<TokenPair> {
+  const accessToken = jwt.sign(
+    { userId, type: 'access' },
+    process.env.JWT_SECRET!,
+    { expiresIn: '15m' }
+  );
+
+  const refreshToken = jwt.sign(
+    { userId, type: 'refresh' },
+    process.env.JWT_REFRESH_SECRET!,
+    { expiresIn: '7d' }
+  );
+
+  // Store refresh token in Redis
+  await redis.setex(`refresh_token:${userId}`, 7 * 24 * 60 * 60, refreshToken);
+
+  return { accessToken, refreshToken };
+}
+
+export async function refreshAccessToken(refreshToken: string) {
+  try {
+    const decoded = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET!) as any;
+    const storedToken = await redis.get(`refresh_token:${decoded.userId}`);
+    
+    if (storedToken !== refreshToken) {
+      throw new Error('Invalid refresh token');
+    }
+
+    return generateTokens(decoded.userId);
+  } catch (error) {
+    throw new Error('Token refresh failed');
+  }
+}
+```
+
+## Real-time Features
+
+### WebSocket with Socket.IO
+
+```typescript
+import { Server } from 'socket.io';
+import { createAdapter } from '@socket.io/redis-adapter';
+import { Redis } from 'ioredis';
+
+const pubClient = new Redis(process.env.REDIS_URL);
+const subClient = pubClient.duplicate();
+
+export function initializeSocket(httpServer: any) {
+  const io = new Server(httpServer, {
+    cors: {
+      origin: process.env.FRONTEND_URL,
+      credentials: true,
+    },
+  });
+
+  io.adapter(createAdapter(pubClient, subClient));
+
+  io.use(async (socket, next) => {
+    try {
+      const token = socket.handshake.auth.token;
+      const user = await verifyJWT(token);
+      socket.data.user = user;
+      next();
+    } catch (error) {
+      next(new Error('Authentication failed'));
+    }
+  });
+
+  io.on('connection', (socket) => {
+    console.log(`User ${socket.data.user.id} connected`);
+
+    socket.on('join_room', (roomId: string) => {
+      socket.join(`room_${roomId}`);
+    });
+
+    socket.on('send_message', async (data) => {
+      const message = await saveMessage(data);
+      io.to(`room_${data.roomId}`).emit('new_message', message);
+    });
+  });
+
+  return io;
+}
+```
+
+### Server-Sent Events (SSE)
+
+```typescript
+// app/api/notifications/route.ts
+export async function GET(request: NextRequest) {
+  const userId = getUserIdFromRequest(request);
+  
+  const stream = new ReadableStream({
+    start(controller) {
+      const sendNotification = (notification: any) => {
+        controller.enqueue(`data: ${JSON.stringify(notification)}\n\n`);
+      };
+
+      // Subscribe to notifications
+      subscribeToUserNotifications(userId, sendNotification);
+
+      // Send heartbeat every 30s
+      const heartbeat = setInterval(() => {
+        controller.enqueue(': heartbeat\n\n');
+      }, 30000);
+
+      return () => {
+        clearInterval(heartbeat);
+        unsubscribeFromUserNotifications(userId, sendNotification);
+      };
+    },
+  });
+
+  return new Response(stream, {
+    headers: {
+      'Content-Type': 'text/event-stream',
+      'Cache-Control': 'no-cache',
+      'Connection': 'keep-alive',
+    },
+  });
+}
+```
+
+## Background Jobs & Queue Systems
+
+### BullMQ with Redis
+
+```typescript
+import { Queue, Worker, Job } from 'bullmq';
+import { Redis } from 'ioredis';
+
+const connection = new Redis(process.env.REDIS_URL);
+
+// Email queue
+export const emailQueue = new Queue('email', { connection });
+
+// Job types
+interface EmailJob {
+  to: string;
+  subject: string;
+  template: string;
+  data: Record<string, any>;
+}
+
+// Add job to queue
+export async function sendEmail(emailData: EmailJob) {
+  await emailQueue.add('send_email', emailData, {
+    attempts: 3,
+    backoff: {
+      type: 'exponential',
+      delay: 2000,
+    },
+  });
+}
+
+// Worker to process jobs
+const emailWorker = new Worker(
+  'email',
+  async (job: Job<EmailJob>) => {
+    const { to, subject, template, data } = job.data;
+    
+    // Process email sending
+    await sendEmailWithTemplate(to, subject, template, data);
+    
+    // Update job progress
+    job.updateProgress(100);
+  },
+  { connection }
+);
+
+emailWorker.on('completed', (job) => {
+  console.log(`Email job ${job.id} completed`);
+});
+
+emailWorker.on('failed', (job, err) => {
+  console.error(`Email job ${job?.id} failed:`, err);
+});
+```
+
+## Caching Strategies
+
+### Redis Caching Patterns
+
+```typescript
+import { Redis } from 'ioredis';
+
+const redis = new Redis(process.env.REDIS_URL);
+
+// Cache-aside pattern
+export async function getUserById(id: string) {
+  const cacheKey = `user:${id}`;
+  
+  // Try cache first
+  const cached = await redis.get(cacheKey);
+  if (cached) {
+    return JSON.parse(cached);
+  }
+  
+  // Fetch from database
+  const user = await prisma.user.findUnique({ where: { id } });
+  
+  // Cache the result
+  if (user) {
+    await redis.setex(cacheKey, 3600, JSON.stringify(user)); // 1 hour TTL
+  }
+  
+  return user;
+}
+
+// Write-through pattern
+export async function updateUser(id: string, data: any) {
+  const user = await prisma.user.update({
+    where: { id },
+    data,
+  });
+  
+  // Update cache
+  const cacheKey = `user:${id}`;
+  await redis.setex(cacheKey, 3600, JSON.stringify(user));
+  
+  return user;
+}
+
+// Cache invalidation
+export async function deleteUser(id: string) {
+  await prisma.user.delete({ where: { id } });
+  
+  // Remove from cache
+  await redis.del(`user:${id}`);
+}
+```
+
+## Modern Deployment & DevOps
+
+### Docker Multi-stage Build
+
+```dockerfile
+# Dockerfile
+FROM node:20-alpine AS deps
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production
+
+FROM node:20-alpine AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+
+FROM node:20-alpine AS runner
+WORKDIR /app
+ENV NODE_ENV production
+
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+COPY --from=deps /app/node_modules ./node_modules
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/package.json ./package.json
+
+USER nextjs
+
+EXPOSE 3000
+ENV PORT 3000
+
+CMD ["npm", "start"]
+```
+
+### GitHub Actions CI/CD
+
+```yaml
+# .github/workflows/deploy.yml
+name: Deploy to Production
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - run: npm ci
+      - run: npm run test
+      - run: npm run lint
+      - run: npm run type-check
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Deploy to Railway
+        uses: railwayapp/railway-deploy@v1.0.0
+        with:
+          railway_token: ${{ secrets.RAILWAY_TOKEN }}
+          service: 'backend'
+```
+
+## Performance Monitoring
+
+### OpenTelemetry Integration
+
+```typescript
+import { NodeSDK } from '@opentelemetry/sdk-node';
+import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';
+import { PeriodicExportingMetricReader } from '@opentelemetry/sdk-metrics';
+import { Resource } from '@opentelemetry/resources';
+
+const sdk = new NodeSDK({
+  resource: new Resource({
+    'service.name': 'my-backend-service',
+    'service.version': '1.0.0',
+  }),
+  instrumentations: [getNodeAutoInstrumentations()],
+});
+
+sdk.start();
+```
+
+## Conclusion
+
+Modern Node.js full stack development in 2024 emphasizes:
+
+1. **Type Safety**: TypeScript everywhere with Prisma/Drizzle
+2. **Performance**: Fastify, caching, and optimized queries
+3. **Developer Experience**: Hot reload, testing, and observability
+4. **Scalability**: Queue systems, real-time features, and microservices
+5. **Security**: Modern auth patterns and input validation
+
+The ecosystem continues to evolve with new tools like Bun, Deno, and edge computing changing how we build and deploy applications.
+
+## Related Articles
+
+- [Hello world: how I built this site](/articles/hello-world)
+- [Advanced React Patterns and TypeScript](/articles/advanced-react-patterns)
+- [Modern Styling in React](/articles/modern-styling-in-react)

@@ -1,0 +1,362 @@
+---
+title: 'Advanced React Patterns and TypeScript'
+abstract: Explore advanced React patterns, custom hooks, and TypeScript best practices for building scalable applications with modern development techniques.
+date: '2024-03-15'
+banner: /static/modern-styling-in-react-banner.jpg
+timecode: '00:15:42:10'
+featured: false
+---
+
+import { Post } from '~/layouts/post';
+
+export const meta = () => {
+  return [
+    { title: frontmatter.title },
+    { name: 'description', content: frontmatter.abstract },
+  ];
+};
+
+export default function MDXContent({ children }) {
+  return (
+    <Post {...frontmatter}>
+      {children}
+    </Post>
+  );
+}
+
+## Modern TypeScript Development in 2024
+
+TypeScript has revolutionized React development, and with the latest updates in React 18, Next.js 14, and React Native 0.73, there are exciting new patterns and best practices that every developer should know. This comprehensive guide covers the most important advances in TypeScript for React ecosystems.
+
+## What's New in React + TypeScript
+
+### React 18 Server Components with TypeScript
+
+Server Components introduce new TypeScript patterns:
+
+```tsx
+// Server Component with proper typing
+interface ServerComponentProps {
+  userId: string;
+  searchParams: { [key: string]: string | string[] | undefined };
+}
+
+export default async function UserProfile({ userId, searchParams }: ServerComponentProps) {
+  const user = await fetchUser(userId);
+  return <div>{user.name}</div>;
+}
+```
+
+### Concurrent Features & TypeScript
+
+New concurrent features like `useTransition` and `useDeferredValue` with TypeScript:
+
+```tsx
+function SearchResults() {
+  const [query, setQuery] = useState('');
+  const [isPending, startTransition] = useTransition();
+  const deferredQuery = useDeferredValue(query);
+  
+  const handleSearch = (value: string) => {
+    startTransition(() => {
+      setQuery(value);
+    });
+  };
+}
+```
+
+## Next.js 14 TypeScript Innovations
+
+### App Router with TypeScript
+
+The new App Router provides better TypeScript integration:
+
+```tsx
+// app/users/[id]/page.tsx
+interface PageProps {
+  params: { id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+}
+
+export default function UserPage({ params, searchParams }: PageProps) {
+  return <div>User {params.id}</div>;
+}
+
+// Generate static params with TypeScript
+export async function generateStaticParams(): Promise<{ id: string }[]> {
+  const users = await fetchUsers();
+  return users.map(user => ({ id: user.id }));
+}
+```
+
+### Server Actions with TypeScript
+
+Type-safe server actions:
+
+```tsx
+'use server'
+
+interface FormData {
+  name: string;
+  email: string;
+}
+
+export async function createUser(formData: FormData): Promise<{ success: boolean; id?: string }> {
+  const user = await db.user.create({ data: formData });
+  return { success: true, id: user.id };
+}
+```
+
+### Route Handlers TypeScript Patterns
+
+```tsx
+// app/api/users/route.ts
+export async function GET(request: NextRequest): Promise<NextResponse> {
+  const users = await fetchUsers();
+  return NextResponse.json(users);
+}
+
+export async function POST(request: NextRequest): Promise<NextResponse> {
+  const body: CreateUserRequest = await request.json();
+  const user = await createUser(body);
+  return NextResponse.json(user, { status: 201 });
+}
+```
+
+## React Native TypeScript Enhancements
+
+### New Architecture & TypeScript
+
+React Native's New Architecture (Fabric + TurboModules) with TypeScript:
+
+```tsx
+// TurboModule interface
+interface NativeModule extends TurboModule {
+  getConstants(): { [key: string]: any };
+  getString(input: string): Promise<string>;
+}
+
+// Fabric component
+interface NativeComponentProps {
+  color: string;
+  onPress: () => void;
+}
+```
+
+### Cross-Platform TypeScript Patterns
+
+Platform-specific implementations with proper typing:
+
+```tsx
+// Button.ios.tsx & Button.android.tsx
+interface PlatformButtonProps {
+  title: string;
+  onPress: () => void;
+  style?: ViewStyle;
+}
+
+export const PlatformButton: React.FC<PlatformButtonProps> = ({ title, onPress, style }) => {
+  return (
+    <Pressable onPress={onPress} style={style}>
+      <Text>{title}</Text>
+    </Pressable>
+  );
+};
+```
+
+### Navigation v6 TypeScript
+
+Type-safe navigation with the latest React Navigation:
+
+```tsx
+type RootStackParamList = {
+  Home: undefined;
+  Profile: { userId: string };
+  Settings: { section?: 'account' | 'privacy' };
+};
+
+declare global {
+  namespace ReactNavigation {
+    interface RootParamList extends RootStackParamList {}
+  }
+}
+```
+
+## Advanced TypeScript Patterns for React
+
+### Generic Components with Constraints
+
+```tsx
+interface DataTableProps<T extends Record<string, unknown>> {
+  data: T[];
+  columns: Array<{
+    key: keyof T;
+    title: string;
+    render?: (value: T[keyof T], item: T) => React.ReactNode;
+  }>;
+}
+
+function DataTable<T extends Record<string, unknown>>({ data, columns }: DataTableProps<T>) {
+  return (
+    <table>
+      {data.map((item, index) => (
+        <tr key={index}>
+          {columns.map(column => (
+            <td key={String(column.key)}>
+              {column.render ? column.render(item[column.key], item) : String(item[column.key])}
+            </td>
+          ))}
+        </tr>
+      ))}
+    </table>
+  );
+}
+```
+
+### Form Handling with TypeScript
+
+Modern form patterns using React Hook Form + Zod:
+
+```tsx
+import { z } from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+
+const userSchema = z.object({
+  name: z.string().min(2),
+  email: z.string().email(),
+  age: z.number().min(18).max(120),
+});
+
+type UserFormData = z.infer<typeof userSchema>;
+
+function UserForm() {
+  const { register, handleSubmit, formState: { errors } } = useForm<UserFormData>({
+    resolver: zodResolver(userSchema)
+  });
+
+  const onSubmit = (data: UserFormData) => {
+    // Type-safe form submission
+  };
+}
+```
+
+## Performance Optimization with TypeScript
+
+### Memoization Patterns
+
+```tsx
+// Generic memoization hook
+function useCallback<T extends (...args: any[]) => any>(
+  callback: T,
+  dependencies: React.DependencyList
+): T {
+  return React.useCallback(callback, dependencies);
+}
+
+// Memoized component with proper typing
+interface ExpensiveComponentProps {
+  data: ComplexData[];
+  onItemClick: (id: string) => void;
+}
+
+const ExpensiveComponent = React.memo<ExpensiveComponentProps>(
+  ({ data, onItemClick }) => {
+    // Component implementation
+  },
+  (prevProps, nextProps) => {
+    return prevProps.data.length === nextProps.data.length;
+  }
+);
+```
+
+## State Management Patterns
+
+### Zustand with TypeScript
+
+```tsx
+interface BearStore {
+  bears: number;
+  increase: (by: number) => void;
+  reset: () => void;
+}
+
+const useBearStore = create<BearStore>((set) => ({
+  bears: 0,
+  increase: (by) => set((state) => ({ bears: state.bears + by })),
+  reset: () => set({ bears: 0 }),
+}));
+```
+
+### Redux Toolkit with TypeScript
+
+```tsx
+interface CounterState {
+  value: number;
+}
+
+const counterSlice = createSlice({
+  name: 'counter',
+  initialState: { value: 0 } as CounterState,
+  reducers: {
+    increment: (state) => {
+      state.value += 1;
+    },
+    incrementByAmount: (state, action: PayloadAction<number>) => {
+      state.value += action.payload;
+    },
+  },
+});
+```
+
+## Testing TypeScript React Components
+
+### Modern Testing Patterns
+
+```tsx
+import { render, screen, fireEvent } from '@testing-library/react';
+import { describe, it, expect, vi } from 'vitest';
+import type { UserEvent } from '@testing-library/user-event';
+
+interface ButtonProps {
+  onClick: () => void;
+  children: React.ReactNode;
+  variant?: 'primary' | 'secondary';
+}
+
+const Button: React.FC<ButtonProps> = ({ onClick, children, variant = 'primary' }) => (
+  <button onClick={onClick} data-variant={variant}>
+    {children}
+  </button>
+);
+
+describe('Button Component', () => {
+  it('should call onClick when clicked', async () => {
+    const handleClick = vi.fn();
+    render(<Button onClick={handleClick}>Click me</Button>);
+    
+    await fireEvent.click(screen.getByRole('button'));
+    expect(handleClick).toHaveBeenCalledOnce();
+  });
+});
+```
+
+## Conclusion
+
+TypeScript continues to evolve alongside React, Next.js, and React Native, bringing powerful new patterns that improve developer experience and code quality. From Server Components to the New Architecture in React Native, these modern TypeScript patterns are essential for building scalable, maintainable applications.
+
+The key takeaways:
+
+1. **Server Components** bring new typing challenges and opportunities
+2. **Next.js App Router** provides better TypeScript integration
+3. **React Native New Architecture** requires understanding of TurboModules and Fabric
+4. **Advanced patterns** like generic components and proper state management typing are crucial
+5. **Testing with TypeScript** ensures robust applications
+
+Stay tuned for more advanced patterns and real-world examples from production applications!
+
+## Related Articles
+
+- [Hello world: how I built this site](/articles/hello-world)
+- [Full Stack Architecture with Node.js](/articles/fullstack-nodejs-architecture)
+- [You (probably) don't need CSS-in-JS](/articles/modern-styling-in-react)

@@ -1,10 +1,28 @@
 ---
-title: You (probably) don't need CSS-in-JS
-abstract: Vanilla CSS is good now actually. Here's a couple nifty techniques for dynamically styling React components with CSS custom properties.
-date: '2022-05-01'
+title: Modern Styling in React
+abstract: A comprehensive guide to modern CSS-in-JS solutions, component styling patterns, and advanced techniques for building scalable React applications with beautiful, maintainable styles.
+date: '2024-12-15'
 banner: /static/modern-styling-in-react-banner.jpg
+timecode: '15:30:20:12'
 featured: true
 ---
+
+import { Post } from '~/layouts/post';
+
+export const meta = () => {
+  return [
+    { title: frontmatter.title },
+    { name: 'description', content: frontmatter.abstract },
+  ];
+};
+
+export default function MDXContent({ children }) {
+  return (
+    <Post {...frontmatter}>
+      {children}
+    </Post>
+  );
+}
 
 When I first tried CSS-in-JS libraries like [Styled Components](https://styled-components.com/) and [Emotion](https://emotion.sh), the thing that felt right about it was passing values or state directly into the styles for a component. It really closed the loop with the concept of React where the UI is a function of state. While this was a definite advancement over the traditional way of styling React with classes and pre-processed CSS, it still had its problems.
 

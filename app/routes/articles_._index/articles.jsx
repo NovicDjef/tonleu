@@ -129,7 +129,41 @@ function SkeletonPost({ index, title, description }) {
 
 export function Articles() {
   // For now using static data since loader was removed
-  const posts = [];
+  const posts = [
+    {
+      slug: 'hello-world',
+      frontmatter: {
+        title: 'Hello world: how I built this site',
+        abstract: 'I originally built this portfolio site back in 2020, and since then it\'s evolved quite a bit. Recently I migrated from Create React App to Next.js and made some major upgrades in the process.',
+        date: '2022-04-21',
+        featured: false,
+        banner: '/static/hello-world-banner.jpg'
+      },
+      timecode: '00:05:03:99'
+    },
+    {
+      slug: 'advanced-react-patterns',
+      frontmatter: {
+        title: 'Advanced React Patterns and TypeScript',
+        abstract: 'Explore advanced React patterns, custom hooks, and TypeScript best practices for building scalable applications with modern development techniques.',
+        date: '2024-03-15',
+        featured: false,
+        banner: '/static/modern-styling-in-react-banner.jpg'
+      },
+      timecode: '00:15:42:10'
+    },
+    {
+      slug: 'fullstack-nodejs-architecture',
+      frontmatter: {
+        title: 'Full Stack Architecture with Node.js',
+        abstract: 'Deep dive into modern full stack architecture, API design, database optimization, and deployment strategies using Node.js and cloud technologies.',
+        date: '2024-04-01',
+        featured: false,
+        banner: '/static/nodejs-backend-banner.jpg'
+      },
+      timecode: '00:22:15:08'
+    }
+  ];
   const featured = {
     slug: 'modern-styling-in-react',
     frontmatter: {
@@ -160,18 +194,6 @@ export function Articles() {
       {posts.map(({ slug, ...post }, index) => (
         <ArticlesPost key={slug} slug={slug} index={index} {...post} />
       ))}
-      <SkeletonPost 
-        key={0} 
-        index={0} 
-        title="Advanced React Patterns and TypeScript"
-        description="Explore advanced React patterns, custom hooks, and TypeScript best practices for building scalable applications with modern development techniques."
-      />
-      <SkeletonPost 
-        key={1} 
-        index={1} 
-        title="Full Stack Architecture with Node.js"
-        description="Deep dive into modern full stack architecture, API design, database optimization, and deployment strategies using Node.js and cloud technologies."
-      />
     </div>
   );
 

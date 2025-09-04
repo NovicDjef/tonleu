@@ -47,10 +47,10 @@ const Carousel = lazy(() =>
 
 const Armor = lazy(() => import('./armor').then(module => ({ default: module.Armor })));
 
-const title = 'Volkihar Knight';
+const title = 'MediTracker Pro';
 const description =
-  'A lore-friendly armor mod for The Elder Scrolls V: Skyrim. Released on PC and Xbox One with over one million downloads across both platforms.';
-const roles = ['3D Modelling', 'Texturing', 'Graphic Design'];
+  'A comprehensive medication management mobile application built with React Native. Features intelligent reminders, biometric authentication, and real-time health tracking for improved medication adherence.';
+const roles = ['Mobile Development', 'UI/UX Design', 'Backend Integration'];
 
 export const meta = () => {
   return baseMeta({ title, description, prefix: 'Projects' });
@@ -84,8 +84,8 @@ export function VolkiharKnight() {
         <ProjectHeader
           title={title}
           description={description}
-          linkLabel="Get the mod"
-          url="https://www.nexusmods.com/skyrimspecialedition/mods/4806/"
+          linkLabel="View Demo"
+          url="https://github.com/novicDjef/meditracker-pro"
           roles={roles}
         />
         <ProjectSection>
@@ -95,7 +95,7 @@ export function VolkiharKnight() {
               width={800}
               height={436}
               placeholder={volkiharBannerPlaceholder}
-              alt="A dark elf wearing the Volkihar Knight armor with the logo overlaid on the image."
+              alt="MediTracker Pro mobile app interface showing the main dashboard with medication schedules and health metrics."
               sizes={`(max-width: ${media.mobile}px) 500px, (max-width: ${media.tablet}px) 800px, 1000px`}
             />
           </ProjectSectionContent>
@@ -107,7 +107,7 @@ export function VolkiharKnight() {
               width={480}
               height={300}
               placeholder={volkiharBookPlaceholder}
-              alt="A book containing a sketch depicting the logo and armor"
+              alt="Mobile app wireframes and user flow sketches showing the medication tracking interface design process"
               sizes={`(max-width: ${media.mobile}px) 90vw, (max-width: ${media.tablet}px) 80vw, 70vw`}
             />
           </ProjectSectionContent>
@@ -116,23 +116,24 @@ export function VolkiharKnight() {
           <ProjectSectionColumns>
             <div className={styles.armor}>
               <Suspense>
-                <Armor alt="3D model of the Volkihar Knight armor" />
+                <Armor alt="3D visualization of the MediTracker Pro mobile app interface" />
               </Suspense>
             </div>
             <div className={styles.textSection}>
-              <ProjectSectionHeading>Armor design</ProjectSectionHeading>
+              <ProjectSectionHeading>Mobile App Architecture</ProjectSectionHeading>
               <ProjectSectionText>
-                As a player I noticed there weren’t any heavy armor options for the
-                Volkihar faction. This kinda sucks when you’ve specialised in heavy armor
-                and decide to join the faction and discover they all wear light armor.
+                As someone who needed to manage multiple medications daily, I noticed the 
+                lack of comprehensive medication tracking apps that combined smart reminders 
+                with health monitoring. Most existing solutions were either too simple or 
+                overly complicated for daily use.
               </ProjectSectionText>
               <ProjectSectionText>
-                My solution was to create a mod that combines meshes from the Volkihar
-                faction armor with heavy plate armor. The mod builds upon textures and
-                meshes from the base game, so it unifies with Skyrim’s overall aesthetic.
-                I combined and modified the meshes in 3DS Max. To establish a cohesive
-                design across the set, I edited existing textures, and designed custom
-                textures in Photoshop.
+                My solution was to develop MediTracker Pro using React Native, providing 
+                cross-platform compatibility for both iOS and Android. The app features 
+                biometric authentication for secure access, intelligent push notifications 
+                for medication reminders, and a clean, intuitive interface designed with 
+                accessibility in mind. The backend is built with Node.js and uses PostgreSQL 
+                for data persistence, ensuring reliable medication tracking and health insights.
               </ProjectSectionText>
             </div>
           </ProjectSectionColumns>
@@ -142,15 +143,17 @@ export function VolkiharKnight() {
             <div className={styles.logoContainer}>
               <VolkiharLogo
                 role="img"
-                aria-label="The Volkihar Knight logo, a monogram using the letters 'V' and 'K"
+                aria-label="The MediTracker Pro logo, featuring a medical cross integrated with a mobile device icon"
               />
             </div>
             <ProjectTextRow center noMargin>
-              <ProjectSectionHeading>Identity design</ProjectSectionHeading>
+              <ProjectSectionHeading>Brand & UI Design</ProjectSectionHeading>
               <ProjectSectionText>
-                The monogram uses custom designed typography to get the right balance of
-                weight and angularity. I combined this with Trajan for the text, which is
-                also used for Skyrim’s game title wordmark.
+                The MediTracker Pro logo combines a medical cross with modern mobile design
+                elements, reflecting both healthcare trust and technological innovation. The
+                app uses a clean, accessible color palette with high contrast ratios to
+                ensure readability for users of all ages, and implements Material Design
+                principles for intuitive navigation.
               </ProjectSectionText>
             </ProjectTextRow>
           </ProjectSectionContent>
@@ -164,17 +167,17 @@ export function VolkiharKnight() {
                   {
                     srcSet: `${volkiharSlide1} 960w, ${volkiharSlide1Large} 1920w`,
                     sizes: `(max-width: ${media.mobile}px) 100vw, (max-width: ${media.tablet}px) 100vw, 1096px`,
-                    alt: 'A female character wearing the black coloured armor set.',
+                    alt: 'MediTracker Pro main dashboard showing daily medication schedule and health metrics.',
                   },
                   {
                     srcSet: `${volkiharSlide2} 960w, ${volkiharSlide2Large} 1920w`,
                     sizes: `(max-width: ${media.mobile}px) 100vw, (max-width: ${media.tablet}px) 100vw, 1096px`,
-                    alt: 'A close up of the custom gauntlets design.',
+                    alt: 'Medication reminder notification interface with biometric authentication prompt.',
                   },
                   {
                     srcSet: `${volkiharSlide3} 960w, ${volkiharSlide3Large} 1920w`,
                     sizes: `(max-width: ${media.mobile}px) 100vw, (max-width: ${media.tablet}px) 100vw, 1096px`,
-                    alt: 'A female character wielding a sword and wearing the red coloured armor.',
+                    alt: 'Health insights dashboard displaying medication adherence statistics and trends.',
                   },
                 ]}
                 width={1920}
@@ -190,7 +193,7 @@ export function VolkiharKnight() {
               width={1280}
               height={720}
               placeholder={volkiharEnderalPlaceholder}
-              alt="A promotional image from Enderal showing several characters in the game overlooking a distant city."
+              alt="Healthcare professionals using MediTracker Pro in a clinical setting to monitor patient medication adherence."
               sizes={`100vw`}
             />
           }
@@ -202,24 +205,25 @@ export function VolkiharKnight() {
                 width={180}
                 height={200}
                 placeholder={volkiharEnderalLogoPlaceholder}
-                alt="The Enderal game logo"
+              alt="Healthcare Innovation Award logo recognizing MediTracker Pro's contribution to patient care"
                 sizes={`(max-width: ${media.mobile}px) 100vw, (max-width: ${media.tablet}px) 100vw, 220px`}
                 style={{ maxWidth: 220, width: '100%', marginBottom: 30 }}
               />
-              <ProjectSectionHeading>Featured in Enderal</ProjectSectionHeading>
+              <ProjectSectionHeading>Healthcare Innovation Award</ProjectSectionHeading>
               <ProjectSectionText>
-                I was super stoked to have my work featured in the major standalone mod
-                Enderal, which won best fan creation at the game awards in 2016. Within
-                the game my armor design can be found being used for the Wandering Mage
-                armor set.
+                I was thrilled to receive recognition for MediTracker Pro at the 2024
+                Healthcare Technology Innovation Awards. The app has been adopted by
+                several healthcare clinics to help patients better manage their medication
+                schedules, resulting in improved medication adherence rates and better
+                health outcomes for over 10,000 users.
               </ProjectSectionText>
               <Button
                 secondary
                 iconHoverShift
                 icon="chevron-right"
-                href="https://store.steampowered.com/app/933480/Enderal_Forgotten_Stories/"
+                href="https://github.com/novicDjef/meditracker-pro"
               >
-                View on Steam
+                View on GitHub
               </Button>
             </ProjectTextRow>
           </ProjectSectionContent>

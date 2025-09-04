@@ -18,20 +18,20 @@ import styles from './profile.module.css';
 const ProfileText = ({ visible, titleId }) => (
   <Fragment>
     <Heading className={styles.title} data-visible={visible} level={3} id={titleId}>
-      <DecoderText text="Hi there" start={visible} delay={500} />
+      <DecoderText text="Hello, I'm Novic" start={visible} delay={500} />
     </Heading>
     <Text className={styles.description} data-visible={visible} size="l" as="p">
-      Passionate about IT and digital technologies, especially programming, 
-      I am always looking for new challenges that can boost my professional 
-      abilities and especially provide solutions capable of revolutionizing fashion.{' '}
-      <Link href="/cv.pdf" target="_blank" rel="noopenernoreferrer">CV</Link>. Being comfortable with code allows me to rapidly
-      prototype and validate experiences. If you’re interested in the tools and software I
-      use check out my <Link href="/uses">uses page</Link>.
+      I'm a passionate fullstack developer specializing in mobile and web applications.
+      With expertise in React Native, Node.js, and modern web technologies, I create
+      seamless cross-platform experiences that solve real-world problems. Check out my{' '}
+      <Link href="/cv.pdf" target="_blank" rel="noopenernoreferrer">CV</Link> to learn more about my experience.
+      If you're interested in the tools and technologies I use, check out my <Link href="/uses">uses page</Link>.
     </Text>
     <Text className={styles.description} data-visible={visible} size="l" as="p">
-      In my spare time I like to practice Brazilian Jiu Jitsu, play video games, and{' '}
-      <Link href="/projects/volkihar-knight">make mods</Link>. I’m always down for hearing
-      about new projects, so feel free to drop me a line.
+      When I'm not coding, I enjoy exploring new technologies, contributing to open-source projects,
+      and building innovative apps like{' '}
+      <Link href="/projects/volkihar-knight">MediTracker Pro</Link>. I'm always excited to collaborate
+      on challenging projects and discuss new opportunities, so feel free to reach out!
     </Text>
   </Fragment>
 );
@@ -87,7 +87,7 @@ export const Profile = ({ id, visible, sectionRef }) => {
                   width={960}
                   height={1280}
                   sizes={`(max-width: ${media.mobile}px) 100vw, 480px`}
-                  alt="Me smiling like a goofball at the Qwilr office in Sydney"
+                  alt="Novic, fullstack developer, working on mobile and web applications"
                 />
                 <svg className={styles.svg} data-visible={visible} viewBox="0 0 136 766">
                   <use href={`${katakana}#katakana-profile`} />
