@@ -21,10 +21,6 @@ export const navLinks = [
     label: 'About',
     pathname: '/about',
   },
-  {
-    label: 'CV',
-    pathname: '/cv',
-  },
 ];
 
 export const socialLinks = [

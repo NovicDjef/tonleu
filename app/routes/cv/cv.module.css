@@ -111,25 +111,52 @@
 
 /* Header Section */
 .header {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: var(--spaceXL);
-  align-items: start;
   padding-bottom: var(--spaceXL);
-  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   margin-bottom: var(--spaceXL);
   position: relative;
 }
 
-.headerContent {
+.headerMain {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--spaceXL);
   align-items: start;
+  margin-bottom: var(--spaceM);
 }
 
 .personalInfo {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spaceS);
+}
+
+.personalInfo .downloadButton {
+  margin-top: var(--spaceM);
+  align-self: flex-start;
+}
+
+.contactSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spaceM);
+  padding: var(--spaceL);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: var(--borderRadius);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  height: fit-content;
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spaceM);
+}
+
+.contactGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spaceS);
 }
 
 .name {
@@ -185,68 +212,43 @@
   margin-bottom: var(--spaceM);
 }
 
-.contactInfo {
-  display: grid;
-  gap: var(--spaceS);
-  padding: var(--spaceM);
-  background: var(--surface-gradient);
-  border-radius: var(--borderRadius);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
 .contactItem {
   display: flex;
   align-items: center;
   gap: var(--spaceS);
-  padding: var(--spaceXS);
-  border-radius: var(--borderRadius);
+  padding: var(--spaceXS) 0;
   transition: all 0.3s ease;
 }
 
 .contactItem:hover {
-  background: rgba(255, 255, 255, 0.05);
-  transform: translateX(4px);
+  transform: translateX(2px);
 }
 
-.contactItem span {
-  font-size: 1.1rem;
+.contactIcon {
+  font-size: 1rem;
   opacity: 0.8;
-}
-
-.downloadSection {
-  position: sticky;
-  top: var(--spaceM);
+  min-width: 20px;
 }
 
 .downloadButton {
-  background: var(--accent-gradient);
-  border: none;
-  color: white;
-  font-weight: 600;
-  padding: var(--spaceM) var(--spaceL);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgb(var(--rgbText));
+  font-weight: 500;
+  padding: var(--spaceS) var(--spaceM);
   transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.downloadButton::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transition: left 0.5s;
-}
-
-.downloadButton:hover::before {
-  left: 100%;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  border-radius: 6px;
+  align-self: flex-start;
 }
 
 .downloadButton:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: rgb(var(--rgbTitle));
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Sections */
@@ -825,45 +827,424 @@
 /* Print Styles for PDF */
 @media print {
   .cv {
-    background: white;
-    color: black;
+    background: white !important;
+    color: black !important;
+    font-size: 11pt !important;
+    line-height: 1.3 !important;
+  }
+  
+  .cv::before {
+    display: none !important;
   }
   
   .cvContainer {
-    background: white;
-    backdrop-filter: none;
-    border: none;
-    box-shadow: none;
-    max-width: none;
-    padding: 0;
+    background: white !important;
+    backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    max-width: none !important;
+    padding: 15pt !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    animation: none !important;
   }
   
-  .downloadSection {
-    display: none;
+  .cvContainer::before,
+  .cvContainer::after {
+    display: none !important;
+  }
+  
+  .header {
+    padding-bottom: 10pt !important;
+    border-bottom: 1pt solid #ccc !important;
+    margin-bottom: 15pt !important;
+  }
+  
+  .headerMain {
+    display: block !important;
+    margin-bottom: 0 !important;
+  }
+  
+  .personalInfo {
+    margin-bottom: 10pt !important;
+  }
+  
+  .personalInfo .downloadButton {
+    display: none !important;
+  }
+  
+  .contactSection {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  
+  .contactInfo {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8pt !important;
+    font-size: 9pt !important;
+  }
+  
+  .name {
+    font-size: 18pt !important;
+    font-weight: bold !important;
+    color: black !important;
+    background: none !important;
+    -webkit-text-fill-color: black !important;
+    margin-bottom: 3pt !important;
+    animation: none !important;
+  }
+  
+  .name::after {
+    display: none !important;
+  }
+  
+  .jobTitle {
+    font-size: 12pt !important;
+    color: #333 !important;
+    margin-bottom: 3pt !important;
+  }
+  
+  .subtitle {
+    font-size: 10pt !important;
+    color: #666 !important;
+    margin-bottom: 8pt !important;
+  }
+  
+  
+  .contactGroup {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 8pt !important;
+  }
+  
+  .contactItem {
+    display: flex !important;
+    align-items: center !important;
+    gap: 3pt !important;
+    color: #333 !important;
+    padding: 0 !important;
+  }
+  
+  .contactIcon {
+    display: none !important;
+  }
+  
+  .downloadButton {
+    display: none !important;
   }
   
   .section {
-    break-inside: avoid;
-    page-break-inside: avoid;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    margin-bottom: 15pt !important;
   }
   
-  .experienceItem,
-  .projectItem,
-  .educationItem {
-    break-inside: avoid;
-    page-break-inside: avoid;
+  .sectionTitle {
+    font-size: 14pt !important;
+    font-weight: bold !important;
+    color: black !important;
+    margin-bottom: 8pt !important;
+    padding-left: 0 !important;
+    border-bottom: 1pt solid #ccc !important;
+    padding-bottom: 3pt !important;
   }
+  
+  .sectionTitle::before {
+    display: none !important;
+  }
+  
+  .summary {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin-bottom: 10pt !important;
+    line-height: 1.4 !important;
+    color: black !important;
+    font-size: 10pt !important;
+  }
+  
+  .skillsGrid {
+    display: block !important;
+    columns: 2 !important;
+    column-gap: 15pt !important;
+  }
+  
+  .skillCategory {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin-bottom: 8pt !important;
+    break-inside: avoid !important;
+  }
+  
+  .skillCategory::before {
+    display: none !important;
+  }
+  
+  .skillTitle {
+    font-size: 11pt !important;
+    font-weight: bold !important;
+    color: black !important;
+    margin-bottom: 4pt !important;
+  }
+  
+  .skillList {
+    display: block !important;
+  }
+  
+  .skillItem {
+    margin-bottom: 2pt !important;
+    animation: none !important;
+  }
+  
+  .skillHeader {
+    display: block !important;
+    margin-bottom: 0 !important;
+  }
+  
+  .skillTag {
+    background: none !important;
+    color: black !important;
+    border: none !important;
+    padding: 0 !important;
+    font-size: 9pt !important;
+    display: inline !important;
+  }
+  
+  .skillTag::before {
+    display: none !important;
+  }
+  
+  .skillProgress {
+    display: none !important;
+  }
+  
+  .experienceList {
+    display: block !important;
+  }
+  
+  .experienceItem {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin-bottom: 12pt !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+  
+  .experienceItem::before {
+    display: none !important;
+  }
+  
+  .experienceHeader {
+    display: block !important;
+    margin-bottom: 4pt !important;
+  }
+  
+  .experienceTitle {
+    font-size: 11pt !important;
+    font-weight: bold !important;
+    color: black !important;
+    margin-bottom: 2pt !important;
+  }
+  
+  .experienceCompany {
+    font-size: 10pt !important;
+    color: #333 !important;
+    margin-bottom: 2pt !important;
+  }
+  
+  .experiencePeriod {
+    font-size: 9pt !important;
+    color: #666 !important;
+    background: none !important;
+    padding: 0 !important;
+    display: block !important;
+    margin-bottom: 3pt !important;
+  }
+  
+  .achievementsList {
+    margin: 0 !important;
+    padding-left: 12pt !important;
+    list-style-type: disc !important;
+  }
+  
+  .achievementsList li {
+    font-size: 9pt !important;
+    line-height: 1.3 !important;
+    margin-bottom: 2pt !important;
+    color: black !important;
+    padding-left: 0 !important;
+  }
+  
+  .achievementsList li::before {
+    display: none !important;
+  }
+  
+  .projectsGrid {
+    display: block !important;
+  }
+  
+  .projectItem {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin-bottom: 10pt !important;
+    break-inside: avoid !important;
+  }
+  
+  .projectTitle {
+    font-size: 11pt !important;
+    font-weight: bold !important;
+    color: black !important;
+    margin-bottom: 2pt !important;
+  }
+  
+  .projectTech {
+    margin-bottom: 3pt !important;
+  }
+  
+  .techTag {
+    background: none !important;
+    color: #333 !important;
+    padding: 0 !important;
+    font-size: 8pt !important;
+    border: none !important;
+    display: inline !important;
+    margin-right: 5pt !important;
+  }
+  
+  .projectDescription {
+    font-size: 9pt !important;
+    color: black !important;
+    line-height: 1.3 !important;
+    margin-bottom: 3pt !important;
+  }
+  
+  .educationList {
+    display: block !important;
+  }
+  
+  .educationItem {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin-bottom: 8pt !important;
+    break-inside: avoid !important;
+  }
+  
+  .educationHeader {
+    display: block !important;
+  }
+  
+  .educationDegree {
+    font-size: 11pt !important;
+    font-weight: bold !important;
+    color: black !important;
+    margin-bottom: 2pt !important;
+  }
+  
+  .educationSchool {
+    font-size: 10pt !important;
+    color: #333 !important;
+    margin-bottom: 2pt !important;
+  }
+  
+  .educationSpec {
+    font-size: 9pt !important;
+    color: #666 !important;
+  }
+  
+  .educationPeriod {
+    font-size: 9pt !important;
+    color: #666 !important;
+    background: none !important;
+    padding: 0 !important;
+  }
+  
+  .twoColumns {
+    display: block !important;
+    columns: 2 !important;
+    column-gap: 15pt !important;
+  }
+  
+  .column {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    break-inside: avoid !important;
+  }
+  
+  .certificationsList {
+    padding-left: 12pt !important;
+    list-style-type: disc !important;
+  }
+  
+  .certificationsList li {
+    font-size: 9pt !important;
+    color: black !important;
+    padding-left: 0 !important;
+    margin-bottom: 2pt !important;
+  }
+  
+  .certificationsList li::before {
+    display: none !important;
+  }
+  
+  .languagesList {
+    display: block !important;
+  }
+  
+  .languageItem {
+    display: block !important;
+    background: none !important;
+    padding: 0 !important;
+    margin-bottom: 2pt !important;
+  }
+  
+  .statsContainer {
+    display: none !important;
+  }
+  
+  /* Hide all animations and effects */
+  * {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    filter: none !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Print mode class for body */
+body.print-mode .cv {
+  animation: none !important;
+}
+
+body.print-mode .cv::before {
+  display: none !important;
 }
 
 /* Responsive Design */
 @media (max-width: 1024px) {
-  .headerContent {
+  .headerMain {
     grid-template-columns: 1fr;
+    gap: var(--spaceL);
   }
   
-  .header {
-    grid-template-columns: 1fr;
+  .personalInfo {
     text-align: center;
+  }
+  
+  .personalInfo .downloadButton {
+    align-self: center;
+  }
+  
+  .contactSection {
+    align-items: center;
   }
   
   .twoColumns {
@@ -881,7 +1262,7 @@
 
 @media (max-width: 768px) {
   .cvContainer {
-    padding: var(--spaceM);
+    padding: var(--spaceL);
   }
   
   .name {
@@ -893,6 +1274,10 @@
   }
   
   .educationHeader {
+    grid-template-columns: 1fr;
+  }
+  
+  .contactInfo {
     grid-template-columns: 1fr;
   }
 }

@@ -12,8 +12,8 @@ import { media } from '~/utils/style';
 import { useWindowSize } from '~/hooks';
 import styles from './about.module.css';
 
-const title = 'À Propos de Moi';
-const description = 'Découvrez mon parcours, ma philosophie et ma passion pour le développement React Native et les technologies modernes.';
+const title = 'About Me';
+const description = 'Discover my journey, philosophy and passion for React Native development and modern technologies.';
 
 export const meta = () => {
   return baseMeta({
@@ -25,11 +25,11 @@ export const meta = () => {
 const aboutData = {
   intro: {
     tagline: 'Live, code, repeat',
-    philosophy: 'Je suis un développeur React Native spécialisé dans la création d\'applications mobiles performantes, élégantes et intuitives. Avec plus de 3 ans d\'expérience dans le développement mobile cross-platform, j\'ai une solide maîtrise de l\'écosystème JavaScript et des technologies React en particulier.',
+    philosophy: 'I am a React Native developer specialized in creating high-performance, elegant and intuitive mobile applications. With over 3 years of experience in cross-platform mobile development, I have a solid mastery of the JavaScript ecosystem and React technologies in particular.',
     
-    background: 'Familier des méthodes agiles, je possède par ailleurs une bonne maîtrise des technologies back-end, des outils et pratiques DevOps et des bases de données SQL/NoSQL. J\'ai une solide compréhension des systèmes d\'exploitation mobiles, ainsi que des langages de programmation couramment utilisés dans le développement mobile.',
+    background: 'Familiar with agile methodologies, I also have good command of back-end technologies, DevOps tools and practices, and SQL/NoSQL databases. I have a solid understanding of mobile operating systems, as well as programming languages commonly used in mobile development.',
     
-    mindset: 'Au-delà de mes compétences techniques, mon envie insatiable de connaissances, mon bon sens du relationnel et ma volonté manifeste de faire face à de nouveaux défis me permettent aisément de m\'aventurer dans de nouveaux sentiers battus.'
+    mindset: 'Beyond my technical skills, my insatiable desire for knowledge, my good interpersonal sense and my clear willingness to face new challenges allow me to easily venture into new paths.'
   },
 
   contact: {
@@ -39,26 +39,26 @@ const aboutData = {
 
   services: [
     {
-      title: 'Développement Mobile',
-      description: 'Les applications mobiles font partie intégrante de notre quotidien. Mon créneau principal consiste à développer des applications mobiles professionnelles cross-platform avec React Native, à la fois sur Android et iOS.',
+      title: 'Mobile Development',
+      description: 'Mobile applications are an integral part of our daily lives. My main focus is developing professional cross-platform mobile applications with React Native, both on Android and iOS.',
       icon: '📱',
-      technologies: ['React Native', 'Expo', 'TypeScript', 'Redux', 'Notifications Push', 'Biométrie']
+      technologies: ['React Native', 'Expo', 'TypeScript', 'Redux', 'Push Notifications', 'Biometrics']
     },
     {
-      title: 'Développement Backend',
-      description: 'Une belle interface reste une coquille vide si elle n\'est pas associée à un back-end robuste. Je conçois, développe et déploie la logique métier inhérente à chaque projet.',
+      title: 'Backend Development',
+      description: 'A beautiful interface remains an empty shell if it is not associated with a robust back-end. I design, develop and deploy the business logic inherent to each project.',
       icon: '⚡',
-      technologies: ['Node.js', 'Express', 'PostgreSQL', 'Prisma', 'API RESTful', 'JWT']
+      technologies: ['Node.js', 'Express', 'PostgreSQL', 'Prisma', 'RESTful APIs', 'JWT']
     },
     {
-      title: 'Développement Web',
-      description: 'Fort de mon expérience dans ce domaine, je crée des applications web, sites internet et plateformes e-commerce professionnelles en utilisant les technologies les plus récentes.',
+      title: 'Web Development',
+      description: 'Drawing on my experience in this field, I create professional web applications, websites and e-commerce platforms using the latest technologies.',
       icon: '🌐',
       technologies: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel']
     },
     {
       title: 'DevOps & CI/CD',
-      description: 'Outre ma casquette de développeur, je mets un point d\'honneur à utiliser les bonnes pratiques DevOps afin de garantir un produit de qualité dans les plus brefs délais.',
+      description: 'In addition to my developer role, I make it a point of honor to use DevOps best practices to guarantee a quality product in the shortest possible time.',
       icon: '🚀',
       technologies: ['GitHub Actions', 'Docker', 'Play Store Deploy', 'Automated Testing']
     }
@@ -68,43 +68,49 @@ const aboutData = {
     {
       name: 'iLink World Corporation',
       type: 'Fintech/Insurtech',
-      category: 'Application mobile',
-      description: 'Plateforme de transferts d\'argent internationaux et paiements d\'assurance santé',
+      category: 'Mobile Application',
+      period: '2021 - 2023',
+      description: 'International money transfer platform and health insurance payments',
       technologies: ['React Native', 'PHP', 'Node.js', 'MySQL']
     },
     {
       name: 'iLink World Corporation',
       type: 'Fintech/Insurtech',
-      category: 'Application mobile',
-      description: 'Plateforme de regroupement de taxes communales dans les mairies d\'arrondissements de la ville de Douala',
+      category: 'Mobile Application',
+      period: '2022 - 2023',
+      description: 'Municipal tax consolidation platform in district town halls of Douala city',
       technologies: ['React Native', 'PHP', 'Node.js', 'MySQL']
     },
     {
       name: 'Koursier Platform',
       type: 'Food Delivery',
-      category: 'Écosystème mobile',
-      description: 'Applications client/livreur et plateforme admin de gestion',
+      category: 'Mobile Ecosystem',
+      period: '2023 - Present',
+      description: 'Client/delivery applications and admin management platform',
       technologies: ['React Native', 'Next.js', 'Prisma', 'GitHub Actions']
     },
     {
       name: 'RaphyCar',
       type: 'Car Rental',
-      category: 'Application web',
-      description: 'Plateforme de location de véhicules avec IA et vérification d\'identité',
+      category: 'Web Application',
+      period: '2024',
+      description: 'Vehicle rental platform with AI and identity verification',
       technologies: ['Next.js', 'AI Chatbot', 'PostgreSQL', 'Stripe']
     },
     {
       name: 'Reminder',
       type: 'Healthcare',
-      category: 'Application mobile',
-      description: 'Application de rappel de prise de médicaments avec biométrie',
+      category: 'Mobile Application',
+      period: '2023',
+      description: 'Medication reminder application with biometric authentication',
       technologies: ['React Native', 'Expo', 'Face ID', 'Push Notifications']
     },
     {
       name: 'Admin Dashboard Analytics',
       type: 'Management',
-      category: 'Application web',
-      description: 'Dashboard d\'administration avec analytics temps réel',
+      category: 'Web Application',
+      period: '2024',
+      description: 'Administration dashboard with real-time analytics',
       technologies: ['React', 'TypeScript', 'Chart.js', 'Material-UI']
     }
   ],
@@ -190,10 +196,13 @@ const ClientCard = ({ client, index }) => (
     style={{ animationDelay: `${index * 0.05}s` }}
   >
     <div className={styles.clientHeader}>
-      <Heading level={4} as="h4" className={styles.clientName}>
-        {client.name}
-      </Heading>
-      <span className={styles.clientCategory}>{client.category}</span>
+      <div className={styles.clientHeaderMain}>
+        <Heading level={4} as="h4" className={styles.clientName}>
+          {client.name}
+        </Heading>
+        <span className={styles.clientCategory}>{client.category}</span>
+      </div>
+      <span className={styles.clientPeriod}>{client.period}</span>
     </div>
     <Text size="s" className={styles.clientType}>
       {client.type}
@@ -219,53 +228,57 @@ export function About() {
         {/* Hero Section */}
         <div className={styles.hero}>
           <div className={styles.heroContent}>
-            <div className={styles.heroText}>
+            <div className={styles.heroMain}>
               <Heading level={1} as="h1" className={styles.title}>
                 <DecoderText text={title} delay={300} />
               </Heading>
-              <Text size="xl" className={styles.tagline}>
-                {aboutData.intro.tagline}
-              </Text>
-              <Divider className={styles.divider} />
-            </div>
-            
-            <div className={styles.contactInfo}>
-              <div className={styles.contactItem}>
-                <span className={styles.contactIcon}>📍</span>
-                <Text size="m">{aboutData.contact.location}</Text>
-              </div>
-              <div className={styles.contactItem}>
-                <span className={styles.contactIcon}>📧</span>
-                <Text size="m">{aboutData.contact.email}</Text>
-              </div>
             </div>
           </div>
+          <Divider className={styles.divider} />
         </div>
 
-        {/* About Content */}
+        {/* Content */}
         <div className={styles.content}>
+          {/* About Content */}
           <section className={styles.section}>
             <Heading level={2} as="h2" className={styles.sectionTitle}>
-              À Propos de Moi
+              About Me
             </Heading>
             <div className={styles.aboutText}>
-              <Text size="l" as="p" className={styles.paragraph}>
-                {aboutData.intro.philosophy}
-              </Text>
-              <Text size="l" as="p" className={styles.paragraph}>
-                {aboutData.intro.background}
-              </Text>
-              <Text size="l" as="p" className={styles.paragraph}>
-                {aboutData.intro.mindset}
-              </Text>
+              <div className={styles.terminalStatus}>SYSTEM_ONLINE</div>
+              <div className={styles.matrixGrid}></div>
+              <div className={styles.scanLines}></div>
+              <div className={styles.holoShimmer}></div>
+              <div className={styles.aboutTextContent}>
+                <Text size="l" as="p" className={styles.paragraph}>
+                  {aboutData.intro.philosophy}
+                </Text>
+                <Text size="l" as="p" className={styles.paragraph}>
+                  {aboutData.intro.background}
+                </Text>
+                <Text size="l" as="p" className={styles.paragraph}>
+                  {aboutData.intro.mindset}
+                </Text>
+              </div>
             </div>
           </section>
 
           {/* Services Section */}
           <section className={styles.section}>
-            <Heading level={2} as="h2" className={styles.sectionTitle}>
-              Ce que je fais
-            </Heading>
+            <div className={styles.sectionHeader}>
+              <Heading level={2} as="h2" className={styles.sectionTitle}>
+                What I Do
+              </Heading>
+              <Button 
+                secondary 
+                iconHoverShift 
+                icon="download" 
+                href="/cv"
+                className={styles.cvButton}
+              >
+                View CV
+              </Button>
+            </div>
             <div className={styles.servicesGrid}>
               {aboutData.services.map((service, index) => (
                 <ServiceCard key={index} service={service} index={index} />
@@ -276,7 +289,7 @@ export function About() {
           {/* Clients Section */}
           <section className={styles.section}>
             <Heading level={2} as="h2" className={styles.sectionTitle}>
-              Projets & Clients
+              Projects & Clients
             </Heading>
             <div className={styles.clientsGrid}>
               {aboutData.clients.map((client, index) => (
@@ -287,17 +300,49 @@ export function About() {
 
           {/* Companies Section */}
           <section className={styles.section}>
-            <Heading level={2} as="h2" className={styles.sectionTitle}>
-              Entreprises Partenaires
-            </Heading>
-            <div className={styles.companiesGrid}>
-              {aboutData.companies.map((company, index) => (
-                <div key={index} className={styles.companyCard}>
-                  <Text size="m" className={styles.companyName}>
-                    {company}
-                  </Text>
+            <div className={styles.companiesContainer}>
+              <div className={styles.companiesHeader}>
+                <div className={styles.hackingIndicator}>
+                  <span className={styles.hackingText}>LOADING_DATA</span>
+                  <div className={styles.hackingDots}>
+                    <span></span><span></span><span></span>
+                  </div>
                 </div>
-              ))}
+                <Heading level={2} as="h2" className={styles.companiesSectionTitle}>
+                  &gt; PARTNER_COMPANIES
+                </Heading>
+                <div className={styles.networkStatus}>
+                  <span className={styles.statusText}>STATUS: ACTIVE</span>
+                  <div className={styles.signalBars}>
+                    <div className={styles.bar}></div>
+                    <div className={styles.bar}></div>
+                    <div className={styles.bar}></div>
+                    <div className={styles.bar}></div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className={styles.scrollingCompanies}>
+                <div className={styles.companiesTrack}>
+                  {[...aboutData.companies, ...aboutData.companies].map((company, index) => (
+                    <div key={index} className={styles.companyItem}>
+                      <span className={styles.companyPrefix}>[{String(index % aboutData.companies.length + 1).padStart(2, '0')}]</span>
+                      <span className={styles.companyName}>{company}</span>
+                      <div className={styles.companyStatus}>
+                        <span className={styles.statusDot}></span>
+                        <span className={styles.statusLabel}>ACTIVE</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              <div className={styles.hackingFooter}>
+                <div className={styles.progressBar}>
+                  <div className={styles.progressFill}></div>
+                </div>
+                <span className={styles.footerText}>[LOAD_COMPLETE] Partnership database loaded • {aboutData.companies.length} companies connected</span>
+              </div>
             </div>
           </section>
         </div>

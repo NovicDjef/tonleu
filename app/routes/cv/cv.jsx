@@ -9,7 +9,7 @@ import { baseMeta } from '~/utils/meta';
 import styles from './cv.module.css';
 
 const title = 'CV - Novic Tonleu';
-const description = 'Curriculum Vitae de Novic Tonleu, Développeur Full Stack JavaScript/TypeScript spécialisé en React, Node.js et technologies modernes.';
+const description = 'Curriculum Vitae of Novic Tonleu, Full Stack JavaScript/TypeScript Developer specialized in React, Node.js and modern technologies.';
 
 export const meta = () => {
   return baseMeta({
@@ -20,9 +20,10 @@ export const meta = () => {
 
 const cvData = {
   personal: {
-    name: 'NOVIC-DJEF MELATAGUIA TONLEU',
+    name: 'NOVIC MELATAGUIA',
     title: 'React Native Developer | Full Stack Engineer',
-    subtitle: 'Visa Sponsorship Eligible | フルスタック開発者',
+    // subtitle: 'Visa Sponsorship Eligible | フルスタック開発者',
+    subtitle: '| フルスタック開発者',
     email: 'contact@novic.dev',
     phone: '+1 418 350 7343',
     location: 'Sept-Îles, QC G4R 1J5, Canada',
@@ -32,7 +33,7 @@ const cvData = {
   },
   
   summary: {
-    text: 'Développeur React Native passionné avec 3+ années d\'expérience dans la création d\'applications mobiles cross-platform avec déploiement continu vers Play Store via GitHub Actions. Expertise prouvée en collaboration d\'équipe et livraison de solutions scalables utilisant React Native (Expo & CLI), Redux et TypeScript. Dédié à créer des expériences mobiles haute performance sur iOS et Android. Ouvert au visa H-1B | Autorisé à travailler au Canada | Prêt à déménager aux États-Unis.'
+    text: 'Passionate React Native Developer with 3+ years of experience creating cross-platform mobile applications with continuous deployment to Play Store via GitHub Actions. Proven expertise in team collaboration and delivering scalable solutions using React Native (Expo & CLI), Redux, and TypeScript. Dedicated to creating high-performance mobile experiences on iOS and Android. Open to H-1B visa | Authorized to work in Canada | Ready to relocate to the United States.'
   },
 
   skills: {
@@ -46,67 +47,77 @@ const cvData = {
 
   experience: [
     {
-      title: 'Full Stack Developer (Freelance)',
-      company: 'Koursier Platform',
-      period: 'Janvier 2025 - Présent',
+      title: 'Mobile Developer (Personal Projects)',
+      company: 'Independent Development',
+      period: 'January 2025 - Present',
       location: 'Remote',
       achievements: [
-        'Développement de l\'écosystème complet Koursier : applications mobile client et livreur (React Native)',
-        'Création de la plateforme d\'administration web (Next.js) pour la gestion des deux applications mobiles',
-        'Architecture backend scalable avec Node.js, Express et PostgreSQL avec Prisma ORM',
-        'Implémentation des pipelines CI/CD avec GitHub Actions pour déploiement automatisé'
+        'Reminder (2023) - Medication reminder app with React Native Expo, Face ID, biometrics and intelligent notifications',
+        'RaphyCar Vehicle Rental (2024) - AI-powered vehicle rental platform with integrated chatbot and secure identity verification'
+      ]
+    },
+    {
+      title: 'Full Stack Developer (Freelance)',
+      company: 'Koursier Platform',
+      period: 'August 2024 - Present',
+      location: 'Remote',
+      achievements: [
+        'Developed complete Koursier ecosystem: client and delivery mobile applications (React Native)',
+        'Created web administration platform (Next.js) for managing both mobile applications',
+        'Built scalable backend architecture with Node.js, Express and PostgreSQL with Prisma ORM',
+        'Implemented CI/CD pipelines with GitHub Actions for automated deployment'
       ]
     },
     {
       title: 'React Native Developer',
       company: 'iLink World Corporation (Fintech/Insurtech)',
-      period: 'Février 2022 - Décembre 2024',
-      location: 'Présentiel - Douala, Cameroun',
+      period: 'February 2022 - December 2024',
+      location: 'On-site - Douala, Cameroon',
       achievements: [
-        'Développé et maintenu des applications mobiles pour transferts d\'argent internationaux et paiements d\'assurance santé en Afrique',
-        'Construit iLinkCity - plateforme de collecte de taxes municipales pour paiements de taxes d\'entreprises locales via mobile',
-        'Implémenté des systèmes de paiement sécurisés avec authentification biométrique et notifications push intelligentes',
-        'Collaboration en équipe agile et déploiement automatisé vers Play Store avec pipelines CI/CD'
-      ]
-    },
-    {
-      title: 'Mobile Developer (Projets Personnels)',
-      company: 'Développement Indépendant',
-      period: '2021 - 2024',
-      location: 'Remote',
-      achievements: [
-        'Reminder - Application de rappel de prise de médicaments avec React Native (Expo), Face ID, biométrie et notifications push',
-        'RaphyCar Vehicle Rental - Plateforme AI-powered pour marché français avec chatbot et vérification d\'ID sécurisée',
-        'Admin Dashboard Analytics - Interface d\'administration avec visualisations temps réel et gestion utilisateurs',
-        'Utilisation systématique des pipelines CI/CD GitHub Actions pour déploiement automatique Play Store'
+        'Developed and maintained mobile applications for international money transfers and health insurance payments in Africa',
+        'Built iLinkCity - municipal tax collection platform for local business tax payments via mobile',
+        'Implemented secure payment systems with biometric authentication and intelligent push notifications',
+        'Collaborated in agile teams and automated deployment to Play Store with CI/CD pipelines'
       ]
     }
   ],
 
   projects: [
     {
-      name: 'Koursier Food Delivery Platform',
-      technologies: ['React Native', 'Next.js', 'Node.js', 'PostgreSQL', 'Prisma', 'GitHub Actions'],
-      description: 'Écosystème complet avec 3 applications interconnectées : app mobile client/livreur, dashboard admin, backend Node.js et pipeline CI/CD automatisé.',
-      achievements: ['Géolocalisation temps réel', 'Système de paiement intégré', 'Deploy automatique Play Store']
+      name: 'Koursier Delivery Mobile App (August 2024 - Present)',
+      technologies: ['React Native', 'Google Maps API', 'Push Notifications', 'Real-time Tracking', 'Payment Integration'],
+      description: 'Dedicated mobile application for Koursier delivery drivers to receive and manage orders with real-time geolocation, Google Maps notifications and integrated payments.',
+      achievements: ['Real-time GPS tracking', 'Google Maps push notifications', 'Delivery order management', 'Integrated payments']
     },
     {
-      name: 'RaphyCar Vehicle Rental',
+      name: 'Koursier Admin Dashboard (August 2024 - Present)',
+      technologies: ['Next.js', 'React', 'PostgreSQL', 'Prisma', 'Chart.js', 'Real-time Analytics'],
+      description: 'Complete administration interface for global management of Koursier ecosystem: orders, commissions, drivers, users, analytics and complete system.',
+      achievements: ['Complete system management', 'Advanced analytics', 'Commission management', 'Real-time admin interface']
+    },
+    {
+      name: 'RaphyCar Vehicle Rental (2024)',
       technologies: ['Next.js', 'AI Chatbot', 'Prisma', 'PostgreSQL', 'ID Verification'],
-      description: 'Plateforme AI-powered de location de véhicules pour le marché français avec chatbot intégré, filtrage avancé et système de vérification d\'identité sécurisé.',
-      achievements: ['IA conversationnelle', 'Vérification ID automatique', 'Interface multilingue']
+      description: 'AI-powered vehicle rental platform for French market with integrated chatbot, advanced filtering and secure identity verification system.',
+      achievements: ['Conversational AI', 'Automatic ID verification', 'Multilingual interface']
     },
     {
-      name: 'Reminder Medication App',
+      name: 'Reminder Medication App (2023)',
       technologies: ['React Native', 'Expo', 'Biometric Auth', 'Push Notifications', 'CI/CD'],
-      description: 'Application complète de gestion de médicaments avec authentification biométrique, notifications push intelligentes et déploiement automatisé Play Store.',
-      achievements: ['Sécurité biométrique', 'Notifications intelligentes', 'Deploy automatique']
+      description: 'Complete medication management application with biometric authentication, intelligent push notifications and automated Play Store deployment.',
+      achievements: ['Biometric security', 'Intelligent notifications', 'Automated deployment']
     },
     {
-      name: 'iLinkWorld Fintech Suite',
+      name: 'iLinkCity Municipal Tax Platform (2022-2023)',
+      technologies: ['React Native', 'PHP Backend', 'MySQL', 'Mobile Payments', 'Municipal APIs'],
+      description: 'Mobile application for consolidating and paying municipal taxes in district communes of Douala city, Cameroon.',
+      achievements: ['Municipal tax digitalization', 'Integrated mobile payments', 'Multi-commune interface', 'Digital receipt system']
+    },
+    {
+      name: 'iLinkWorld Fintech Suite (2022-2024)',
       technologies: ['React Native', 'Node.js', 'Payment APIs', 'Biometric Auth', 'Multi-country'],
-      description: 'Suite d\'applications mobiles fintech pour transferts d\'argent internationaux et paiements d\'assurance santé à travers l\'Afrique.',
-      achievements: ['Multi-pays support', 'Paiements sécurisés', 'Authentification robuste']
+      description: 'Suite of fintech mobile applications for international money transfers and health insurance payments across Africa.',
+      achievements: ['Multi-country support', 'Secure payments', 'Robust authentication']
     }
   ],
 
@@ -283,8 +294,13 @@ const EducationItem = ({ education }) => (
 );
 
 const downloadPDF = () => {
-  // Cette fonction générera le PDF côté client
-  window.print();
+  // Télécharger le CV PDF depuis le dossier public
+  const link = document.createElement('a');
+  link.href = '/cv.pdf';
+  link.download = 'CV-Novic-Melataguia-Tonleu.pdf';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 };
 
 // Composant pour les statistiques animées
@@ -320,15 +336,15 @@ const AnimatedStats = () => {
     <div className={styles.statsContainer}>
       <div className={styles.statItem}>
         <div className={styles.statNumber}>{yearsExp}+</div>
-        <div className={styles.statLabel}>Années d'expérience</div>
+        <div className={styles.statLabel}>Years Experience</div>
       </div>
       <div className={styles.statItem}>
         <div className={styles.statNumber}>{projects}+</div>
-        <div className={styles.statLabel}>Projets réalisés</div>
+        <div className={styles.statLabel}>Projects Completed</div>
       </div>
       <div className={styles.statItem}>
         <div className={styles.statNumber}>{technologies}+</div>
-        <div className={styles.statLabel}>Technologies maîtrisées</div>
+        <div className={styles.statLabel}>Technologies Mastered</div>
       </div>
     </div>
   );
@@ -341,12 +357,12 @@ export function CV() {
     <Fragment>
       <Section className={styles.cv}>
         <div className={styles.cvContainer} ref={cvRef}>
-          {/* Header avec informations personnelles */}
+          {/* Header with personal information */}
           <header className={styles.header}>
-            <div className={styles.headerContent}>
+            <div className={styles.headerMain}>
               <div className={styles.personalInfo}>
                 <Heading level={1} as="h1" className={styles.name}>
-                  <DecoderText text={cvData.personal.name} delay={100} />
+                  {cvData.personal.name}
                 </Heading>
                 <Text className={styles.jobTitle} size="xl" weight="medium">
                   {cvData.personal.title}
@@ -354,64 +370,66 @@ export function CV() {
                 <Text className={styles.subtitle} size="m">
                   {cvData.personal.subtitle}
                 </Text>
+                
+                <Button 
+                  className={styles.downloadButton}
+                  onClick={downloadPDF}
+                  icon="download"
+                  size="s"
+                  secondary
+                >
+                  Download PDF
+                </Button>
               </div>
               
-              <div className={styles.contactInfo}>
-                <div className={styles.contactItem}>
-                  <span>📧</span>
-                  <Text size="s">{cvData.personal.email}</Text>
-                </div>
-                <div className={styles.contactItem}>
-                  <span>📱</span>
-                  <Text size="s">{cvData.personal.phone}</Text>
-                </div>
-                <div className={styles.contactItem}>
-                  <span>📍</span>
-                  <Text size="s">{cvData.personal.location}</Text>
-                </div>
-                <div className={styles.contactItem}>
-                  <span>🌐</span>
-                  <Text size="s">{cvData.personal.portfolio}</Text>
-                </div>
-                <div className={styles.contactItem}>
-                  <span>💻</span>
-                  <Text size="s">{cvData.personal.github}</Text>
-                </div>
-                <div className={styles.contactItem}>
-                  <span>👔</span>
-                  <Text size="s">{cvData.personal.linkedin}</Text>
+              <div className={styles.contactSection}>
+                <div className={styles.contactInfo}>
+                  <div className={styles.contactGroup}>
+                    <div className={styles.contactItem}>
+                      <span className={styles.contactIcon}>📧</span>
+                      <Text size="s">{cvData.personal.email}</Text>
+                    </div>
+                    <div className={styles.contactItem}>
+                      <span className={styles.contactIcon}>📱</span>
+                      <Text size="s">{cvData.personal.phone}</Text>
+                    </div>
+                    <div className={styles.contactItem}>
+                      <span className={styles.contactIcon}>📍</span>
+                      <Text size="s">{cvData.personal.location}</Text>
+                    </div>
+                  </div>
+                  <div className={styles.contactGroup}>
+                    <div className={styles.contactItem}>
+                      <span className={styles.contactIcon}>🌐</span>
+                      <Text size="s">{cvData.personal.portfolio}</Text>
+                    </div>
+                    <div className={styles.contactItem}>
+                      <span className={styles.contactIcon}>💻</span>
+                      <Text size="s">{cvData.personal.github}</Text>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <div className={styles.downloadSection}>
-              <Button 
-                className={styles.downloadButton}
-                onClick={downloadPDF}
-                icon="download"
-              >
-                Télécharger PDF
-              </Button>
             </div>
           </header>
 
-          {/* Statistiques animées */}
+          {/* Animated Statistics */}
           <AnimatedStats />
 
-          {/* Résumé professionnel */}
+          {/* Professional Summary */}
           <section className={styles.section}>
             <Heading level={2} as="h2" className={styles.sectionTitle}>
-              Profil Professionnel
+              Professional Profile
             </Heading>
             <Text size="m" className={styles.summary}>
               {cvData.summary.text}
             </Text>
           </section>
 
-          {/* Compétences techniques */}
+          {/* Technical Skills */}
           <section className={styles.section}>
             <Heading level={2} as="h2" className={styles.sectionTitle}>
-              Compétences Techniques
+              Technical Skills
             </Heading>
             <div className={styles.skillsGrid}>
               <SkillCategory title="Mobile Development" skills={cvData.skills.mobile} />
@@ -423,10 +441,10 @@ export function CV() {
             </div>
           </section>
 
-          {/* Expérience professionnelle */}
+          {/* Professional Experience */}
           <section className={styles.section}>
             <Heading level={2} as="h2" className={styles.sectionTitle}>
-              Expérience Professionnelle
+              Professional Experience
             </Heading>
             <div className={styles.experienceList}>
               {cvData.experience.map((exp, index) => (
@@ -435,10 +453,10 @@ export function CV() {
             </div>
           </section>
 
-          {/* Projets remarquables */}
+          {/* Notable Projects */}
           <section className={styles.section}>
             <Heading level={2} as="h2" className={styles.sectionTitle}>
-              Projets Remarquables
+              Notable Projects
             </Heading>
             <div className={styles.projectsGrid}>
               {cvData.projects.map((project, index) => (
@@ -447,10 +465,10 @@ export function CV() {
             </div>
           </section>
 
-          {/* Formation */}
+          {/* Education */}
           <section className={styles.section}>
             <Heading level={2} as="h2" className={styles.sectionTitle}>
-              Formation
+              Education
             </Heading>
             <div className={styles.educationList}>
               {cvData.education.map((edu, index) => (
@@ -459,7 +477,7 @@ export function CV() {
             </div>
           </section>
 
-          {/* Certifications et Langues */}
+          {/* Certifications and Languages */}
           <section className={styles.section}>
             <div className={styles.twoColumns}>
               <div className={styles.column}>
@@ -475,7 +493,7 @@ export function CV() {
               
               <div className={styles.column}>
                 <Heading level={3} as="h3" className={styles.subsectionTitle}>
-                  Langues
+                  Languages
                 </Heading>
                 <div className={styles.languagesList}>
                   {cvData.languages.map((lang, index) => (
