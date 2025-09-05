@@ -8,7 +8,8 @@ import reminder1 from '~/assets/reminder1.png';
 import reminder2 from '~/assets/reminder2.png';
 import deliveryHome from '~/assets/Delivery/home.png';
 import deliveryWallet from '~/assets/Delivery/wallet.png';
-import raphycarTexture from '~/assets/raphy/home.png';
+import raphycarTexture from '~/assets/raphy/home2.png';
+import raphycarTexture2 from '~/assets/raphy/home.png';
 import dashboardTexture from '~/assets/dashb/homeresto.jpg';
 import dashboardUI from '~/assets/dashb/ui-design-dialin-contracts-manager.png';
 import sliceTextureLarge from '~/assets/slice-app-large.jpg';
@@ -195,6 +196,10 @@ export const Home = () => {
             {
               srcSet: `${raphycarTexture} 375w, ${raphycarTexture} 750w`,
               placeholder: gamestackTexturePlaceholder,
+            },
+            {
+              srcSet: `${raphycarTexture2} 375w, ${raphycarTexture2} 750w`,
+              placeholder: gamestackTexture2Placeholder,
             },
           ],
         }}

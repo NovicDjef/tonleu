@@ -1,10 +1,10 @@
 import raphycarHome from '~/assets/raphy/home.png';
-import gamestackTexture2Large from '~/assets/gamestack-list-large.jpg';
-import gamestackTexture2Placeholder from '~/assets/gamestack-list-placeholder.jpg';
-import gamestackTexture2 from '~/assets/gamestack-list.jpg';
-import gamestackTextureLarge from '~/assets/gamestack-login-large.jpg';
-import gamestackTexturePlaceholder from '~/assets/gamestack-login-placeholder.jpg';
-import gamestackTexture from '~/assets/gamestack-login.jpg';
+import raphycarAppHome from '~/assets/raphy/app-home.png';
+import raphycarCarListing from '~/assets/raphy/car-listing.png';
+import raphycarCarDetails from '~/assets/raphy/car-details.png';
+import raphycarChatSupport from '~/assets/raphy/chat-support.png';
+import raphycarFilters from '~/assets/raphy/filters.png';
+import raphycarHome2 from '~/assets/raphy/home2.png';
 import { Footer } from '~/components/footer';
 import { Image } from '~/components/image';
 import {
@@ -61,10 +61,10 @@ export const Raphycar = () => {
           <ProjectSectionContent>
             <ProjectImage
               raised
-              srcSet={`${raphycarHome} 375w, ${raphycarHome} 750w`}
+              srcSet={`${raphycarAppHome} 375w, ${raphycarAppHome} 750w`}
               width={375}
               height={812}
-              placeholder={raphycarHome}
+              placeholder={raphycarAppHome}
               alt="RaphyCar mobile app showing the main vehicle rental interface."
               sizes={`(max-width: ${media.mobile}px) 100vw, (max-width: ${media.tablet}px) 800px, 1000px`}
             />
@@ -85,10 +85,10 @@ export const Raphycar = () => {
         <ProjectSection light>
           <ProjectSectionContent>
             <Image
-              srcSet={`${gamestackTexture2} 1024w, ${gamestackTexture2Large} 2048w`}
-              width={1024}
-              height={800}
-              placeholder={gamestackTexture2Placeholder}
+              srcSet={`${raphycarFilters} 375w, ${raphycarFilters} 750w`}
+              width={375}
+              height={812}
+              placeholder={raphycarFilters}
               alt="Advanced vehicle filtering system with location and specification options"
               sizes="100vw"
             />
@@ -108,10 +108,10 @@ export const Raphycar = () => {
           <ProjectSectionContent>
             <ProjectImage
               raised
-              srcSet={`${gamestackTexture} 1280w, ${gamestackTextureLarge} 2560w`}
-              width={1280}
-              height={800}
-              placeholder={gamestackTexturePlaceholder}
+              srcSet={`${raphycarChatSupport} 375w, ${raphycarChatSupport} 750w`}
+              width={375}
+              height={812}
+              placeholder={raphycarChatSupport}
               alt="AI-powered chatbot interface providing customer support"
               sizes="100vw"
             />
@@ -144,20 +144,20 @@ export const Raphycar = () => {
             <div className={styles.sidebarImages}>
               <Image
                 className={styles.sidebarImage}
-                srcSet={`${gamestackTexture2} 260w, ${gamestackTexture2Large} 520w`}
+                srcSet={`${raphycarCarListing} 260w, ${raphycarCarListing} 520w`}
                 width={260}
                 height={416}
-                placeholder={gamestackTexture2Placeholder}
-                alt="Admin dashboard for vehicle fleet management"
+                placeholder={raphycarCarListing}
+                alt="Car listing with detailed vehicle information"
                 sizes={`(max-width: ${media.mobile}px) 50vw, 25vw`}
               />
               <Image
                 className={styles.sidebarImage}
-                srcSet={`${gamestackTexture} 260w, ${gamestackTextureLarge} 520w`}
+                srcSet={`${raphycarCarDetails} 260w, ${raphycarCarDetails} 520w`}
                 width={260}
                 height={416}
-                placeholder={gamestackTexturePlaceholder}
-                alt="Customer management and booking system"
+                placeholder={raphycarCarDetails}
+                alt="Detailed car information and booking interface"
                 sizes={`(max-width: ${media.mobile}px) 50vw, 25vw`}
               />
             </div>
@@ -176,10 +176,10 @@ export const Raphycar = () => {
             </ProjectTextRow>
             <Image
               raised
-              srcSet={`${raphycarHome} 800w, ${raphycarHome} 1920w`}
+              srcSet={`${raphycarHome2} 800w, ${raphycarHome2} 1920w`}
               width={800}
               height={500}
-              placeholder={raphycarHome}
+              placeholder={raphycarHome2}
               alt="Localized interface showing CFA pricing and mobile payment options"
             />
           </ProjectSectionContent>
