@@ -18,6 +18,9 @@ import { KoursierDelivery } from '../app/routes/projects.koursier-delivery/kours
 import { Raphycar } from '../app/routes/projects.raphycar/raphycar';
 import { AdminDashboard } from '../app/routes/projects.admin-dashboard/admin-dashboard';
 import { ModernStylingInReact } from '../app/routes/articles.modern-styling-in-react/modern-styling-in-react';
+import { HelloWorld } from '../app/routes/articles.hello-world/hello-world';
+import { AdvancedReactPatterns } from '../app/routes/articles.advanced-react-patterns/advanced-react-patterns';
+import { FullstackNodejsArchitecture } from '../app/routes/articles.fullstack-nodejs-architecture/fullstack-nodejs-architecture';
 import { CV } from '../app/routes/cv/cv';
 import { About } from '../app/routes/about/about';
 import config from '../app/config.json';
@@ -138,6 +141,9 @@ function App() {
               <Route path="/projects/raphycar" element={<Raphycar />} />
               <Route path="/projects/admin-dashboard" element={<AdminDashboard />} />
               <Route path="/articles/modern-styling-in-react" element={<ModernStylingInReact />} />
+              <Route path="/articles/hello-world" element={<HelloWorld />} />
+              <Route path="/articles/advanced-react-patterns" element={<AdvancedReactPatterns />} />
+              <Route path="/articles/fullstack-nodejs-architecture" element={<FullstackNodejsArchitecture />} />
               <Route path="/cv" element={<CV />} />
               <Route path="/about" element={<About />} />
               <Route path="*" element={<Error error={{ status: 404, statusText: 'Not Found' }} />} />
