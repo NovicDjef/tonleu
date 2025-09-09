@@ -10,6 +10,8 @@ import deliveryHome from '~/assets/Delivery/home.png';
 import deliveryWallet from '~/assets/Delivery/wallet.png';
 import raphycarTexture from '~/assets/raphy/home2.png';
 import raphycarTexture2 from '~/assets/raphy/home.png';
+import burnsTexture from '~/assets/burns/home-page.png';
+import burnsTexture2 from '~/assets/burns/apartments.png';
 import dashboardTexture from '~/assets/dashb/homeresto.jpg';
 import dashboardUI from '~/assets/dashb/ui-design-dialin-contracts-manager.png';
 import sliceTextureLarge from '~/assets/slice-app-large.jpg';
@@ -65,6 +67,7 @@ export const Home = () => {
   const projectFive = useRef();
   const projectSix = useRef();
   const projectSeven = useRef();
+  // const projectEight = useRef();
   const details = useRef();
 
   useEffect(() => {
@@ -255,6 +258,30 @@ export const Home = () => {
         sectionRef={projectSeven}
         visible={visibleSections.includes(projectSeven.current)}
         index={7}
+        title="Burns Immobilier - Gestion Locative Côte-Nord"
+        description="Plateforme complète de gestion immobilière pour la région de la Côte-Nord au Québec. Offrant des appartements variés à prix compétitifs, avec système de demande en ligne et support technique 24/7."
+        buttonText="View project"
+        buttonLink="/projects/burns-immobilier"
+        model={{
+          type: 'laptop',
+          alt: 'Site web Burns Immobilier présentant la gestion locative au Québec',
+          textures: [
+            {
+              srcSet: `${burnsTexture} 800w, ${burnsTexture} 1920w`,
+              placeholder: burnsTexture,
+            },
+            {
+              srcSet: `${burnsTexture2} 800w, ${burnsTexture2} 1920w`,
+              placeholder: burnsTexture2,
+            },
+          ],
+        }}
+      />
+      {/* <ProjectSummary
+        id="project-8"
+        sectionRef={projectEight}
+        visible={visibleSections.includes(projectEight.current)}
+        index={8}
         title="Biomedical image collaboration"
         description="Increasing the amount of collaboration in Slice, an app for biomedical imaging"
         buttonText="View project"
@@ -269,7 +296,7 @@ export const Home = () => {
             },
           ],
         }}
-      />
+      /> */}
       <Profile
         sectionRef={details}
         visible={visibleSections.includes(details.current)}

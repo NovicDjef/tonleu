@@ -1,0 +1,44 @@
+/* Burns Immobilier Project Styles */
+
+.burnsImmobilier {
+  /* Use global theme colors */
+}
+
+/* Sidebar Images Layout */
+.sidebarImages {
+  display: grid;
+  gap: var(--spaceM);
+  grid-template-columns: 1fr;
+  align-items: flex-start;
+}
+
+.sidebarImage {
+  border-radius: var(--borderRadius);
+  box-shadow: 
+    0 10px 40px rgba(0, 0, 0, 0.2),
+    0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform var(--durationM) var(--bezierFastoutSlowin);
+}
+
+.sidebarImage:hover {
+  transform: translateY(-2px);
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .sidebarImages {
+    gap: var(--spaceS);
+  }
+  
+  .sidebarImage {
+    margin-bottom: var(--spaceS);
+  }
+}
+
+/* Project specific image styling */
+.burnsImmobilier img {
+  border-radius: var(--borderRadius);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.15),
+    0 10px 20px rgba(0, 0, 0, 0.1);
+}

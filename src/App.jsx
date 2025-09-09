@@ -21,6 +21,7 @@ import { ModernStylingInReact } from '../app/routes/articles.modern-styling-in-r
 import { HelloWorld } from '../app/routes/articles.hello-world/hello-world';
 import { AdvancedReactPatterns } from '../app/routes/articles.advanced-react-patterns/advanced-react-patterns';
 import { FullstackNodejsArchitecture } from '../app/routes/articles.fullstack-nodejs-architecture/fullstack-nodejs-architecture';
+import { BurnsImmobilier } from '../app/routes/projects.burns-immobilier/burns-immobilier';
 import { CV } from '../app/routes/cv/cv';
 import { About } from '../app/routes/about/about';
 import config from '../app/config.json';
@@ -144,6 +145,7 @@ function App() {
               <Route path="/articles/hello-world" element={<HelloWorld />} />
               <Route path="/articles/advanced-react-patterns" element={<AdvancedReactPatterns />} />
               <Route path="/articles/fullstack-nodejs-architecture" element={<FullstackNodejsArchitecture />} />
+              <Route path="/projects/burns-immobilier" element={<BurnsImmobilier />} />
               <Route path="/cv" element={<CV />} />
               <Route path="/about" element={<About />} />
               <Route path="*" element={<Error error={{ status: 404, statusText: 'Not Found' }} />} />
