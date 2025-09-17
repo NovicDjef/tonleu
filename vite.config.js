@@ -20,7 +20,13 @@ export default defineConfig({
     host: "127.0.0.1",
     port: 7777,
     strictPort: true,
-    allowedHosts: ["novic.dev", "www.novic.dev"] 
+    allowedHosts: ["novic.dev", "www.novic.dev"]
+  },
+  preview: {
+    host: "0.0.0.0",
+    port: 4173,
+    strictPort: true,
+    allowedHosts: ["novic.dev", "www.novic.dev"]
   },
   plugins: [
     react(),
