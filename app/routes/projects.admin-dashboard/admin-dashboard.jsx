@@ -1,12 +1,7 @@
+import backgroundSpr from '~/assets/spr-background.jpg';
 import dashboardHome from '~/assets/dashb/homeresto.jpg';
 import dashboardUI from '~/assets/dashb/ui-design-dialin-contracts-manager.png';
 import dashboardWebp from '~/assets/dashb/homeres.webp';
-import gamestackTexture2Large from '~/assets/gamestack-list-large.jpg';
-import gamestackTexture2Placeholder from '~/assets/gamestack-list-placeholder.jpg';
-import gamestackTexture2 from '~/assets/gamestack-list.jpg';
-import gamestackTextureLarge from '~/assets/gamestack-login-large.jpg';
-import gamestackTexturePlaceholder from '~/assets/gamestack-login-placeholder.jpg';
-import gamestackTexture from '~/assets/gamestack-login.jpg';
 import { Footer } from '~/components/footer';
 import { Image } from '~/components/image';
 import {
@@ -46,11 +41,11 @@ export const AdminDashboard = () => {
     <Fragment>
       <ProjectContainer className={styles.adminDashboard}>
         <ProjectBackground
-          src={dashboardHome}
-          srcSet={`${dashboardHome} 1280w, ${dashboardHome} 2560w`}
+          src={backgroundSpr}
+          srcSet={`${backgroundSpr} 1280w, ${backgroundSpr} 2560w`}
           width={1280}
           height={800}
-          placeholder={dashboardHome}
+          placeholder={backgroundSpr}
           opacity={0.8}
         />
         <ProjectHeader
@@ -61,15 +56,35 @@ export const AdminDashboard = () => {
         />
         <ProjectSection padding="top">
           <ProjectSectionContent>
-            <ProjectImage
-              raised
-              srcSet={`${dashboardHome} 1280w, ${dashboardHome} 2560w`}
-              width={1280}
-              height={800}
-              placeholder={dashboardHome}
-              alt="Admin dashboard showing comprehensive management interface."
-              sizes={`(max-width: ${media.mobile}px) 100vw, (max-width: ${media.tablet}px) 800px, 1000px`}
-            />
+            <ProjectSectionColumns>
+              <Image
+                raised
+                srcSet={`${dashboardHome} 300w, ${dashboardHome} 600w`}
+                width={300}
+                height={225}
+                placeholder={dashboardHome}
+                alt="Admin dashboard home interface"
+                sizes={`(max-width: ${media.mobile}px) 90vw, 300px`}
+              />
+              <Image
+                raised
+                srcSet={`${dashboardUI} 300w, ${dashboardUI} 600w`}
+                width={300}
+                height={225}
+                placeholder={dashboardUI}
+                alt="Management interface design"
+                sizes={`(max-width: ${media.mobile}px) 90vw, 300px`}
+              />
+              <Image
+                raised
+                srcSet={`${dashboardWebp} 300w, ${dashboardWebp} 600w`}
+                width={300}
+                height={225}
+                placeholder={dashboardWebp}
+                alt="Analytics dashboard view"
+                sizes={`(max-width: ${media.mobile}px) 90vw, 300px`}
+              />
+            </ProjectSectionColumns>
           </ProjectSectionContent>
         </ProjectSection>
         <ProjectSection>

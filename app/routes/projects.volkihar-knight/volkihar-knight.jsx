@@ -1,3 +1,4 @@
+import backgroundSpr from '~/assets/spr-background.jpg';
 import volkiharBackgroundLarge from '~/assets/volkihar-background-large.jpg';
 import volkiharBackgroundPlaceholder from '~/assets/volkihar-background-placeholder.jpg';
 import volkiharBackground from '~/assets/volkihar-background.jpg';
@@ -75,10 +76,10 @@ export function VolkiharKnight() {
       />
       <ProjectContainer>
         <ProjectBackground
-          srcSet={`${volkiharBackground} 1280w, ${volkiharBackgroundLarge} 1920w`}
+          srcSet={`${backgroundSpr} 1280w, ${backgroundSpr} 1920w`}
           width={1280}
           height={720}
-          placeholder={volkiharBackgroundPlaceholder}
+          placeholder={backgroundSpr}
           opacity={0.5}
         />
         <ProjectHeader

@@ -1,9 +1,5 @@
-import gamestackTexture2Large from '~/assets/gamestack-list-large.jpg';
-import gamestackTexture2Placeholder from '~/assets/gamestack-list-placeholder.jpg';
-import gamestackTexture2 from '~/assets/gamestack-list.jpg';
-import gamestackTextureLarge from '~/assets/gamestack-login-large.jpg';
-import gamestackTexturePlaceholder from '~/assets/gamestack-login-placeholder.jpg';
-import gamestackTexture from '~/assets/gamestack-login.jpg';
+import koursierTexture1 from '~/assets/koursier/588.png';
+import koursierTexture2 from '~/assets/koursier/608.png';
 import reminder1 from '~/assets/reminder1.png';
 import reminder2 from '~/assets/reminder2.png';
 import deliveryHome from '~/assets/Delivery/home.png';
@@ -128,12 +124,12 @@ export const Home = () => {
           alt: 'Koursier app interface',
           textures: [
             {
-              srcSet: `${gamestackTexture} 375w, ${gamestackTextureLarge} 750w`,
-              placeholder: gamestackTexturePlaceholder,
+              srcSet: `${koursierTexture1} 375w, ${koursierTexture1} 750w`,
+              placeholder: koursierTexture1,
             },
             {
-              srcSet: `${gamestackTexture2} 375w, ${gamestackTexture2Large} 750w`,
-              placeholder: gamestackTexture2Placeholder,
+              srcSet: `${koursierTexture2} 375w, ${koursierTexture2} 750w`,
+              placeholder: koursierTexture2,
             },
           ],
         }}
@@ -153,7 +149,7 @@ export const Home = () => {
           textures: [
             {
               srcSet: `${dashboardTexture} 800w, ${dashboardUI} 1920w`,
-              placeholder: gamestackTexturePlaceholder,
+              placeholder: dashboardTexture,
             },
           ],
         }}
@@ -174,11 +170,11 @@ export const Home = () => {
           textures: [
             {
               srcSet: `${deliveryHome} 375w, ${deliveryWallet} 750w`,
-              placeholder: gamestackTexturePlaceholder,
+              placeholder: deliveryHome,
             },
             {
               srcSet: `${deliveryWallet} 375w, ${deliveryHome} 750w`,
-              placeholder: gamestackTexture2Placeholder,
+              placeholder: deliveryWallet,
             },
           ],
         }}
@@ -198,11 +194,11 @@ export const Home = () => {
           textures: [
             {
               srcSet: `${raphycarTexture} 375w, ${raphycarTexture} 750w`,
-              placeholder: gamestackTexturePlaceholder,
+              placeholder: raphycarTexture,
             },
             {
               srcSet: `${raphycarTexture2} 375w, ${raphycarTexture2} 750w`,
-              placeholder: gamestackTexture2Placeholder,
+              placeholder: raphycarTexture2,
             },
           ],
         }}
@@ -222,12 +218,12 @@ export const Home = () => {
           alt: 'Reminder app medication management interface',
           textures: [
             {
-              srcSet: `${reminder2} 375w, ${gamestackTextureLarge} 750w`,
-              placeholder: gamestackTexturePlaceholder,
+              srcSet: `${reminder2} 375w, ${reminder2} 750w`,
+              placeholder: reminder2,
             },
             {
-              srcSet: `${reminder1} 375w, ${gamestackTexture2Large} 750w`,
-              placeholder: gamestackTexture2Placeholder,
+              srcSet: `${reminder1} 375w, ${reminder1} 750w`,
+              placeholder: reminder1,
             },
           ],
         }}

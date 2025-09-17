@@ -1,3 +1,4 @@
+import backgroundSpr from '~/assets/spr-background.jpg';
 import sliceAnnotationLarge from '~/assets/slice-annotation-large.png';
 import sliceAnnotationPlaceholder from '~/assets/slice-annotation-placeholder.png';
 import sliceAnnotation from '~/assets/slice-annotation.png';
@@ -54,11 +55,11 @@ export const Slice = () => {
     <Fragment>
       <ProjectContainer className={styles.slice}>
         <ProjectBackground
-          src={sliceBackground}
-          srcSet={`${sliceBackground} 1280w, ${sliceBackgroundLarge} 2560w`}
+          src={backgroundSpr}
+          srcSet={`${backgroundSpr} 1280w, ${backgroundSpr} 2560w`}
           width={1280}
           height={800}
-          placeholder={sliceBackgroundPlaceholder}
+          placeholder={backgroundSpr}
           opacity={0.8}
         />
         <ProjectHeader

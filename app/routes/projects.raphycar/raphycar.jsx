@@ -1,4 +1,4 @@
-import raphycarHome from '~/assets/raphy/home.png';
+import backgroundSpr from '~/assets/spr-background.jpg';
 import raphycarAppHome from '~/assets/raphy/app-home.png';
 import raphycarCarListing from '~/assets/raphy/car-listing.png';
 import raphycarCarDetails from '~/assets/raphy/car-details.png';
@@ -24,19 +24,19 @@ import { media } from '~/utils/style';
 import { baseMeta } from '~/utils/meta';
 import styles from './raphycar.module.css';
 
-const title = 'RaphyCar - AI-Powered Vehicle Rental Mobile App';
+const title = 'RaphyCar - Application Mobile de Location de Véhicules avec IA';
 const description =
-  'A comprehensive car rental mobile application designed for the Cameroonian market, featuring intelligent filtering, AI-powered chatbot customer support, and complete administrative management for vehicle fleet operations.';
+  'Application mobile complète de location de voitures conçue pour le marché camerounais, intégrant un filtrage intelligent, un chatbot IA pour le support client, et une gestion administrative complète de la flotte de véhicules.';
 const roles = [
-  'React Native Development',
-  'AI Chatbot Integration',
-  'Mobile UI/UX Design',
-  'Advanced Filtering System',
-  'Cameroonian Market Localization'
+  'Développement React Native',
+  'Intégration Chatbot IA',
+  'Design UI/UX Mobile',
+  'Système de Filtrage Avancé',
+  'Localisation Marché Camerounais'
 ];
 
 export const meta = () => {
-  return baseMeta({ title, description, prefix: 'Projects' });
+  return baseMeta({ title, description, prefix: 'Projets' });
 };
 
 export const Raphycar = () => {
@@ -44,11 +44,11 @@ export const Raphycar = () => {
     <Fragment>
       <ProjectContainer className={styles.raphycar}>
         <ProjectBackground
-          src={raphycarHome}
-          srcSet={`${raphycarHome} 1280w, ${raphycarHome} 2560w`}
+          src={backgroundSpr}
+          srcSet={`${backgroundSpr} 1280w, ${backgroundSpr} 2560w`}
           width={1280}
           height={800}
-          placeholder={raphycarHome}
+          placeholder={backgroundSpr}
           opacity={0.8}
         />
         <ProjectHeader
@@ -57,143 +57,236 @@ export const Raphycar = () => {
           url="https://raphycar.com"
           roles={roles}
         />
+
+        {/* Section d'aperçu des écrans principaux */}
         <ProjectSection padding="top">
           <ProjectSectionContent>
-            <ProjectImage
-              raised
-              srcSet={`${raphycarAppHome} 375w, ${raphycarAppHome} 750w`}
-              width={375}
-              height={812}
-              placeholder={raphycarAppHome}
-              alt="RaphyCar mobile app showing the main vehicle rental interface."
-              sizes={`(max-width: ${media.mobile}px) 100vw, (max-width: ${media.tablet}px) 800px, 1000px`}
-            />
+            <ProjectTextRow>
+              <ProjectSectionHeading>Aperçu de l'Application Mobile</ProjectSectionHeading>
+              <ProjectSectionText>
+                Interface utilisateur moderne et intuitive optimisée pour les utilisateurs camerounais, 
+                avec une navigation fluide et des fonctionnalités adaptées au marché local.
+              </ProjectSectionText>
+            </ProjectTextRow>
+            <ProjectSectionColumns centered>
+              <div className={styles.mobileScreenshot}>
+                <Image
+                  raised
+                  srcSet={`${raphycarAppHome} 200w, ${raphycarAppHome} 400w`}
+                  width={200}
+                  height={400}
+                  placeholder={raphycarAppHome}
+                  alt="Écran d'accueil RaphyCar avec navigation principale"
+                  sizes={`(max-width: ${media.mobile}px) 150px, (max-width: ${media.tablet}px) 180px, 200px`}
+                />
+                <p className={styles.screenshotCaption}>Écran d'accueil</p>
+              </div>
+              <div className={styles.mobileScreenshot}>
+                <Image
+                  raised
+                  srcSet={`${raphycarCarListing} 200w, ${raphycarCarListing} 400w`}
+                  width={200}
+                  height={400}
+                  placeholder={raphycarCarListing}
+                  alt="Liste des véhicules disponibles avec options de filtrage"
+                  sizes={`(max-width: ${media.mobile}px) 150px, (max-width: ${media.tablet}px) 180px, 200px`}
+                />
+                <p className={styles.screenshotCaption}>Liste des véhicules</p>
+              </div>
+              <div className={styles.mobileScreenshot}>
+                <Image
+                  raised
+                  srcSet={`${raphycarCarDetails} 200w, ${raphycarCarDetails} 400w`}
+                  width={200}
+                  height={400}
+                  placeholder={raphycarCarDetails}
+                  alt="Page détaillée d'un véhicule avec informations complètes"
+                  sizes={`(max-width: ${media.mobile}px) 150px, (max-width: ${media.tablet}px) 180px, 200px`}
+                />
+                <p className={styles.screenshotCaption}>Détails du véhicule</p>
+              </div>
+            </ProjectSectionColumns>
           </ProjectSectionContent>
         </ProjectSection>
+
+        {/* Section défi */}
         <ProjectSection>
           <ProjectTextRow>
-            <ProjectSectionHeading>The challenge</ProjectSectionHeading>
+            <ProjectSectionHeading>Le Défi à Relever</ProjectSectionHeading>
             <ProjectSectionText>
-              The Cameroonian car rental market lacked a modern, comprehensive mobile solution that could 
-              address local needs while providing international-standard features. Traditional rental 
-              services struggled with inefficient booking processes, limited vehicle variety, and 
-              poor customer communication. The challenge was to create a localized mobile application 
-              that combines advanced technology with deep understanding of the local market dynamics.
+              Le marché camerounais de la location de véhicules manquait d'une solution mobile moderne 
+              et complète capable de répondre aux besoins locaux tout en offrant des fonctionnalités 
+              de niveau international. Les services de location traditionnels souffraient de processus 
+              de réservation inefficaces, d'une variété limitée de véhicules et d'une communication 
+              client défaillante. Le défi était de créer une application mobile localisée combinant 
+              technologie avancée et compréhension approfondie des dynamiques du marché local.
             </ProjectSectionText>
           </ProjectTextRow>
         </ProjectSection>
+
+        {/* Section filtrage intelligent et support IA */}
         <ProjectSection light>
           <ProjectSectionContent>
-            <Image
-              srcSet={`${raphycarFilters} 375w, ${raphycarFilters} 750w`}
-              width={375}
-              height={812}
-              placeholder={raphycarFilters}
-              alt="Advanced vehicle filtering system with location and specification options"
-              sizes="100vw"
-            />
             <ProjectTextRow>
-              <ProjectSectionHeading>Intelligent filtering system</ProjectSectionHeading>
+              <ProjectSectionHeading>Filtrage Intelligent & Support IA</ProjectSectionHeading>
               <ProjectSectionText>
-                The mobile application features sophisticated filtering capabilities allowing users to search 
-                vehicles by location, price range, vehicle type, transmission, fuel efficiency, and 
-                availability periods. The system is optimized for Cameroonian geography, supporting 
-                major cities like Yaoundé, Douala, and regional centers with location-based availability 
-                and pricing adjustments.
+                L'application mobile intègre des capacités de filtrage sophistiquées permettant aux 
+                utilisateurs de rechercher des véhicules par localisation, gamme de prix, type de 
+                véhicule, transmission, efficacité énergétique et périodes de disponibilité. Le système 
+                est optimisé pour la géographie camerounaise, supportant les grandes villes comme 
+                Yaoundé, Douala et les centres régionaux avec ajustements de disponibilité et tarification 
+                basés sur la localisation.
               </ProjectSectionText>
             </ProjectTextRow>
+            <ProjectSectionColumns centered>
+              <div className={styles.mobileScreenshot}>
+                <Image
+                  raised
+                  srcSet={`${raphycarFilters} 200w, ${raphycarFilters} 400w`}
+                  width={200}
+                  height={400}
+                  placeholder={raphycarFilters}
+                  alt="Interface de filtrage avancé avec options multiples"
+                  sizes={`(max-width: ${media.mobile}px) 150px, (max-width: ${media.tablet}px) 180px, 200px`}
+                />
+                <p className={styles.screenshotCaption}>Système de filtrage avancé</p>
+              </div>
+              <div className={styles.mobileScreenshot}>
+                <Image
+                  raised
+                  srcSet={`${raphycarChatSupport} 200w, ${raphycarChatSupport} 400w`}
+                  width={200}
+                  height={400}
+                  placeholder={raphycarChatSupport}
+                  alt="Interface du chatbot IA pour support client 24/7"
+                  sizes={`(max-width: ${media.mobile}px) 150px, (max-width: ${media.tablet}px) 180px, 200px`}
+                />
+                <p className={styles.screenshotCaption}>Support client avec IA</p>
+              </div>
+            </ProjectSectionColumns>
           </ProjectSectionContent>
         </ProjectSection>
+
+        {/* Section support client IA */}
         <ProjectSection>
           <ProjectSectionContent>
-            <ProjectImage
-              raised
-              srcSet={`${raphycarChatSupport} 375w, ${raphycarChatSupport} 750w`}
-              width={375}
-              height={812}
-              placeholder={raphycarChatSupport}
-              alt="AI-powered chatbot interface providing customer support"
-              sizes="100vw"
-            />
-            <ProjectTextRow>
-              <ProjectSectionHeading>AI-powered customer support</ProjectSectionHeading>
-              <ProjectSectionText>
-                An intelligent chatbot system provides 24/7 customer support in French and English, 
-                handling common inquiries about vehicle availability, rental procedures, pricing, 
-                and local regulations. The AI is trained on Cameroonian driving laws, insurance 
-                requirements, and cultural preferences to provide contextually relevant assistance.
-              </ProjectSectionText>
-            </ProjectTextRow>
+            <ProjectSectionColumns>
+              <ProjectSectionContent>
+                <ProjectTextRow>
+                  <ProjectSectionHeading>Support Client Alimenté par l'IA</ProjectSectionHeading>
+                  <ProjectSectionText>
+                    Un système de chatbot intelligent fournit un support client 24h/24 et 7j/7 en 
+                    français et en anglais, gérant les demandes courantes concernant la disponibilité 
+                    des véhicules, les procédures de location, la tarification et les réglementations 
+                    locales. L'IA est entraînée sur les lois de conduite camerounaises, les exigences 
+                    d'assurance et les préférences culturelles pour fournir une assistance 
+                    contextuellement pertinente.
+                  </ProjectSectionText>
+                </ProjectTextRow>
+              </ProjectSectionContent>
+              <div className={styles.featureImage}>
+                <Image
+                  raised
+                  srcSet={`${raphycarChatSupport} 250w, ${raphycarChatSupport} 500w`}
+                  width={250}
+                  height={500}
+                  placeholder={raphycarChatSupport}
+                  alt="Interface complète du chatbot IA avec conversation en français"
+                  sizes={`(max-width: ${media.mobile}px) 200px, (max-width: ${media.tablet}px) 220px, 250px`}
+                />
+              </div>
+            </ProjectSectionColumns>
           </ProjectSectionContent>
         </ProjectSection>
-        <ProjectSection>
+
+        {/* Section gestion administrative */}
+        <ProjectSection light>
           <ProjectSectionColumns>
             <ProjectSectionContent>
               <ProjectTextRow>
                 <ProjectSectionHeading>
-                  Comprehensive administrative management
+                  Gestion Administrative Complète
                 </ProjectSectionHeading>
                 <ProjectSectionText>
-                  The admin dashboard provides complete fleet management capabilities including vehicle 
-                  registration, maintenance tracking, booking management, customer profiles, and 
-                  financial reporting. Administrators can manage multiple locations, set dynamic pricing 
-                  based on demand, and monitor vehicle utilization across the Cameroonian market.
+                  Le tableau de bord administrateur offre des capacités complètes de gestion de flotte 
+                  incluant l'enregistrement des véhicules, le suivi de maintenance, la gestion des 
+                  réservations, les profils clients et le reporting financier. Les administrateurs 
+                  peuvent gérer plusieurs emplacements, définir une tarification dynamique basée 
+                  sur la demande et surveiller l'utilisation des véhicules à travers le marché camerounais.
                 </ProjectSectionText>
               </ProjectTextRow>
             </ProjectSectionContent>
             <div className={styles.sidebarImages}>
-              <Image
-                className={styles.sidebarImage}
-                srcSet={`${raphycarCarListing} 260w, ${raphycarCarListing} 520w`}
-                width={260}
-                height={416}
-                placeholder={raphycarCarListing}
-                alt="Car listing with detailed vehicle information"
-                sizes={`(max-width: ${media.mobile}px) 50vw, 25vw`}
-              />
-              <Image
-                className={styles.sidebarImage}
-                srcSet={`${raphycarCarDetails} 260w, ${raphycarCarDetails} 520w`}
-                width={260}
-                height={416}
-                placeholder={raphycarCarDetails}
-                alt="Detailed car information and booking interface"
-                sizes={`(max-width: ${media.mobile}px) 50vw, 25vw`}
-              />
+              <div className={styles.mobileScreenshot}>
+                <Image
+                  className={styles.sidebarImage}
+                  srcSet={`${raphycarCarListing} 150w, ${raphycarCarListing} 300w`}
+                  width={150}
+                  height={300}
+                  placeholder={raphycarCarListing}
+                  alt="Interface de gestion des véhicules avec informations détaillées"
+                  sizes={`(max-width: ${media.mobile}px) 120px, (max-width: ${media.tablet}px) 140px, 150px`}
+                />
+                <p className={styles.screenshotCaption}>Gestion véhicules</p>
+              </div>
+              <div className={styles.mobileScreenshot}>
+                <Image
+                  className={styles.sidebarImage}
+                  srcSet={`${raphycarCarDetails} 150w, ${raphycarCarDetails} 300w`}
+                  width={150}
+                  height={300}
+                  placeholder={raphycarCarDetails}
+                  alt="Interface de réservation avec informations détaillées du véhicule"
+                  sizes={`(max-width: ${media.mobile}px) 120px, (max-width: ${media.tablet}px) 140px, 150px`}
+                />
+                <p className={styles.screenshotCaption}>Interface réservation</p>
+              </div>
             </div>
           </ProjectSectionColumns>
         </ProjectSection>
-        <ProjectSection light>
-          <ProjectSectionContent>
-            <ProjectTextRow>
-              <ProjectSectionHeading>Localized user experience</ProjectSectionHeading>
-              <ProjectSectionText>
-                The platform is specifically designed for the Cameroonian context, supporting CFA franc 
-                pricing, local payment methods, and integration with mobile money services. The interface 
-                accommodates both urban and rural users with varying internet connectivity, featuring 
-                progressive web app capabilities and offline functionality for essential features.
-              </ProjectSectionText>
-            </ProjectTextRow>
-            <Image
-              raised
-              srcSet={`${raphycarHome2} 800w, ${raphycarHome2} 1920w`}
-              width={800}
-              height={500}
-              placeholder={raphycarHome2}
-              alt="Localized interface showing CFA pricing and mobile payment options"
-            />
-          </ProjectSectionContent>
-        </ProjectSection>
+
+        {/* Section expérience utilisateur localisée */}
         <ProjectSection>
           <ProjectSectionContent>
+            <ProjectSectionColumns>
+              <ProjectTextRow>
+                <ProjectSectionHeading>Expérience Utilisateur Localisée</ProjectSectionHeading>
+                <ProjectSectionText>
+                  La plateforme est spécifiquement conçue pour le contexte camerounais, supportant 
+                  la tarification en francs CFA, les méthodes de paiement locales et l'intégration 
+                  avec les services de mobile money. L'interface s'adapte aux utilisateurs urbains 
+                  et ruraux avec des connectivités internet variables, proposant des capacités 
+                  d'application web progressive et des fonctionnalités hors ligne pour les 
+                  fonctions essentielles.
+                </ProjectSectionText>
+              </ProjectTextRow>
+              <div className={styles.featureImage}>
+                <Image
+                  raised
+                  srcSet={`${raphycarHome2} 250w, ${raphycarHome2} 500w`}
+                  width={250}
+                  height={500}
+                  placeholder={raphycarHome2}
+                  alt="Interface localisée montrant tarification CFA et options mobile money"
+                  sizes={`(max-width: ${media.mobile}px) 200px, (max-width: ${media.tablet}px) 220px, 250px`}
+                />
+              </div>
+            </ProjectSectionColumns>
+          </ProjectSectionContent>
+        </ProjectSection>
+
+        {/* Section résultats du projet */}
+        <ProjectSection light>
+          <ProjectSectionContent>
             <ProjectTextRow center centerMobile noMargin>
-              <ProjectSectionHeading>Project outcomes</ProjectSectionHeading>
+              <ProjectSectionHeading>Résultats du Projet</ProjectSectionHeading>
               <ProjectSectionText>
-                RaphyCar successfully addresses the unique challenges of the Cameroonian car rental 
-                market through intelligent technology and deep local understanding. The platform combines 
-                advanced filtering, AI-powered support, and comprehensive fleet management to create 
-                a modern rental experience that serves both customers and business operators effectively 
-                in the Central African context.
+                RaphyCar répond avec succès aux défis uniques du marché camerounais de location 
+                de voitures grâce à une technologie intelligente et une compréhension approfondie 
+                du contexte local. La plateforme combine filtrage avancé, support alimenté par l'IA 
+                et gestion complète de flotte pour créer une expérience de location moderne qui 
+                sert efficacement les clients et les opérateurs commerciaux dans le contexte 
+                de l'Afrique Centrale.
               </ProjectSectionText>
             </ProjectTextRow>
           </ProjectSectionContent>

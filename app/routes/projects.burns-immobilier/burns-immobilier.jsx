@@ -1,3 +1,4 @@
+import backgroundSpr from '~/assets/spr-background.jpg';
 import burnsHomePage from '~/assets/burns/home-page.png';
 import burnsApartments from '~/assets/burns/apartments.png';
 import burnsApplication from '~/assets/burns/application.png';
@@ -46,11 +47,11 @@ export const BurnsImmobilier = () => {
     <Fragment>
       <ProjectContainer className={styles.burnsImmobilier}>
         <ProjectBackground
-          src={burnsHomePage}
-          srcSet={`${burnsHomePage} 1280w, ${burnsHomePage} 2560w`}
+          src={backgroundSpr}
+          srcSet={`${backgroundSpr} 1280w, ${backgroundSpr} 2560w`}
           width={1280}
           height={800}
-          placeholder={burnsHomePage}
+          placeholder={backgroundSpr}
           opacity={0.8}
         />
         <ProjectHeader
@@ -61,15 +62,35 @@ export const BurnsImmobilier = () => {
         />
         <ProjectSection padding="top">
           <ProjectSectionContent>
-            <ProjectImage
-              raised
-              srcSet={`${burnsHomePage} 800w, ${burnsHomePage} 1920w`}
-              width={800}
-              height={500}
-              placeholder={burnsHomePage}
-              alt="Page d'accueil du site Burns Immobilier présentant les services de gestion locative."
-              sizes={`(max-width: ${media.mobile}px) 100vw, (max-width: ${media.tablet}px) 800px, 1000px`}
-            />
+            <ProjectSectionColumns>
+              <Image
+                raised
+                srcSet={`${burnsHomePage} 300w, ${burnsHomePage} 600w`}
+                width={300}
+                height={225}
+                placeholder={burnsHomePage}
+                alt="Page d'accueil du site Burns Immobilier"
+                sizes={`(max-width: ${media.mobile}px) 90vw, 300px`}
+              />
+              <Image
+                raised
+                srcSet={`${burnsApartments} 300w, ${burnsApartments} 600w`}
+                width={300}
+                height={225}
+                placeholder={burnsApartments}
+                alt="Catalogue d'appartements disponibles"
+                sizes={`(max-width: ${media.mobile}px) 90vw, 300px`}
+              />
+              <Image
+                raised
+                srcSet={`${burnsApplication} 300w, ${burnsApplication} 600w`}
+                width={300}
+                height={225}
+                placeholder={burnsApplication}
+                alt="Formulaire de demande de location"
+                sizes={`(max-width: ${media.mobile}px) 90vw, 300px`}
+              />
+            </ProjectSectionColumns>
           </ProjectSectionContent>
         </ProjectSection>
         <ProjectSection>
@@ -87,25 +108,46 @@ export const BurnsImmobilier = () => {
         </ProjectSection>
         <ProjectSection light>
           <ProjectSectionContent>
-            <Image
-              srcSet={`${burnsApartments} 1024w, ${burnsApartments} 2048w`}
-              width={1024}
-              height={800}
-              placeholder={burnsApartments}
-              alt="Catalogue d'appartements disponibles avec différentes configurations"
-              sizes="100vw"
-            />
             <ProjectTextRow>
-              <ProjectSectionHeading>Catalogue d'appartements diversifié</ProjectSectionHeading>
+              <ProjectSectionHeading>Services intégrés</ProjectSectionHeading>
               <ProjectSectionText>
-                La plateforme présente une gamme complète d'appartements allant des studios 
-                aux triplex, tous situés dans la région de la Côte-Nord. Chaque propriété 
-                est présentée avec des photos détaillées, des descriptions complètes et 
-                des prix compétitifs. Le système permet une recherche filtrée par type 
-                de logement, nombre de chambres, prix et localisation pour faciliter 
+                La plateforme présente une gamme complète d'appartements allant des studios
+                aux triplex, tous situés dans la région de la Côte-Nord. Chaque propriété
+                est présentée avec des photos détaillées, des descriptions complètes et
+                des prix compétitifs. Le système permet une recherche filtrée par type
+                de logement, nombre de chambres, prix et localisation pour faciliter
                 la sélection des futurs locataires.
               </ProjectSectionText>
             </ProjectTextRow>
+            <ProjectSectionColumns>
+              <Image
+                raised
+                srcSet={`${burnsContact} 300w, ${burnsContact} 600w`}
+                width={300}
+                height={225}
+                placeholder={burnsContact}
+                alt="Page de contact et support client"
+                sizes={`(max-width: ${media.mobile}px) 90vw, 300px`}
+              />
+              <Image
+                raised
+                srcSet={`${burnsServices} 300w, ${burnsServices} 600w`}
+                width={300}
+                height={225}
+                placeholder={burnsServices}
+                alt="Services offerts aux locataires"
+                sizes={`(max-width: ${media.mobile}px) 90vw, 300px`}
+              />
+              <Image
+                raised
+                srcSet={`${burnsSupport} 300w, ${burnsSupport} 600w`}
+                width={300}
+                height={225}
+                placeholder={burnsSupport}
+                alt="Support technique 24/7"
+                sizes={`(max-width: ${media.mobile}px) 90vw, 300px`}
+              />
+            </ProjectSectionColumns>
           </ProjectSectionContent>
         </ProjectSection>
         <ProjectSection>
