@@ -44,8 +44,10 @@ export const links = () => {
 
 export const meta = () => {
   return baseMeta({
-    title: 'Developer + Mobile & web',
-    description: `Design portfolio of ${config.name} — a product designer working on web & mobile apps with a focus on motion, experience design, and accessibility.`,
+    title: 'Développeur Logiciel Web & Mobile',
+    description: `${config.description} Découvrez mes projets Next.js, Angular, React Native comme Koursier, RaphyCar, et mes solutions full-stack avec pipelines CI/CD.`,
+    keywords: ['Next.js Québec', 'Angular Canada', 'React Native Québec', 'Développeur Web Québec', 'Applications iOS Android', 'JavaScript TypeScript', 'Node.js', 'Pipelines CI/CD', 'Full Stack Developer'],
+    canonical: config.url,
   });
 };
 

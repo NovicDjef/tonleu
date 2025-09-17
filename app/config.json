@@ -1,12 +1,18 @@
 {
-  "name": "I'm Novic Tonleu",
-  "role": "Full Stack Developer JS/TS",
-  "disciplines": ["React Native", "React.js", "Next.js", "Node.js", "Angular"],
-  "subtitle": "フルスタック開発者",
-  "url": "https://tonleu.com",
+  "name": "Novic Tonleu",
+  "fullName": "Novic Tonleu - Développeur Mobile React Native",
+  "role": "Développeur Logiciel Web & Mobile Full Stack",
+  "disciplines": ["React Native", "React.js", "Next.js", "Node.js", "Angular", "Pipelines CI/CD", "Développement Mobile", "Applications iOS Android"],
+  "keywords": ["Novic Tonleu", "Développeur Web", "Développeur Mobile", "React Native", "Next.js", "Angular", "Developer", "Québec", "Canada", "Applications Mobile", "iOS", "Android", "JavaScript", "TypeScript", "Full Stack", "Node.js", "Pipelines"],
+  "subtitle": "Développeur Logiciel Web & Mobile Expert",
+  "description": "Novic Tonleu, développeur logiciel web et mobile expert basé au Québec, Canada. Spécialisé en Next.js, React.js, Angular, React Native et Node.js avec expertise en pipelines CI/CD. Portfolio avec projets Koursier, RaphyCar, et solutions complètes.",
+  "url": "https://novic.dev",
   "twitter": "@NovicDjef",
   "figma": "@tonleu",
   "github": "NovicDjef",
   "repo": "https://github.com/NovicDjef/tonleu",
+  "location": "Québec, Canada",
+  "languages": ["Français", "English"],
+  "specialties": ["Applications Web", "Applications Mobile", "React Native", "Next.js", "Angular", "Node.js", "Pipelines CI/CD", "UI/UX", "API Development"],
   "ascii": " ______\n|__  __|\n   | |\n   | |\n   |_|"
 }

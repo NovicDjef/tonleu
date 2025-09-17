@@ -39,6 +39,9 @@ export const links = () => [
   { rel: 'shortcut_icon', href: '/shortcut.png', type: 'image/png', sizes: '64x64' },
   { rel: 'apple-touch-icon', href: '/icon-256.png', sizes: '256x256' },
   { rel: 'author', href: '/tonleu.txt', type: 'text/plain' },
+  { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+  { rel: 'dns-prefetch', href: 'https://www.google-analytics.com' },
+  { rel: 'prefetch', href: '/social-image.png', as: 'image' },
 ];
 
 
@@ -69,10 +72,15 @@ export default function App() {
   }, []);
 
   return (
-    <html lang="en">
+    <html lang="fr">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         {/* Theme color doesn't support oklch so I'm hard coding these hexes for now */}
         <meta name="theme-color" content={theme === 'dark' ? '#111' : '#F2F2F2'} />
         <meta
@@ -83,6 +91,76 @@ export default function App() {
         <Meta />
         <Links />
         <link rel="canonical" href={canonicalUrl} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Novic Tonleu",
+              "jobTitle": "Développeur Mobile React Native",
+              "description": "Développeur mobile React Native expert basé au Cameroun. Spécialisé dans la création d'applications mobiles iOS et Android performantes.",
+              "url": "https://novic.dev",
+              "sameAs": [
+                "https://github.com/NovicDjef",
+                "https://twitter.com/NovicDjef",
+                "https://www.linkedin.com/in/novic-tonleu"
+              ],
+              "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "CA",
+                "addressRegion": "QC",
+                "addressLocality": "Québec"
+              },
+              "alumniOf": {
+                "@type": "Organization",
+                "name": "École Supérieure Polytechnique"
+              },
+              "knowsAbout": [
+                "React Native",
+                "React.js",
+                "Next.js",
+                "Angular",
+                "JavaScript",
+                "TypeScript",
+                "Node.js",
+                "Web Development",
+                "Mobile App Development",
+                "iOS Development",
+                "Android Development",
+                "API Development",
+                "UI/UX Design",
+                "CI/CD Pipelines"
+              ],
+              "hasOccupation": {
+                "@type": "Occupation",
+                "name": "Full Stack Developer",
+                "occupationLocation": {
+                  "@type": "Country",
+                  "name": "Canada"
+                },
+                "skills": [
+                  "React Native",
+                  "Next.js",
+                  "Angular",
+                  "React.js",
+                  "Node.js",
+                  "iOS Development",
+                  "Android Development",
+                  "JavaScript",
+                  "TypeScript",
+                  "CI/CD Pipelines",
+                  "API Integration"
+                ]
+              },
+              "worksFor": {
+                "@type": "Organization",
+                "name": "Freelance",
+                "description": "Développeur logiciel web et mobile indépendant spécialisé en Next.js, React Native et Angular"
+              }
+            })
+          }}
+        />
       </head>
       <body data-theme={theme}>
         <ThemeProvider theme={theme} toggleTheme={toggleTheme}>
