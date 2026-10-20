@@ -2,11 +2,11 @@ import config from '~/config.json';
 
 export const navLinks = [
   {
-    label: 'Projects',
+    label: 'Projets',
     pathname: '/#project-1',
   },
   {
-    label: 'About',
+    label: 'À propos',
     pathname: '/about',
   },
   {
@@ -22,7 +22,7 @@ export const navLinks = [
 export const socialLinks = [
   {
     label: 'Twitter',
-    url: `https://twitter.com/${config.twitter}`,
+    url: `https://x.com/${config.twitter.replace(/^@/, '')}`,
     icon: 'twitter',
   },
   {

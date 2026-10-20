@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { ThemeProvider, themeStyles } from '../app/components/theme-provider';
 import { VisuallyHidden } from '../app/components/visually-hidden';
@@ -9,17 +9,14 @@ import { Home } from '../app/routes/home/home';
 import { Contact } from '../app/routes/contact/contact';
 import { Uses } from '../app/routes/uses/uses';
 import { Articles } from '../app/routes/articles_._index/articles';
-import { Slice } from '../app/routes/projects.slice/slice';
-import { SmartSparrow } from '../app/routes/projects.smart-sparrow/smart-sparrow';
-import { VolkiharKnight } from '../app/routes/projects.volkihar-knight/volkihar-knight';
 import { Koursier } from '../app/routes/projects.koursier/koursier';
 import { Planevia } from '../app/routes/projects.planevia/planevia';
+import { HotelSeptIles } from '../app/routes/projects.hotel-sept-iles/hotel-sept-iles';
+import { HotelSeptIlesAdmin } from '../app/routes/projects.hotel-sept-iles-admin/hotel-sept-iles-admin';
+import { JtTradeServices } from '../app/routes/projects.jt-trade-services/jt-trade-services';
 import { Reminder } from '../app/routes/projects.reminder/reminder';
 import { KoursierDelivery } from '../app/routes/projects.koursier-delivery/koursier-delivery';
 import { Raphycar } from '../app/routes/projects.raphycar/raphycar';
-import { AdminDashboard } from '../app/routes/projects.admin-dashboard/admin-dashboard';
-import { ModernStylingInReact } from '../app/routes/articles.modern-styling-in-react/modern-styling-in-react';
-import { HelloWorld } from '../app/routes/articles.hello-world/hello-world';
 import { AdvancedReactPatterns } from '../app/routes/articles.advanced-react-patterns/advanced-react-patterns';
 import { FullstackNodejsArchitecture } from '../app/routes/articles.fullstack-nodejs-architecture/fullstack-nodejs-architecture';
 import { BurnsImmobilier } from '../app/routes/projects.burns-immobilier/burns-immobilier';
@@ -38,8 +35,6 @@ function App() {
     return 'dark';
   });
   
-  const location = useLocation();
-  const [isLoading, setIsLoading] = useState(false);
 
   function toggleTheme(newTheme) {
     const themeToSet = newTheme || (theme === 'dark' ? 'light' : 'dark');
@@ -105,7 +100,7 @@ function App() {
           {/* Code Matrix Background */}
           <div className="code-matrix">
             <div className="matrix-column">const fullStack = true;</div>
-            <div className="matrix-column">function dev() {'{'} return 'JS/TS'; {'}'}</div>
+            <div className="matrix-column">{"function dev() { return 'JS/TS'; }"}</div>
             <div className="matrix-column">npm install react</div>
             <div className="matrix-column">async/await</div>
             <div className="matrix-column">{'<Component />'}</div>
@@ -127,24 +122,20 @@ function App() {
             id="main-content"
             className={styles.container}
             tabIndex={-1}
-            data-loading={isLoading}
           >
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/uses" element={<Uses />} />
               <Route path="/articles" element={<Articles />} />
-              <Route path="/projects/slice" element={<Slice />} />
-              <Route path="/projects/smart-sparrow" element={<SmartSparrow />} />
-              <Route path="/projects/volkihar-knight" element={<VolkiharKnight />} />
               <Route path="/projects/planevia" element={<Planevia />} />
+              <Route path="/projects/hotel-sept-iles" element={<HotelSeptIles />} />
+              <Route path="/projects/hotel-sept-iles-admin" element={<HotelSeptIlesAdmin />} />
+              <Route path="/projects/jt-trade-services" element={<JtTradeServices />} />
               <Route path="/projects/koursier" element={<Koursier />} />
               <Route path="/projects/reminder" element={<Reminder />} />
               <Route path="/projects/koursier-delivery" element={<KoursierDelivery />} />
               <Route path="/projects/raphycar" element={<Raphycar />} />
-              <Route path="/projects/admin-dashboard" element={<AdminDashboard />} />
-              <Route path="/articles/modern-styling-in-react" element={<ModernStylingInReact />} />
-              <Route path="/articles/hello-world" element={<HelloWorld />} />
               <Route path="/articles/advanced-react-patterns" element={<AdvancedReactPatterns />} />
               <Route path="/articles/fullstack-nodejs-architecture" element={<FullstackNodejsArchitecture />} />
               <Route path="/projects/burns-immobilier" element={<BurnsImmobilier />} />

@@ -181,8 +181,8 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
                   </div>
                 </div>
                 <span className={styles.taglineText}>
-                  <span className={styles.typewriterText} data-text="Crafting intelligent solutions that bridge technology and human needs">
-                    Crafting intelligent solutions that bridge technology and human needs
+                  <span className={styles.typewriterText} data-text="Des applications web et mobiles pensées pour les besoins réels">
+                    Des applications web et mobiles pensées pour les besoins réels
                   </span>
                 </span>
                 <div className={styles.quantumEntanglement}>
@@ -207,7 +207,7 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
               data-hidden={scrollIndicatorHidden}
               onClick={handleScrollClick}
             >
-              <VisuallyHidden>Scroll to projects</VisuallyHidden>
+              <VisuallyHidden>Défiler vers les projets</VisuallyHidden>
             </RouterLink>
             <RouterLink
               to="/#project-1"
@@ -216,7 +216,7 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
               data-hidden={scrollIndicatorHidden}
               onClick={handleScrollClick}
             >
-              <VisuallyHidden>Scroll to projects</VisuallyHidden>
+              <VisuallyHidden>Défiler vers les projets</VisuallyHidden>
               <svg
                 aria-hidden
                 stroke="currentColor"

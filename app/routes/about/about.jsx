@@ -9,8 +9,8 @@ import { Text } from '~/components/text';
 import { baseMeta } from '~/utils/meta';
 import styles from './about.module.css';
 
-const title = 'About Me';
-const description = 'Discover my journey, philosophy and passion for React Native development and modern technologies.';
+const title = 'À propos';
+const description = 'Mon parcours, ma façon de travailler et mon intérêt pour le développement React Native et les technologies web et mobiles.';
 
 export const meta = () => {
   return baseMeta({
@@ -21,12 +21,12 @@ export const meta = () => {
 
 const aboutData = {
   intro: {
-    tagline: 'Live, code, repeat',
-    philosophy: 'I am a React Native developer specialized in creating high-performance, elegant and intuitive mobile applications. With over 3 years of experience in cross-platform mobile development, I have a solid mastery of the JavaScript ecosystem and React technologies in particular.',
+    tagline: 'Vivre, coder, recommencer',
+    philosophy: 'Je suis développeur React Native et je conçois des applications mobiles performantes, soignées et faciles à utiliser. Avec plus de 3 ans d’expérience en développement mobile multiplateforme, je maîtrise bien l’écosystème JavaScript, et plus particulièrement les technologies React.',
     
-    background: 'Familiar with agile methodologies, I also have good command of back-end technologies, DevOps tools and practices, and SQL/NoSQL databases. I have a solid understanding of mobile operating systems, as well as programming languages commonly used in mobile development.',
+    background: 'Habitué aux méthodes agiles, je maîtrise aussi les technologies back-end, les outils et pratiques DevOps ainsi que les bases de données SQL et NoSQL. Je connais bien les systèmes d’exploitation mobiles et les langages couramment utilisés en développement mobile.',
     
-    mindset: 'Beyond my technical skills, my insatiable desire for knowledge, my good interpersonal sense and my clear willingness to face new challenges allow me to easily venture into new paths.'
+    mindset: 'Au-delà de la technique, j’aime apprendre, je travaille bien en équipe et je suis à l’aise face à de nouveaux défis, ce qui me permet d’aborder facilement de nouveaux domaines.'
   },
 
   contact: {
@@ -36,28 +36,28 @@ const aboutData = {
 
   services: [
     {
-      title: 'Mobile Development',
-      description: 'Mobile applications are an integral part of our daily lives. My main focus is developing professional cross-platform mobile applications with React Native, both on Android and iOS.',
+      title: 'Développement mobile',
+      description: 'Les applications mobiles font partie de notre quotidien. Mon activité principale est le développement d’applications mobiles multiplateformes avec React Native, pour Android et iOS.',
       icon: '📱',
-      technologies: ['React Native', 'Expo', 'TypeScript', 'Redux', 'Push Notifications', 'Biometrics']
+      technologies: ['React Native', 'Expo', 'TypeScript', 'Redux', 'Notifications push', 'Biométrie']
     },
     {
-      title: 'Backend Development',
-      description: 'A beautiful interface remains an empty shell if it is not associated with a robust back-end. I design, develop and deploy the business logic inherent to each project.',
+      title: 'Développement back-end',
+      description: 'Une belle interface reste une coquille vide sans un back-end solide. Je conçois, développe et déploie la logique métier propre à chaque projet.',
       icon: '⚡',
-      technologies: ['Node.js', 'Express', 'PostgreSQL', 'Prisma', 'RESTful APIs', 'JWT']
+      technologies: ['Node.js', 'Express', 'PostgreSQL', 'Prisma', 'API REST', 'JWT']
     },
     {
-      title: 'Web Development',
-      description: 'Drawing on my experience in this field, I create professional web applications, websites and e-commerce platforms using the latest technologies.',
+      title: 'Développement web',
+      description: 'Je réalise des applications web, des sites vitrines et des plateformes de commerce en ligne avec des technologies actuelles.',
       icon: '🌐',
       technologies: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel']
     },
     {
       title: 'DevOps & CI/CD',
-      description: 'In addition to my developer role, I make it a point of honor to use DevOps best practices to guarantee a quality product in the shortest possible time.',
+      description: 'En plus du développement, j’applique les bonnes pratiques DevOps pour livrer un produit fiable dans des délais raisonnables.',
       icon: '🚀',
-      technologies: ['GitHub Actions', 'Docker', 'Play Store Deploy', 'Automated Testing']
+      technologies: ['GitHub Actions', 'Docker', 'Déploiement Play Store', 'Tests automatisés']
     }
   ],
 
@@ -65,49 +65,49 @@ const aboutData = {
     {
       name: 'iLink World Corporation',
       type: 'Fintech/Insurtech',
-      category: 'Mobile Application',
+      category: 'Application mobile',
       period: '2021 - 2023',
-      description: 'International money transfer platform and health insurance payments',
+      description: 'Plateforme de transfert d’argent international et de paiement d’assurance santé',
       technologies: ['React Native', 'PHP', 'Node.js', 'MySQL']
     },
     {
       name: 'iLink World Corporation',
       type: 'Fintech/Insurtech',
-      category: 'Mobile Application',
+      category: 'Application mobile',
       period: '2022 - 2023',
-      description: 'Municipal tax consolidation platform in district town halls of Douala city',
+      description: 'Plateforme de recouvrement des taxes municipales pour les mairies d’arrondissement de Douala',
       technologies: ['React Native', 'PHP', 'Node.js', 'MySQL']
     },
     {
       name: 'Koursier Platform',
-      type: 'Food Delivery',
-      category: 'Mobile Ecosystem',
-      period: '2023 - Present',
-      description: 'Client/delivery applications and admin management platform',
+      type: 'Livraison de repas',
+      category: 'Écosystème mobile',
+      period: '2023 - aujourd’hui',
+      description: 'Applications client et livreur, et plateforme d’administration',
       technologies: ['React Native', 'Next.js', 'Prisma', 'GitHub Actions']
     },
     {
       name: 'RaphyCar',
-      type: 'Car Rental',
-      category: 'Web Application',
+      type: 'Location de véhicules',
+      category: 'Application web',
       period: '2024',
-      description: 'Vehicle rental platform with AI and identity verification',
-      technologies: ['Next.js', 'AI Chatbot', 'PostgreSQL', 'Stripe']
+      description: 'Plateforme de location de véhicules avec IA et vérification d’identité',
+      technologies: ['Next.js', 'Chatbot IA', 'PostgreSQL', 'Stripe']
     },
     {
       name: 'Reminder',
-      type: 'Healthcare',
-      category: 'Mobile Application',
+      type: 'Santé',
+      category: 'Application mobile',
       period: '2023',
-      description: 'Medication reminder application with biometric authentication',
-      technologies: ['React Native', 'Expo', 'Face ID', 'Push Notifications']
+      description: 'Application de rappel de médicaments avec authentification biométrique',
+      technologies: ['React Native', 'Expo', 'Face ID', 'Notifications push']
     },
     {
       name: 'Admin Dashboard Analytics',
-      type: 'Management',
-      category: 'Web Application',
+      type: 'Gestion',
+      category: 'Application web',
       period: '2024',
-      description: 'Administration dashboard with real-time analytics',
+      description: 'Tableau de bord d’administration avec statistiques en temps réel',
       technologies: ['React', 'TypeScript', 'Chart.js', 'Material-UI']
     }
   ],
@@ -179,7 +179,7 @@ const ServiceCard = ({ service, index }) => {
         <div className={styles.serviceOverlay}>
           <div className={styles.overlayGrid}></div>
           <span className={styles.serviceOverlayText}>
-            <span className={styles.overlayPrefix}>&gt;</span> SYSTEM_READY
+            <span className={styles.overlayPrefix}>&gt;</span> SYSTÈME_PRÊT
           </span>
         </div>
       )}
@@ -237,10 +237,10 @@ export function About() {
           {/* About Content */}
           <section className={styles.section}>
             <Heading level={2} as="h2" className={styles.sectionTitle}>
-              About Me
+              À propos de moi
             </Heading>
             <div className={styles.aboutText}>
-              <div className={styles.terminalStatus}>SYSTEM_ONLINE</div>
+              <div className={styles.terminalStatus}>SYSTÈME_EN_LIGNE</div>
               <div className={styles.matrixGrid}></div>
               <div className={styles.scanLines}></div>
               <div className={styles.holoShimmer}></div>
@@ -262,7 +262,7 @@ export function About() {
           <section className={styles.section}>
             <div className={styles.sectionHeader}>
               <Heading level={2} as="h2" className={styles.sectionTitle}>
-                What I Do
+                Ce que je fais
               </Heading>
               <Button 
                 secondary 
@@ -271,7 +271,7 @@ export function About() {
                 href="/cv"
                 className={styles.cvButton}
               >
-                View CV
+                Voir le CV
               </Button>
             </div>
             <div className={styles.servicesGrid}>
@@ -284,7 +284,7 @@ export function About() {
           {/* Clients Section */}
           <section className={styles.section}>
             <Heading level={2} as="h2" className={styles.sectionTitle}>
-              Projects & Clients
+              Projets et clients
             </Heading>
             <div className={styles.clientsGrid}>
               {aboutData.clients.map((client, index) => (
@@ -298,16 +298,16 @@ export function About() {
             <div className={styles.companiesContainer}>
               <div className={styles.companiesHeader}>
                 <div className={styles.hackingIndicator}>
-                  <span className={styles.hackingText}>LOADING_DATA</span>
+                  <span className={styles.hackingText}>CHARGEMENT</span>
                   <div className={styles.hackingDots}>
                     <span></span><span></span><span></span>
                   </div>
                 </div>
                 <Heading level={2} as="h2" className={styles.companiesSectionTitle}>
-                  &gt; PARTNER_COMPANIES
+                  &gt; ENTREPRISES_PARTENAIRES
                 </Heading>
                 <div className={styles.networkStatus}>
-                  <span className={styles.statusText}>STATUS: ACTIVE</span>
+                  <span className={styles.statusText}>STATUT : ACTIF</span>
                   <div className={styles.signalBars}>
                     <div className={styles.bar}></div>
                     <div className={styles.bar}></div>
@@ -325,7 +325,7 @@ export function About() {
                       <span className={styles.companyName}>{company}</span>
                       <div className={styles.companyStatus}>
                         <span className={styles.statusDot}></span>
-                        <span className={styles.statusLabel}>ACTIVE</span>
+                        <span className={styles.statusLabel}>ACTIF</span>
                       </div>
                     </div>
                   ))}
@@ -336,7 +336,7 @@ export function About() {
                 <div className={styles.progressBar}>
                   <div className={styles.progressFill}></div>
                 </div>
-                <span className={styles.footerText}>[LOAD_COMPLETE] Partnership database loaded • {aboutData.companies.length} companies connected</span>
+                <span className={styles.footerText}>[CHARGEMENT_TERMINÉ] Base des partenaires chargée • {aboutData.companies.length} entreprises</span>
               </div>
             </div>
           </section>

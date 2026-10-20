@@ -28,7 +28,6 @@ export function ProjectSummary({
   model,
   buttonText,
   buttonLink,
-  storeLinks,
   alternate,
   ...rest
 }) {
@@ -94,17 +93,6 @@ export function ProjectSummary({
           <Button iconHoverShift href={buttonLink} iconEnd="arrow-right">
             {buttonText}
           </Button>
-          {storeLinks?.map(link => (
-            <Button
-              secondary
-              iconHoverShift
-              key={link.href}
-              href={link.href}
-              icon="chevron-right"
-            >
-              {link.text}
-            </Button>
-          ))}
         </div>
       </div>
     );

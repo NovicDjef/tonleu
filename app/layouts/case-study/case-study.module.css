@@ -1,0 +1,72 @@
+.phones {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--space2XL);
+
+  @media (--mediaMobile) {
+    gap: var(--spaceM);
+  }
+
+  & > * {
+    flex: 0 1 280px;
+  }
+
+  & > :nth-child(2) {
+    margin-top: var(--space3XL);
+
+    @media (--mediaMobile) {
+      margin-top: var(--spaceXL);
+    }
+  }
+}
+
+.phone {
+  border-radius: 28px;
+  overflow: hidden;
+
+  @media (--mediaMobile) {
+    border-radius: 14px;
+  }
+}
+
+.featurePhone {
+  grid-template-columns: 1fr minmax(0, 320px);
+  justify-content: center;
+  gap: var(--space4XL);
+
+  @media (--mediaTablet) {
+    grid-template-columns: 1fr;
+    gap: var(--space2XL);
+  }
+}
+
+.featurePhone .featureImage {
+  width: 100%;
+  max-width: 300px;
+  justify-self: center;
+}
+
+.reverse {
+  & > :first-child {
+    order: 2;
+  }
+
+  @media (--mediaTablet) {
+    & > :first-child {
+      order: 0;
+    }
+  }
+}
+
+.featurePhone.reverse {
+  grid-template-columns: minmax(0, 320px) 1fr;
+
+  @media (--mediaTablet) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.feature p {
+  hyphens: manual;
+}

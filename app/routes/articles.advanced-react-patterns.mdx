@@ -1,6 +1,6 @@
 ---
-title: 'Advanced React Patterns and TypeScript'
-abstract: Explore advanced React patterns, custom hooks, and TypeScript best practices for building scalable applications with modern development techniques.
+title: 'Patterns React avancés et TypeScript'
+abstract: "Server Components, App Router, nouvelle architecture React Native, composants génériques, formulaires, gestion d'état et tests : des patterns TypeScript concrets pour des applications React maintenables."
 date: '2024-03-15'
 banner: /static/modern-styling-in-react-banner.jpg
 timecode: '00:15:42:10'
@@ -24,18 +24,18 @@ export default function MDXContent({ children }) {
   );
 }
 
-## Modern TypeScript Development in 2024
+## TypeScript dans l'écosystème React en 2024
 
-TypeScript has revolutionized React development, and with the latest updates in React 18, Next.js 14, and React Native 0.73, there are exciting new patterns and best practices that every developer should know. This comprehensive guide covers the most important advances in TypeScript for React ecosystems.
+Cet article regroupe des patterns TypeScript que l'on retrouve aujourd'hui dans les projets React, Next.js (App Router) et React Native (versions 0.73 et suivantes). L'objectif : typer correctement chaque couche, du composant serveur jusqu'aux tests.
 
-## What's New in React + TypeScript
+## React et TypeScript : les nouveautés
 
-### React 18 Server Components with TypeScript
+### Server Components avec TypeScript
 
-Server Components introduce new TypeScript patterns:
+Les Server Components, utilisables en production via l'App Router de Next.js et stabilisés dans React 19, amènent leurs propres conventions de typage. Un composant serveur peut être une fonction `async` :
 
 ```tsx
-// Server Component with proper typing
+// Server Component correctement typé
 interface ServerComponentProps {
   userId: string;
   searchParams: { [key: string]: string | string[] | undefined };
@@ -47,9 +47,9 @@ export default async function UserProfile({ userId, searchParams }: ServerCompon
 }
 ```
 
-### Concurrent Features & TypeScript
+### Fonctionnalités concurrentes et TypeScript
 
-New concurrent features like `useTransition` and `useDeferredValue` with TypeScript:
+Les hooks concurrents `useTransition` et `useDeferredValue`, introduits avec React 18, s'utilisent ainsi avec TypeScript :
 
 ```tsx
 function SearchResults() {
@@ -65,49 +65,63 @@ function SearchResults() {
 }
 ```
 
-## Next.js 14 TypeScript Innovations
+## TypeScript avec Next.js
 
-### App Router with TypeScript
+### App Router
 
-The new App Router provides better TypeScript integration:
+Avec l'App Router, chaque segment de route reçoit `params` et `searchParams`, que l'on peut typer explicitement :
 
 ```tsx
 // app/users/[id]/page.tsx
+// Depuis Next.js 15, params et searchParams sont des Promise
 interface PageProps {
-  params: { id: string };
-  searchParams: { [key: string]: string | string[] | undefined };
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
-export default function UserPage({ params, searchParams }: PageProps) {
-  return <div>User {params.id}</div>;
+export default async function UserPage({ params }: PageProps) {
+  const { id } = await params;
+  return <div>User {id}</div>;
 }
 
-// Generate static params with TypeScript
+// Génération des paramètres statiques avec TypeScript
 export async function generateStaticParams(): Promise<{ id: string }[]> {
   const users = await fetchUsers();
   return users.map(user => ({ id: user.id }));
 }
 ```
 
-### Server Actions with TypeScript
+### Server Actions avec TypeScript
 
-Type-safe server actions:
+Une Server Action peut déclarer explicitement ses entrées et sa valeur de retour :
 
 ```tsx
 'use server'
 
-interface FormData {
+interface CreateUserInput {
   name: string;
   email: string;
 }
 
-export async function createUser(formData: FormData): Promise<{ success: boolean; id?: string }> {
-  const user = await db.user.create({ data: formData });
+type CreateUserResult = { success: boolean; id?: string };
+
+// Appelée via <form action={createUser}> : reçoit le FormData natif
+export async function createUser(formData: FormData): Promise<CreateUserResult> {
+  const input: CreateUserInput = {
+    name: String(formData.get('name') ?? ''),
+    email: String(formData.get('email') ?? ''),
+  };
+
+  if (!input.name || !input.email) {
+    return { success: false };
+  }
+
+  const user = await db.user.create({ data: input });
   return { success: true, id: user.id };
 }
 ```
 
-### Route Handlers TypeScript Patterns
+### Route Handlers
 
 ```tsx
 // app/api/users/route.ts
@@ -123,29 +137,29 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 }
 ```
 
-## React Native TypeScript Enhancements
+## TypeScript avec React Native
 
-### New Architecture & TypeScript
+### Nouvelle architecture
 
-React Native's New Architecture (Fabric + TurboModules) with TypeScript:
+La nouvelle architecture de React Native (Fabric et TurboModules) repose sur des spécifications TypeScript à partir desquelles Codegen génère le code natif :
 
 ```tsx
-// TurboModule interface
+// Interface d'un TurboModule
 interface NativeModule extends TurboModule {
   getConstants(): { [key: string]: any };
   getString(input: string): Promise<string>;
 }
 
-// Fabric component
+// Composant Fabric
 interface NativeComponentProps {
   color: string;
   onPress: () => void;
 }
 ```
 
-### Cross-Platform TypeScript Patterns
+### Code multiplateforme
 
-Platform-specific implementations with proper typing:
+Des implémentations propres à chaque plateforme, partageant le même contrat de props :
 
 ```tsx
 // Button.ios.tsx & Button.android.tsx
@@ -164,9 +178,9 @@ export const PlatformButton: React.FC<PlatformButtonProps> = ({ title, onPress, 
 };
 ```
 
-### Navigation v6 TypeScript
+### React Navigation (v6 et suivantes)
 
-Type-safe navigation with the latest React Navigation:
+Une navigation typée de bout en bout, en déclarant la liste des écrans et de leurs paramètres :
 
 ```tsx
 type RootStackParamList = {
@@ -182,9 +196,9 @@ declare global {
 }
 ```
 
-## Advanced TypeScript Patterns for React
+## Patterns TypeScript avancés pour React
 
-### Generic Components with Constraints
+### Composants génériques avec contraintes
 
 ```tsx
 interface DataTableProps<T extends Record<string, unknown>> {
@@ -213,9 +227,9 @@ function DataTable<T extends Record<string, unknown>>({ data, columns }: DataTab
 }
 ```
 
-### Form Handling with TypeScript
+### Formulaires avec TypeScript
 
-Modern form patterns using React Hook Form + Zod:
+React Hook Form et Zod permettent de dériver le type du formulaire directement du schéma de validation :
 
 ```tsx
 import { z } from 'zod';
@@ -236,17 +250,17 @@ function UserForm() {
   });
 
   const onSubmit = (data: UserFormData) => {
-    // Type-safe form submission
+    // Soumission du formulaire typée
   };
 }
 ```
 
-## Performance Optimization with TypeScript
+## Optimisation des performances
 
-### Memoization Patterns
+### Mémoïsation
 
 ```tsx
-// Generic memoization hook
+// Hook de mémoïsation générique
 function useCallback<T extends (...args: any[]) => any>(
   callback: T,
   dependencies: React.DependencyList
@@ -254,25 +268,24 @@ function useCallback<T extends (...args: any[]) => any>(
   return React.useCallback(callback, dependencies);
 }
 
-// Memoized component with proper typing
+// Composant mémoïsé correctement typé
 interface ExpensiveComponentProps {
   data: ComplexData[];
   onItemClick: (id: string) => void;
 }
 
+// Comparaison superficielle par défaut : data et onItemClick
+// doivent garder la même référence (useMemo / useCallback côté parent)
 const ExpensiveComponent = React.memo<ExpensiveComponentProps>(
   ({ data, onItemClick }) => {
-    // Component implementation
-  },
-  (prevProps, nextProps) => {
-    return prevProps.data.length === nextProps.data.length;
+    // Implémentation du composant
   }
 );
 ```
 
-## State Management Patterns
+## Gestion d'état
 
-### Zustand with TypeScript
+### Zustand avec TypeScript
 
 ```tsx
 interface BearStore {
@@ -288,7 +301,7 @@ const useBearStore = create<BearStore>((set) => ({
 }));
 ```
 
-### Redux Toolkit with TypeScript
+### Redux Toolkit avec TypeScript
 
 ```tsx
 interface CounterState {
@@ -309,14 +322,14 @@ const counterSlice = createSlice({
 });
 ```
 
-## Testing TypeScript React Components
+## Tester des composants React en TypeScript
 
-### Modern Testing Patterns
+### Vitest et Testing Library
 
 ```tsx
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi } from 'vitest';
-import type { UserEvent } from '@testing-library/user-event';
 
 interface ButtonProps {
   onClick: () => void;
@@ -335,7 +348,7 @@ describe('Button Component', () => {
     const handleClick = vi.fn();
     render(<Button onClick={handleClick}>Click me</Button>);
     
-    await fireEvent.click(screen.getByRole('button'));
+    await userEvent.click(screen.getByRole('button'));
     expect(handleClick).toHaveBeenCalledOnce();
   });
 });
@@ -343,20 +356,16 @@ describe('Button Component', () => {
 
 ## Conclusion
 
-TypeScript continues to evolve alongside React, Next.js, and React Native, bringing powerful new patterns that improve developer experience and code quality. From Server Components to the New Architecture in React Native, these modern TypeScript patterns are essential for building scalable, maintainable applications.
+TypeScript évolue au même rythme que React, Next.js et React Native. Des Server Components à la nouvelle architecture de React Native, ces patterns aident à garder une base de code lisible et maintenable à mesure qu'elle grandit.
 
-The key takeaways:
+En résumé :
 
-1. **Server Components** bring new typing challenges and opportunities
-2. **Next.js App Router** provides better TypeScript integration
-3. **React Native New Architecture** requires understanding of TurboModules and Fabric
-4. **Advanced patterns** like generic components and proper state management typing are crucial
-5. **Testing with TypeScript** ensures robust applications
+1. **Les Server Components** imposent de repenser le typage des données côté serveur.
+2. **L'App Router de Next.js** permet de typer routes, paramètres et Server Actions.
+3. **La nouvelle architecture de React Native** demande de comprendre TurboModules et Fabric.
+4. **Les composants génériques** et un état bien typé limitent les erreurs à l'exécution.
+5. **Des tests écrits en TypeScript** rendent les refactorisations plus sûres.
 
-Stay tuned for more advanced patterns and real-world examples from production applications!
+## Articles connexes
 
-## Related Articles
-
-- [Hello world: how I built this site](/articles/hello-world)
-- [Full Stack Architecture with Node.js](/articles/fullstack-nodejs-architecture)
-- [You (probably) don't need CSS-in-JS](/articles/modern-styling-in-react)
+- [Architecture full stack avec Node.js](/articles/fullstack-nodejs-architecture)

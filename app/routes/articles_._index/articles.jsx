@@ -11,7 +11,7 @@ import { useWindowSize } from '~/hooks';
 import { Link as RouterLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { formatDate } from '~/utils/date';
-import { classes, cssProps } from '~/utils/style';
+import { cssProps } from '~/utils/style';
 import styles from './articles.module.css';
 
 function ArticlesPost({ slug, frontmatter, timecode, index }) {
@@ -40,7 +40,7 @@ function ArticlesPost({ slug, frontmatter, timecode, index }) {
     >
       {featured && (
         <Text className={styles.postLabel} size="s">
-          Featured
+          À la une
         </Text>
       )}
       {featured && !!banner && (
@@ -76,7 +76,7 @@ function ArticlesPost({ slug, frontmatter, timecode, index }) {
           </Text>
           <div className={styles.postFooter}>
             <Button secondary iconHoverShift icon="chevron-right" as="div">
-              Read article
+              Lire l’article
             </Button>
             <Text className={styles.timecode} size="s">
               {timecode}
@@ -93,59 +93,14 @@ function ArticlesPost({ slug, frontmatter, timecode, index }) {
   );
 }
 
-function SkeletonPost({ index, title, description }) {
-  return (
-    <article
-      aria-hidden="true"
-      className={classes(styles.post, styles.skeleton)}
-      data-featured="false"
-      style={index !== undefined ? cssProps({ delay: index * 100 + 200 }) : undefined}
-    >
-      <div className={styles.postLink}>
-        <div className={styles.postDetails}>
-          <div aria-hidden className={styles.postDate}>
-            <Divider notchWidth="64px" notchHeight="8px" />
-            Coming soon...
-          </div>
-          <Heading as="h2" level={4}>
-            {title || 'Upcoming Article'}
-          </Heading>
-          <Text size="s" as="p">
-            {description || 'New insights and tutorials about Full Stack JavaScript/TypeScript development, modern frameworks, and cutting-edge web technologies.'}
-          </Text>
-          <div className={styles.postFooter}>
-            <Button secondary iconHoverShift icon="chevron-right" as="div">
-              Read more
-            </Button>
-            <Text className={styles.timecode} size="s">
-              Coming soon
-            </Text>
-          </div>
-        </div>
-      </div>
-    </article>
-  );
-}
-
 export function Articles() {
   // For now using static data since loader was removed
   const posts = [
     {
-      slug: 'hello-world',
-      frontmatter: {
-        title: 'Hello world: how I built this site',
-        abstract: 'I originally built this portfolio site back in 2020, and since then it\'s evolved quite a bit. Recently I migrated from Create React App to Next.js and made some major upgrades in the process.',
-        date: '2022-04-21',
-        featured: false,
-        banner: '/static/hello-world-banner.jpg'
-      },
-      timecode: '00:05:03:99'
-    },
-    {
       slug: 'advanced-react-patterns',
       frontmatter: {
-        title: 'Advanced React Patterns and TypeScript',
-        abstract: 'Explore advanced React patterns, custom hooks, and TypeScript best practices for building scalable applications with modern development techniques.',
+        title: 'Patterns React avancés et TypeScript',
+        abstract: 'Patterns React avancés, hooks personnalisés et bonnes pratiques TypeScript pour construire des applications maintenables à grande échelle.',
         date: '2024-03-15',
         featured: false,
         banner: '/static/modern-styling-in-react-banner.jpg'
@@ -155,8 +110,8 @@ export function Articles() {
     {
       slug: 'fullstack-nodejs-architecture',
       frontmatter: {
-        title: 'Full Stack Architecture with Node.js',
-        abstract: 'Deep dive into modern full stack architecture, API design, database optimization, and deployment strategies using Node.js and cloud technologies.',
+        title: 'Architecture full stack avec Node.js',
+        abstract: 'Architecture full stack, conception d’API, optimisation des bases de données et stratégies de déploiement avec Node.js et le cloud.',
         date: '2024-04-01',
         featured: false,
         banner: '/static/nodejs-backend-banner.jpg'
@@ -164,17 +119,7 @@ export function Articles() {
       timecode: '00:22:15:08'
     }
   ];
-  const featured = {
-    slug: 'modern-styling-in-react',
-    frontmatter: {
-      title: 'Modern Styling in React',
-      abstract: 'A comprehensive guide to modern CSS-in-JS solutions, component styling patterns, and advanced techniques for building scalable React applications with beautiful, maintainable styles.',
-      date: '2024-12-15',
-      featured: true,
-      banner: '/static/modern-styling-in-react-banner.jpg'
-    },
-    timecode: '15:30:20:12'
-  };
+  const featured = null;
   const { width } = useWindowSize();
   const singleColumnWidth = 1190;
   const isSingleColumn = width <= singleColumnWidth;
@@ -182,7 +127,7 @@ export function Articles() {
   const postsHeader = (
     <header className={styles.header}>
       <Heading className={styles.heading} level={5} as="h1">
-        <DecoderText text="Latest articles" />
+        <DecoderText text="Articles récents" />
       </Heading>
       <Barcode className={styles.barcode} />
     </header>

@@ -18,18 +18,18 @@ export function Error({ error }) {
     switch (error.status) {
       case 404:
         return {
-          summary: 'Error: redacted',
+          summary: 'Erreur : page introuvable',
           message:
-            'This page could not be found. It either doesn’t exist or was deleted. Or perhaps you don’t exist and this webpage couldn’t find you.',
+            'Cette page est introuvable. Elle n’existe pas ou a été supprimée. À moins que ce soit vous que la page n’arrive pas à trouver.',
         };
       case 405:
         return {
-          summary: 'Error: method denied',
+          summary: 'Erreur : méthode refusée',
           message: error.data,
         };
       default:
         return {
-          summary: 'Error: anomaly',
+          summary: 'Erreur : anomalie',
           message: error.statusText || error.data || error.toString(),
         };
     }
@@ -80,7 +80,7 @@ export function Error({ error }) {
                     <svg width="60" height="80" viewBox="0 0 60 80">
                       <use href={`${flatlineSkull}#skull`} />
                     </svg>
-                    <DecoderText text="Flatlined" start={visible} delay={300} />
+                    <DecoderText text="Hors service" start={visible} delay={300} />
                   </Heading>
                 )}
                 {!flatlined && (
@@ -106,7 +106,7 @@ export function Error({ error }) {
                     href="https://www.youtube.com/watch?v=EuQzHGcsjlA"
                     icon="chevron-right"
                   >
-                    Emotional support
+                    Soutien moral
                   </Button>
                 ) : (
                   <Button
@@ -117,7 +117,7 @@ export function Error({ error }) {
                     href="/"
                     icon="chevron-right"
                   >
-                    Back to homepage
+                    Retour à l’accueil
                   </Button>
                 )}
               </div>
@@ -141,7 +141,7 @@ export function Error({ error }) {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Animation from Berserk (1997)
+                  Animation tirée de Berserk (1997)
                 </a>
               ) : (
                 <a
@@ -151,7 +151,7 @@ export function Error({ error }) {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Animation from Ghost in the Shell (1995)
+                  Animation tirée de Ghost in the Shell (1995)
                 </a>
               )}
             </div>

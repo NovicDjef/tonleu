@@ -1,6 +1,6 @@
 ---
-title: 'Full Stack Architecture with Node.js'
-abstract: Deep dive into modern full stack architecture, API design, database optimization, and deployment strategies using Node.js and cloud technologies.
+title: 'Architecture full stack avec Node.js'
+abstract: "Conception d'API, accès aux données avec Prisma et Drizzle, authentification, temps réel, files d'attente, mise en cache et déploiement : les briques d'une application full stack Node.js prête pour la production."
 date: '2024-04-01'
 banner: /static/nodejs-backend-banner.jpg
 timecode: '00:22:15:08'
@@ -24,25 +24,40 @@ export default function MDXContent({ children }) {
   );
 }
 
-## Modern Full Stack Node.js Architecture in 2024
+## Architecture full stack Node.js en 2024
 
-The Node.js ecosystem has evolved dramatically with new frameworks, tools, and best practices emerging. This comprehensive guide covers the latest trends and architectural patterns for building scalable, production-ready full stack applications.
+L'écosystème Node.js a beaucoup changé ces dernières années : nouveaux frameworks, nouveaux ORM, outillage intégré au runtime. Cet article passe en revue les briques que l'on assemble couramment pour une application full stack destinée à la production, de l'API jusqu'au déploiement.
 
-## Node.js Runtime & Modern Features
+## Le runtime Node.js
 
-### Node.js 20+ Features
+### Node.js 20 et plus
 
-Node.js 20 LTS brings significant improvements:
+Node.js 20 LTS stabilise plusieurs fonctionnalités, dont le test runner intégré, apparu dans Node.js 18 :
 
 ```javascript
-// Built-in test runner (Node.js 18+)
-import { test, describe } from 'node:test';
+// Test runner intégré (Node.js 18+)
+import { test, describe, before, after } from 'node:test';
 import assert from 'node:assert';
+import { once } from 'node:events';
+import { app } from '../src/app.js';
 
 describe('User API', () => {
+  let server;
+  let baseUrl;
+
+  before(async () => {
+    server = app.listen(0); // port libre attribué par le système
+    await once(server, 'listening');
+    const { port } = server.address();
+    baseUrl = `http://localhost:${port}`;
+  });
+
+  after(() => server.close());
+
   test('should create user', async () => {
-    const response = await fetch('/api/users', {
+    const response = await fetch(`${baseUrl}/api/users`, {
       method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name: 'John Doe' })
     });
     assert.strictEqual(response.status, 201);
@@ -50,7 +65,7 @@ describe('User API', () => {
 });
 ```
 
-### ES Modules & Top-Level Await
+### Modules ES et top-level await
 
 ```javascript
 // package.json
@@ -72,11 +87,11 @@ const app = express();
 const config = await import('./config.js');
 ```
 
-## Modern Web Frameworks
+## Frameworks web
 
-### Next.js 14 App Router + API Routes
+### Next.js 14 : App Router et Route Handlers
 
-The App Router revolutionizes full stack development:
+Avec l'App Router, le front-end et les endpoints d'API cohabitent dans le même projet :
 
 ```typescript
 // app/api/users/route.ts
@@ -108,7 +123,9 @@ export async function POST(request: NextRequest) {
 }
 ```
 
-### Fastify 4.x - High Performance Alternative
+### Fastify 4.x : une alternative orientée performance
+
+Fastify valide les requêtes et sérialise les réponses à partir de schémas JSON :
 
 ```typescript
 import Fastify, { FastifyInstance } from 'fastify';
@@ -120,7 +137,7 @@ const fastify: FastifyInstance = Fastify({
 
 const prisma = new PrismaClient();
 
-// Schema-based validation
+// Validation basée sur un schéma
 const userSchema = {
   type: 'object',
   required: ['name', 'email'],
@@ -151,9 +168,11 @@ fastify.post('/api/users', {
 });
 ```
 
-## Database Layer & Modern ORMs
+## Couche de données et ORM
 
-### Prisma ORM - The New Standard
+### Prisma
+
+Prisma décrit le modèle de données dans un schéma unique, à partir duquel il génère un client typé :
 
 ```javascript
 // prisma/schema.prisma
@@ -193,7 +212,7 @@ model Post {
 }
 ```
 
-### Advanced Prisma Patterns
+### Patterns Prisma avancés
 
 ```typescript
 import { PrismaClient, Prisma } from '@prisma/client';
@@ -202,7 +221,7 @@ const prisma = new PrismaClient({
   log: ['query', 'info', 'warn', 'error'],
 });
 
-// Transaction with rollback
+// Transaction avec rollback
 export async function createUserWithProfile(userData: {
   name: string;
   email: string;
@@ -227,7 +246,7 @@ export async function createUserWithProfile(userData: {
   });
 }
 
-// Advanced queries with relations
+// Requêtes avancées avec relations
 export async function getUserWithPosts(userId: string) {
   return await prisma.user.findUnique({
     where: { id: userId },
@@ -250,7 +269,9 @@ export async function getUserWithPosts(userId: string) {
 }
 ```
 
-### Drizzle ORM - Lightweight Alternative
+### Drizzle ORM : une alternative plus légère
+
+Drizzle définit les tables directement en TypeScript et reste proche du SQL :
 
 ```typescript
 import { drizzle } from 'drizzle-orm/postgres-js';
@@ -275,7 +296,7 @@ export const posts = pgTable('posts', {
 
 const db = drizzle(connection);
 
-// Type-safe queries
+// Requêtes typées
 export async function getUserPosts(userId: string) {
   return await db
     .select()
@@ -285,9 +306,9 @@ export async function getUserPosts(userId: string) {
 }
 ```
 
-## Authentication & Security
+## Authentification et sécurité
 
-### Next-Auth.js v5 (Auth.js)
+### Auth.js (NextAuth.js v5)
 
 ```typescript
 // auth.config.ts
@@ -323,7 +344,9 @@ export default {
 } satisfies NextAuthConfig;
 ```
 
-### JWT & Refresh Token Pattern
+### JWT et jetons de rafraîchissement
+
+Un jeton d'accès de courte durée, couplé à un jeton de rafraîchissement stocké dans Redis, ce qui permet de le révoquer côté serveur :
 
 ```typescript
 import jwt from 'jsonwebtoken';
@@ -349,7 +372,7 @@ export async function generateTokens(userId: string): Promise<TokenPair> {
     { expiresIn: '7d' }
   );
 
-  // Store refresh token in Redis
+  // Stockage du jeton de rafraîchissement dans Redis
   await redis.setex(`refresh_token:${userId}`, 7 * 24 * 60 * 60, refreshToken);
 
   return { accessToken, refreshToken };
@@ -371,9 +394,11 @@ export async function refreshAccessToken(refreshToken: string) {
 }
 ```
 
-## Real-time Features
+## Temps réel
 
-### WebSocket with Socket.IO
+### WebSocket avec Socket.IO
+
+L'adaptateur Redis permet de diffuser les événements entre plusieurs instances du serveur :
 
 ```typescript
 import { Server } from 'socket.io';
@@ -423,29 +448,35 @@ export function initializeSocket(httpServer: any) {
 
 ### Server-Sent Events (SSE)
 
+Pour des notifications unidirectionnelles du serveur vers le client, les SSE suffisent souvent :
+
 ```typescript
 // app/api/notifications/route.ts
 export async function GET(request: NextRequest) {
   const userId = getUserIdFromRequest(request);
   
-  const stream = new ReadableStream({
+  const encoder = new TextEncoder();
+  let heartbeat: ReturnType<typeof setInterval>;
+  let sendNotification: (notification: unknown) => void;
+
+  const stream = new ReadableStream<Uint8Array>({
     start(controller) {
-      const sendNotification = (notification: any) => {
-        controller.enqueue(`data: ${JSON.stringify(notification)}\n\n`);
+      sendNotification = (notification) => {
+        controller.enqueue(encoder.encode(`data: ${JSON.stringify(notification)}\n\n`));
       };
 
-      // Subscribe to notifications
+      // Abonnement aux notifications
       subscribeToUserNotifications(userId, sendNotification);
 
-      // Send heartbeat every 30s
-      const heartbeat = setInterval(() => {
-        controller.enqueue(': heartbeat\n\n');
+      // Heartbeat toutes les 30 s
+      heartbeat = setInterval(() => {
+        controller.enqueue(encoder.encode(': heartbeat\n\n'));
       }, 30000);
-
-      return () => {
-        clearInterval(heartbeat);
-        unsubscribeFromUserNotifications(userId, sendNotification);
-      };
+    },
+    // Appelée quand le client ferme la connexion
+    cancel() {
+      clearInterval(heartbeat);
+      unsubscribeFromUserNotifications(userId, sendNotification);
     },
   });
 
@@ -459,20 +490,23 @@ export async function GET(request: NextRequest) {
 }
 ```
 
-## Background Jobs & Queue Systems
+## Tâches de fond et files d'attente
 
-### BullMQ with Redis
+### BullMQ avec Redis
 
 ```typescript
 import { Queue, Worker, Job } from 'bullmq';
 import { Redis } from 'ioredis';
 
-const connection = new Redis(process.env.REDIS_URL);
+// BullMQ exige maxRetriesPerRequest: null pour les workers
+const connection = new Redis(process.env.REDIS_URL, {
+  maxRetriesPerRequest: null,
+});
 
-// Email queue
+// File d'attente des courriels
 export const emailQueue = new Queue('email', { connection });
 
-// Job types
+// Types de tâches
 interface EmailJob {
   to: string;
   subject: string;
@@ -480,7 +514,7 @@ interface EmailJob {
   data: Record<string, any>;
 }
 
-// Add job to queue
+// Ajout d'une tâche à la file
 export async function sendEmail(emailData: EmailJob) {
   await emailQueue.add('send_email', emailData, {
     attempts: 3,
@@ -491,16 +525,16 @@ export async function sendEmail(emailData: EmailJob) {
   });
 }
 
-// Worker to process jobs
+// Worker qui traite les tâches
 const emailWorker = new Worker(
   'email',
   async (job: Job<EmailJob>) => {
     const { to, subject, template, data } = job.data;
     
-    // Process email sending
+    // Envoi du courriel
     await sendEmailWithTemplate(to, subject, template, data);
     
-    // Update job progress
+    // Mise à jour de la progression
     job.updateProgress(100);
   },
   { connection }
@@ -515,69 +549,69 @@ emailWorker.on('failed', (job, err) => {
 });
 ```
 
-## Caching Strategies
+## Stratégies de mise en cache
 
-### Redis Caching Patterns
+### Patterns de cache avec Redis
 
 ```typescript
 import { Redis } from 'ioredis';
 
 const redis = new Redis(process.env.REDIS_URL);
 
-// Cache-aside pattern
+// Pattern cache-aside
 export async function getUserById(id: string) {
   const cacheKey = `user:${id}`;
   
-  // Try cache first
+  // Lecture dans le cache en premier
   const cached = await redis.get(cacheKey);
   if (cached) {
     return JSON.parse(cached);
   }
   
-  // Fetch from database
+  // Lecture en base de données
   const user = await prisma.user.findUnique({ where: { id } });
   
-  // Cache the result
+  // Mise en cache du résultat
   if (user) {
-    await redis.setex(cacheKey, 3600, JSON.stringify(user)); // 1 hour TTL
+    await redis.setex(cacheKey, 3600, JSON.stringify(user)); // TTL d'une heure
   }
   
   return user;
 }
 
-// Write-through pattern
+// Pattern write-through
 export async function updateUser(id: string, data: any) {
   const user = await prisma.user.update({
     where: { id },
     data,
   });
   
-  // Update cache
+  // Mise à jour du cache
   const cacheKey = `user:${id}`;
   await redis.setex(cacheKey, 3600, JSON.stringify(user));
   
   return user;
 }
 
-// Cache invalidation
+// Invalidation du cache
 export async function deleteUser(id: string) {
   await prisma.user.delete({ where: { id } });
   
-  // Remove from cache
+  // Suppression de l'entrée en cache
   await redis.del(`user:${id}`);
 }
 ```
 
-## Modern Deployment & DevOps
+## Déploiement et DevOps
 
-### Docker Multi-stage Build
+### Build Docker multi-étapes
 
 ```bash
 # Dockerfile
 FROM node:20-alpine AS deps
 WORKDIR /app
 COPY package*.json ./
-RUN npm ci --only=production
+RUN npm ci --omit=dev
 
 FROM node:20-alpine AS builder
 WORKDIR /app
@@ -606,7 +640,7 @@ ENV PORT 3000
 CMD ["npm", "start"]
 ```
 
-### GitHub Actions CI/CD
+### CI/CD avec GitHub Actions
 
 ```javascript
 # .github/workflows/deploy.yml
@@ -637,25 +671,29 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Deploy to Railway
-        uses: railwayapp/railway-deploy@v1.0.0
+      - uses: actions/setup-node@v4
         with:
-          railway_token: ${{ secrets.RAILWAY_TOKEN }}
-          service: 'backend'
+          node-version: '20'
+
+      - name: Deploy to Railway
+        run: |
+          npm i -g @railway/cli
+          railway up --service backend
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
 ```
 
-## Performance Monitoring
+## Observabilité
 
-### OpenTelemetry Integration
+### Intégration d'OpenTelemetry
 
 ```typescript
 import { NodeSDK } from '@opentelemetry/sdk-node';
 import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';
-import { PeriodicExportingMetricReader } from '@opentelemetry/sdk-metrics';
-import { Resource } from '@opentelemetry/resources';
+import { resourceFromAttributes } from '@opentelemetry/resources';
 
 const sdk = new NodeSDK({
-  resource: new Resource({
+  resource: resourceFromAttributes({
     'service.name': 'my-backend-service',
     'service.version': '1.0.0',
   }),
@@ -667,18 +705,16 @@ sdk.start();
 
 ## Conclusion
 
-Modern Node.js full stack development in 2024 emphasizes:
+Une application full stack Node.js en 2024 s'articule autour de quelques principes :
 
-1. **Type Safety**: TypeScript everywhere with Prisma/Drizzle
-2. **Performance**: Fastify, caching, and optimized queries
-3. **Developer Experience**: Hot reload, testing, and observability
-4. **Scalability**: Queue systems, real-time features, and microservices
-5. **Security**: Modern auth patterns and input validation
+1. **Typage de bout en bout** : TypeScript partout, avec Prisma ou Drizzle pour l'accès aux données.
+2. **Performance** : Fastify, mise en cache et requêtes optimisées.
+3. **Expérience de développement** : tests intégrés au runtime et observabilité dès le départ.
+4. **Montée en charge** : files d'attente et fonctionnalités temps réel distribuées avec Redis.
+5. **Sécurité** : authentification éprouvée et validation systématique des entrées.
 
-The ecosystem continues to evolve with new tools like Bun, Deno, and edge computing changing how we build and deploy applications.
+L'écosystème continue d'évoluer, notamment avec des runtimes comme Bun et Deno et le déploiement en périphérie (edge), qui changent la façon de construire et de déployer ces applications.
 
-## Related Articles
+## Articles connexes
 
-- [Hello world: how I built this site](/articles/hello-world)
-- [Advanced React Patterns and TypeScript](/articles/advanced-react-patterns)
-- [Modern Styling in React](/articles/modern-styling-in-react)
+- [Patterns React avancés et TypeScript](/articles/advanced-react-patterns)

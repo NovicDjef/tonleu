@@ -23,6 +23,14 @@ const websites = [
     location: 'Sept-Îles, QC',
   },
   {
+    name: 'Hôtel Sept-Îles',
+    domain: 'hotel.novic.dev',
+    category: 'Hôtellerie · Réservation en ligne',
+    description:
+      'Site et moteur de réservation : chambres, spa et restaurant, avec paiement en ligne et console de gestion interne.',
+    location: 'Sept-Îles, QC',
+  },
+  {
     name: 'Spa Renaissance',
     domain: 'sparenaissance.ca',
     category: 'Spa & bien-être',
@@ -61,6 +69,14 @@ const websites = [
     description:
       'Location de voitures en ligne avec filtres intelligents, assistant IA et gestion complète de la flotte.',
     location: 'Cameroun',
+  },
+  {
+    name: 'JT Trade and Services',
+    domain: 'jttradeservices.com',
+    category: 'Import-export & logistique',
+    description:
+      'Transport de colis et fret entre l’Afrique, le Canada et l’Europe, formations en langues et accompagnement visa.',
+    location: 'Douala, Cameroun',
   },
   {
     name: 'Koursier',

@@ -13,7 +13,7 @@ export const ThemeToggle = ({ isMobile, ...rest }) => {
       iconOnly
       className={styles.toggle}
       data-mobile={isMobile}
-      aria-label="Toggle theme"
+      aria-label="Changer de thème"
       onClick={() => toggleTheme()}
       {...rest}
     >

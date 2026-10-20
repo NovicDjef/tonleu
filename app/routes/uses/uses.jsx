@@ -19,8 +19,8 @@ import styles from './uses.module.css';
 
 export const meta = () => {
   return baseMeta({
-    title: 'Uses',
-    description: 'A list of hardware and software I use to do my thing',
+    title: 'Outils',
+    description: 'La liste du matériel et des logiciels que j’utilise au quotidien',
   });
 };
 
@@ -34,29 +34,29 @@ export const Uses = () => {
           opacity={0.7}
         />
         <ProjectHeader
-          title="Uses"
-          description="A comprehensive list of tools, apps, hardware, and technologies I use daily for fullstack mobile and web development. From React Native to Node.js and everything in between."
+          title="Outils"
+          description="Les outils, applications, le matériel et les technologies que j’utilise au quotidien pour le développement mobile et web full stack, de React Native à Node.js."
         />
         <ProjectSection padding="none" className={styles.section}>
           <ProjectSectionContent>
             <ProjectTextRow width="m">
-              <ProjectSectionHeading>Design & UI/UX</ProjectSectionHeading>
+              <ProjectSectionHeading>Design et UI/UX</ProjectSectionHeading>
               <ProjectSectionText as="div">
                 <List>
                   <ListItem>
-                    <Link href="https://www.figma.com">Figma</Link> is my go-to tool for
-                    designing mobile app interfaces and web layouts. Perfect for creating
-                    responsive designs and prototypes that work across all devices.
+                    <Link href="https://www.figma.com">Figma</Link> est mon outil principal
+                    pour concevoir les interfaces d’applications mobiles et les mises en page web.
+                    Il est idéal pour créer des maquettes et des prototypes adaptés à tous les écrans.
                   </ListItem>
                   <ListItem>
-                    <Link href="https://www.adobe.com/products/photoshop.html">Adobe Photoshop</Link> for
-                    image editing and creating custom graphics for mobile apps and web projects.
-                    Essential for app store assets and marketing materials.
+                    <Link href="https://www.adobe.com/products/photoshop.html">Adobe Photoshop</Link> pour
+                    la retouche d’images et la création de visuels pour les applications mobiles
+                    et les projets web, notamment les visuels pour les magasins d’applications.
                   </ListItem>
                   <ListItem>
-                    For wireframing and user flow design, I use{' '}
-                    <Link href="https://whimsical.com/">Whimsical</Link> to map out app
-                    navigation and user journeys before development starts.
+                    Pour les wireframes et les parcours utilisateurs, j’utilise{' '}
+                    <Link href="https://whimsical.com/">Whimsical</Link> afin de planifier
+                    la navigation de l’application avant le début du développement.
                   </ListItem>
                 </List>
               </ProjectSectionText>
@@ -66,28 +66,29 @@ export const Uses = () => {
         <ProjectSection padding="none" className={styles.section}>
           <ProjectSectionContent>
             <ProjectTextRow width="m">
-              <ProjectSectionHeading>Mobile Development</ProjectSectionHeading>
+              <ProjectSectionHeading>Développement mobile</ProjectSectionHeading>
               <ProjectSectionText as="div">
                 <List>
                   <ListItem>
-                    <Link href="https://reactnative.dev/">React Native</Link> is my primary
-                    framework for cross-platform mobile development. It allows me to build
-                    iOS and Android apps with a single codebase while maintaining native performance.
+                    <Link href="https://reactnative.dev/">React Native</Link> est mon framework
+                    principal pour le développement mobile multiplateforme. Il me permet de
+                    créer des applications iOS et Android avec une seule base de code, tout en
+                    conservant des performances natives.
                   </ListItem>
                   <ListItem>
-                    <Link href="https://expo.dev/">Expo</Link> for rapid prototyping and
-                    development workflow. The managed workflow makes deployment and updates
-                    incredibly smooth.
+                    <Link href="https://expo.dev/">Expo</Link> pour le prototypage rapide et
+                    le flux de développement. Le workflow géré simplifie beaucoup le
+                    déploiement et les mises à jour.
                   </ListItem>
                   <ListItem>
-                    For state management in mobile apps, I use{' '}
-                    <Link href="https://redux-toolkit.js.org/">Redux Toolkit</Link> for
-                    complex apps and React Context for simpler state needs.
+                    Pour la gestion d’état dans les applications mobiles, j’utilise{' '}
+                    <Link href="https://redux-toolkit.js.org/">Redux Toolkit</Link> pour les
+                    applications complexes et React Context pour les besoins plus simples.
                   </ListItem>
                   <ListItem>
-                    <Link href="https://docs.expo.dev/push-notifications/overview/">Push Notifications</Link> implementation
-                    using Expo's notification service and Firebase Cloud Messaging for
-                    real-time user engagement.
+                    <Link href="https://docs.expo.dev/push-notifications/overview/">Notifications push</Link> avec
+                    le service de notifications d’Expo et Firebase Cloud Messaging pour
+                    communiquer avec les utilisateurs en temps réel.
                   </ListItem>
                 </List>
               </ProjectSectionText>
@@ -97,28 +98,28 @@ export const Uses = () => {
         <ProjectSection padding="none" className={styles.section}>
           <ProjectSectionContent>
             <ProjectTextRow width="m">
-              <ProjectSectionHeading>Web Development</ProjectSectionHeading>
+              <ProjectSectionHeading>Développement web</ProjectSectionHeading>
               <ProjectSectionText as="div">
                 <List>
                   <ListItem>
-                    <Link href="https://reactjs.org/">React</Link> and{' '}
-                    <Link href="https://nextjs.org/">Next.js</Link> for building modern
-                    web applications. Next.js provides excellent performance optimizations
-                    and deployment capabilities.
+                    <Link href="https://reactjs.org/">React</Link> et{' '}
+                    <Link href="https://nextjs.org/">Next.js</Link> pour développer des
+                    applications web modernes. Next.js offre de bonnes optimisations de
+                    performance et facilite le déploiement.
                   </ListItem>
                   <ListItem>
-                    <Link href="https://www.typescriptlang.org/">TypeScript</Link> for
-                    type-safe development across all my projects. It catches errors early
-                    and improves code maintainability.
+                    <Link href="https://www.typescriptlang.org/">TypeScript</Link> pour
+                    un typage fiable dans tous mes projets. Il permet de détecter les erreurs
+                    tôt et facilite la maintenance du code.
                   </ListItem>
                   <ListItem>
-                    <Link href="https://tailwindcss.com/">Tailwind CSS</Link> for rapid
-                    UI development and consistent design systems across web applications.
+                    <Link href="https://tailwindcss.com/">Tailwind CSS</Link> pour développer
+                    rapidement les interfaces et garder un design cohérent d’une application à l’autre.
                   </ListItem>
                   <ListItem>
-                    For animations and interactions, I use{' '}
-                    <Link href="https://www.framer.com/motion/">Framer Motion</Link> to
-                    create smooth, engaging user experiences.
+                    Pour les animations et les interactions, j’utilise{' '}
+                    <Link href="https://www.framer.com/motion/">Framer Motion</Link> afin
+                    d’offrir des expériences fluides.
                   </ListItem>
                 </List>
               </ProjectSectionText>
@@ -128,32 +129,32 @@ export const Uses = () => {
         <ProjectSection padding="none" className={styles.section}>
           <ProjectSectionContent>
             <ProjectTextRow width="m">
-              <ProjectSectionHeading>Backend & Tools</ProjectSectionHeading>
+              <ProjectSectionHeading>Back-end et outils</ProjectSectionHeading>
               <ProjectSectionText as="div">
                 <List>
                   <ListItem>
-                    <Link href="https://nodejs.org/">Node.js</Link> with{' '}
-                    <Link href="https://expressjs.com/">Express.js</Link> for building
-                    RESTful APIs and backend services. My go-to stack for server-side development.
+                    <Link href="https://nodejs.org/">Node.js</Link> avec{' '}
+                    <Link href="https://expressjs.com/">Express.js</Link> pour développer
+                    des API REST et des services back-end. C’est ma pile habituelle côté serveur.
                   </ListItem>
                   <ListItem>
-                    <Link href="https://www.prisma.io/">Prisma</Link> as my ORM of choice
-                    for database management. Works seamlessly with PostgreSQL and provides
-                    excellent TypeScript integration.
+                    <Link href="https://www.prisma.io/">Prisma</Link> comme ORM pour la
+                    gestion des bases de données. Il s’intègre bien avec PostgreSQL et offre
+                    une très bonne intégration TypeScript.
                   </ListItem>
                   <ListItem>
-                    <Link href="https://vscode.com/">VSCode</Link> as my primary code editor,
-                    with extensions for React Native, TypeScript, and Prisma. The integrated
-                    terminal and debugging tools are excellent.
+                    <Link href="https://code.visualstudio.com/">VSCode</Link> comme éditeur principal,
+                    avec des extensions pour React Native, TypeScript et Prisma. Le terminal
+                    intégré et les outils de débogage sont très pratiques.
                   </ListItem>
                   <ListItem>
-                    <Link href="https://github.com/features/actions">GitHub Actions</Link> for
-                    CI/CD pipelines, automated testing, and deployment to app stores and
-                    web hosting platforms.
+                    <Link href="https://github.com/features/actions">GitHub Actions</Link> pour
+                    les pipelines CI/CD, les tests automatisés et le déploiement vers les
+                    magasins d’applications et les hébergeurs web.
                   </ListItem>
                   <ListItem>
-                    <Link href="https://www.docker.com/">Docker</Link> for containerization
-                    and consistent development environments across different projects.
+                    <Link href="https://www.docker.com/">Docker</Link> pour la conteneurisation
+                    et des environnements de développement identiques d’un projet à l’autre.
                   </ListItem>
                 </List>
               </ProjectSectionText>
@@ -163,40 +164,40 @@ export const Uses = () => {
         <ProjectSection padding="none" className={styles.section}>
           <ProjectSectionContent>
             <ProjectTextRow stretch width="m">
-              <ProjectSectionHeading>Hardware</ProjectSectionHeading>
+              <ProjectSectionHeading>Matériel</ProjectSectionHeading>
               <Table>
                 <TableBody>
                   <TableRow>
-                    <TableHeadCell>Primary Machine</TableHeadCell>
-                    <TableCell>MacBook Pro M1 13.3″ (2020) - 8GB RAM</TableCell>
+                    <TableHeadCell>Machine principale</TableHeadCell>
+                    <TableCell>MacBook Pro M1 13.3″ (2020) - 8 Go de RAM</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableHeadCell>Operating System</TableHeadCell>
+                    <TableHeadCell>Système d’exploitation</TableHeadCell>
                     <TableCell>macOS</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableHeadCell>Terminal</TableHeadCell>
-                    <TableCell>iTerm2 with Oh My Zsh</TableCell>
+                    <TableCell>iTerm2 avec Oh My Zsh</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableHeadCell>Browser</TableHeadCell>
-                    <TableCell>Chrome for development, Safari for daily use</TableCell>
+                    <TableHeadCell>Navigateur</TableHeadCell>
+                    <TableCell>Chrome pour le développement, Safari au quotidien</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableHeadCell>Mobile Testing</TableHeadCell>
-                    <TableCell>iPhone & Android physical devices + simulators</TableCell>
+                    <TableHeadCell>Tests mobiles</TableHeadCell>
+                    <TableCell>Appareils iPhone et Android physiques, et simulateurs</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableHeadCell>Headphones</TableHeadCell>
-                    <TableCell>AirPods Pro for calls, Sony WH-1000XM4 for focus</TableCell>
+                    <TableHeadCell>Écouteurs</TableHeadCell>
+                    <TableCell>AirPods Pro pour les appels, Sony WH-1000XM4 pour la concentration</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableHeadCell>External Storage</TableHeadCell>
-                    <TableCell>SanDisk 1TB SSD for project backups</TableCell>
+                    <TableHeadCell>Stockage externe</TableHeadCell>
+                    <TableCell>SSD SanDisk 1 To pour les sauvegardes de projets</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableHeadCell>Cloud Services</TableHeadCell>
-                    <TableCell>GitHub, Vercel, AWS for deployment</TableCell>
+                    <TableHeadCell>Services cloud</TableHeadCell>
+                    <TableCell>GitHub, Vercel et AWS pour le déploiement</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>

@@ -82,7 +82,7 @@ export const Post = ({ children, title, date, banner, timecode }) => {
               <RouterLink
                 to="#postContent"
                 className={styles.arrow}
-                aria-label="Scroll to post content"
+                aria-label="Aller au contenu de l’article"
                 onClick={handleScrollIndicatorClick}
               >
                 <svg

@@ -1,5 +1,11 @@
 import planeviaTexture1 from '~/assets/planevia/calendar-day.png';
 import planeviaTexture2 from '~/assets/planevia/calendar-week.png';
+import hotelTexture from '~/assets/case-studies/hotel/hero.webp';
+import hotelTexture2 from '~/assets/case-studies/hotel/suites.webp';
+import hotelAdminTexture from '~/assets/case-studies/hotel-admin/overview.webp';
+import hotelAdminTexture2 from '~/assets/case-studies/hotel-admin/rooms-plan.webp';
+import jtTradeTexture from '~/assets/case-studies/jt-trade/hero.webp';
+import jtTradeTexture2 from '~/assets/case-studies/jt-trade/countries.webp';
 import koursierTexture1 from '~/assets/koursier/588.png';
 import koursierTexture2 from '~/assets/koursier/608.png';
 import reminder1 from '~/assets/reminder1.png';
@@ -10,11 +16,6 @@ import raphycarTexture from '~/assets/raphy/home2.png';
 import raphycarTexture2 from '~/assets/raphy/home.png';
 import burnsTexture from '~/assets/burns/home-page.png';
 import burnsTexture2 from '~/assets/burns/apartments.png';
-import dashboardTexture from '~/assets/dashb/homeresto.jpg';
-import dashboardUI from '~/assets/dashb/ui-design-dialin-contracts-manager.png';
-import sprTextureLarge from '~/assets/spr-lesson-builder-dark-large.jpg';
-import sprTexturePlaceholder from '~/assets/spr-lesson-builder-dark-placeholder.jpg';
-import sprTexture from '~/assets/spr-lesson-builder-dark.jpg';
 import { Footer } from '~/components/footer';
 import { baseMeta } from '~/utils/meta';
 import { Intro } from './intro';
@@ -66,11 +67,12 @@ export const Home = () => {
   const projectSix = useRef();
   const projectSeven = useRef();
   const projectEight = useRef();
+  const projectNine = useRef();
   const websites = useRef();
   const details = useRef();
 
   useEffect(() => {
-    const sections = [intro, projectOne, projectTwo, projectThree, projectFour, projectFive, projectSix, projectSeven, projectEight, websites, details];
+    const sections = [intro, projectOne, projectTwo, projectThree, projectFour, projectFive, projectSix, projectSeven, projectEight, projectNine, websites, details];
 
     const sectionObserver = new IntersectionObserver(
       (entries, observer) => {
@@ -118,17 +120,13 @@ export const Home = () => {
         sectionRef={projectOne}
         visible={visibleSections.includes(projectOne.current)}
         index={1}
-        title="Planevia - Plateforme SaaS Web & Mobile"
-        description="Solution SaaS pour spas, cliniques et salons au Québec : réservation en ligne 24/7, dossiers clients, rappels automatiques, pointage des employés et comptabilité TPS/TVQ, sur le web, iOS et Android."
-        buttonText="View project"
+        title="Planevia"
+        description="Plateforme SaaS web et mobile pour les spas, cliniques et salons du Québec : réservation en ligne, dossiers clients, rappels automatiques, pointage et comptabilité TPS/TVQ."
+        buttonText="Voir le projet"
         buttonLink="/projects/planevia"
-        storeLinks={[
-          { text: 'App Store', href: 'https://apps.apple.com/ca/app/planevia/id6761085786?l=fr-CA' },
-          { text: 'Google Play', href: 'https://play.google.com/store/apps/details?id=ca.planevia.app' },
-        ]}
         model={{
           type: 'phone',
-          alt: 'Calendrier journalier et hebdomadaire de l’application Planevia',
+          alt: 'Agenda journalier et vue semaine de l’application Planevia',
           textures: [
             {
               srcSet: `${planeviaTexture1} 375w, ${planeviaTexture1} 750w`,
@@ -146,16 +144,87 @@ export const Home = () => {
         sectionRef={projectTwo}
         visible={visibleSections.includes(projectTwo.current)}
         index={2}
-        title="Multi-Service Delivery Platform"
-        description="A comprehensive mobile delivery platform enabling real-time tracking, multi-category ordering, and seamless user experience for gas, packages, and food delivery services."
-        buttonText="View project"
+        title="Hôtel Sept-Îles"
+        description="Site web et moteur de réservation directe d’un hôtel de la Côte-Nord : disponibilités en temps réel, paiement en ligne, spa et restaurant."
+        buttonText="Voir le projet"
+        buttonLink="/projects/hotel-sept-iles"
+        model={{
+          type: 'laptop',
+          alt: 'Page d’accueil du site de l’Hôtel Sept-Îles',
+          textures: [
+            {
+              srcSet: `${hotelTexture} 800w, ${hotelTexture} 1920w`,
+              placeholder: hotelTexture,
+            },
+            {
+              srcSet: `${hotelTexture2} 800w, ${hotelTexture2} 1920w`,
+              placeholder: hotelTexture2,
+            },
+          ],
+        }}
+      />
+      <ProjectSummary
+        id="project-3"
+        alternate
+        sectionRef={projectThree}
+        visible={visibleSections.includes(projectThree.current)}
+        index={3}
+        title="Hôtel Sept-Îles — Gestion"
+        description="Console de gestion interne de l’hôtel : réservations, plan des 155 chambres, clients, alertes, comptabilité TPS/TVQ et paiements."
+        buttonText="Voir le projet"
+        buttonLink="/projects/hotel-sept-iles-admin"
+        model={{
+          type: 'laptop',
+          alt: 'Console de gestion de l’Hôtel Sept-Îles',
+          textures: [
+            {
+              srcSet: `${hotelAdminTexture} 800w, ${hotelAdminTexture} 1920w`,
+              placeholder: hotelAdminTexture,
+            },
+            {
+              srcSet: `${hotelAdminTexture2} 800w, ${hotelAdminTexture2} 1920w`,
+              placeholder: hotelAdminTexture2,
+            },
+          ],
+        }}
+      />
+      <ProjectSummary
+        id="project-4"
+        sectionRef={projectFour}
+        visible={visibleSections.includes(projectFour.current)}
+        index={4}
+        title="JT Trade and Services"
+        description="Site web d’une entreprise de transport de colis entre l’Afrique, le Canada et l’Europe, avec demande de devis, simulateur de tarifs et formations en langues."
+        buttonText="Voir le projet"
+        buttonLink="/projects/jt-trade-services"
+        model={{
+          type: 'laptop',
+          alt: 'Page d’accueil du site JT Trade and Services',
+          textures: [
+            {
+              srcSet: `${jtTradeTexture} 800w, ${jtTradeTexture} 1920w`,
+              placeholder: jtTradeTexture,
+            },
+            {
+              srcSet: `${jtTradeTexture2} 800w, ${jtTradeTexture2} 1920w`,
+              placeholder: jtTradeTexture2,
+            },
+          ],
+        }}
+      />
+      <ProjectSummary
+        id="project-5"
+        alternate
+        sectionRef={projectFive}
+        visible={visibleSections.includes(projectFive.current)}
+        index={5}
+        title="Koursier"
+        description="Application mobile de livraison au Cameroun : repas, colis et bouteilles de gaz, avec suivi en temps réel et paiement par mobile money."
+        buttonText="Voir le projet"
         buttonLink="/projects/koursier"
-        storeLinks={[
-          { text: 'App Store', href: 'https://apps.apple.com/ca/app/koursier/id6761641187?l=fr-CA' },
-        ]}
         model={{
           type: 'phone',
-          alt: 'Koursier app interface',
+          alt: 'Écrans de l’application Koursier',
           textures: [
             {
               srcSet: `${koursierTexture1} 375w, ${koursierTexture1} 750w`,
@@ -169,41 +238,17 @@ export const Home = () => {
         }}
       />
       <ProjectSummary
-        id="project-3"
-        alternate
-        sectionRef={projectThree}
-        visible={visibleSections.includes(projectThree.current)}
-        index={3}
-        title="Comprehensive Admin Dashboard System"
-        description="A powerful administrative dashboard designed for managing delivery operations, driver coordination, revenue tracking, and comprehensive business analytics for multi-service delivery platforms."
-        buttonText="View project"
-        buttonLink="/projects/admin-dashboard"
-        model={{
-          type: 'laptop',
-          alt: 'Admin dashboard showing comprehensive management interface',
-          textures: [
-            {
-              srcSet: `${dashboardTexture} 800w, ${dashboardUI} 1920w`,
-              placeholder: dashboardTexture,
-            },
-          ],
-        }}
-      />
-      <ProjectSummary
-        id="project-4"
-        sectionRef={projectFour}
-        visible={visibleSections.includes(projectFour.current)}
-        index={4}
-        title="Koursier Delivery Management System"
-        description="Professional delivery driver application for managing orders, real-time tracking, and seamless coordination with the main Koursier platform to ensure efficient delivery operations."
-        buttonText="View project"
+        id="project-6"
+        sectionRef={projectSix}
+        visible={visibleSections.includes(projectSix.current)}
+        index={6}
+        title="Koursier Livreur"
+        description="Application des livreurs Koursier : réception des commandes en temps réel, navigation vers le client, suivi des livraisons et portefeuille de gains."
+        buttonText="Voir le projet"
         buttonLink="/projects/koursier-delivery"
-        storeLinks={[
-          { text: 'App Store', href: 'https://apps.apple.com/ca/app/koursier-app/id6810741237?l=fr-CA' },
-        ]}
         model={{
           type: 'phone',
-          alt: 'Koursier Delivery app order management interface',
+          alt: 'Tableau de bord et portefeuille de l’application Koursier Livreur',
           textures: [
             {
               srcSet: `${deliveryHome} 375w, ${deliveryWallet} 750w`,
@@ -217,18 +262,18 @@ export const Home = () => {
         }}
       />
       <ProjectSummary
-        id="project-5"
+        id="project-7"
         alternate
-        sectionRef={projectFive}
-        visible={visibleSections.includes(projectFive.current)}
-        index={5}
-        title="RaphyCar - AI-Powered Vehicle Rental Platform"
-        description="A comprehensive car rental mobile application designed for the Cameroonian market, featuring intelligent filtering, AI-powered chatbot customer support, and complete administrative management for vehicle fleet operations."
-        buttonText="View project"
+        sectionRef={projectSeven}
+        visible={visibleSections.includes(projectSeven.current)}
+        index={7}
+        title="RaphyCar"
+        description="Application mobile de location de véhicules au Cameroun : recherche filtrée, réservation, messagerie avec les propriétaires et gestion de flotte pour les agences."
+        buttonText="Voir le projet"
         buttonLink="/projects/raphycar"
         model={{
           type: 'phone',
-          alt: 'RaphyCar mobile app showing vehicle rental interface with AI chatbot',
+          alt: 'Écrans de l’application RaphyCar',
           textures: [
             {
               srcSet: `${raphycarTexture} 375w, ${raphycarTexture} 750w`,
@@ -242,17 +287,17 @@ export const Home = () => {
         }}
       />
       <ProjectSummary
-        id="project-6"
-        sectionRef={projectSix}
-        visible={visibleSections.includes(projectSix.current)}
-        index={6}
-        title="Smart Medication Management System"
-        description="A comprehensive mobile application designed to help users manage their medication schedules with intelligent reminders, tracking capabilities, and detailed intake history for improved healthcare compliance."
-        buttonText="View project"
+        id="project-8"
+        sectionRef={projectEight}
+        visible={visibleSections.includes(projectEight.current)}
+        index={8}
+        title="MedRemind"
+        description="Application mobile de gestion des médicaments : planification des prises, rappels, suivi des recharges et historique pour mieux suivre son traitement."
+        buttonText="Voir le projet"
         buttonLink="/projects/reminder"
         model={{
           type: 'phone',
-          alt: 'Reminder app medication management interface',
+          alt: 'Écrans de l’application MedRemind',
           textures: [
             {
               srcSet: `${reminder2} 375w, ${reminder2} 750w`,
@@ -266,38 +311,18 @@ export const Home = () => {
         }}
       />
       <ProjectSummary
-        id="project-7"
+        id="project-9"
         alternate
-        sectionRef={projectSeven}
-        visible={visibleSections.includes(projectSeven.current)}
-        index={7}
-        title="Design the future through programming"
-        description="Designing a platform to help educators build better online courseware"
-        buttonText="View project"
-        buttonLink="/projects/smart-sparrow"
-        model={{
-          type: 'laptop',
-          alt: 'Smart Sparrow lesson builder',
-          textures: [
-            {
-              srcSet: `${sprTexture} 1280w, ${sprTextureLarge} 2560w`,
-              placeholder: sprTexturePlaceholder,
-            },
-          ],
-        }}
-      />
-      <ProjectSummary
-        id="project-8"
-        sectionRef={projectEight}
-        visible={visibleSections.includes(projectEight.current)}
-        index={8}
-        title="Burns Immobilier - Gestion Locative Côte-Nord"
-        description="Plateforme complète de gestion immobilière pour la région de la Côte-Nord au Québec. Offrant des appartements variés à prix compétitifs, avec système de demande en ligne et support technique 24/7."
-        buttonText="View project"
+        sectionRef={projectNine}
+        visible={visibleSections.includes(projectNine.current)}
+        index={9}
+        title="Burns Immobilier"
+        description="Site web d’un gestionnaire immobilier de Sept-Îles : types de logements, albums photo par appartement et demande de visite en ligne."
+        buttonText="Voir le projet"
         buttonLink="/projects/burns-immobilier"
         model={{
           type: 'laptop',
-          alt: 'Site web Burns Immobilier présentant la gestion locative au Québec',
+          alt: 'Page d’accueil du site Burns Immobilier',
           textures: [
             {
               srcSet: `${burnsTexture} 800w, ${burnsTexture} 1920w`,
@@ -310,26 +335,6 @@ export const Home = () => {
           ],
         }}
       />
-      {/* <ProjectSummary
-        id="project-8"
-        sectionRef={projectEight}
-        visible={visibleSections.includes(projectEight.current)}
-        index={8}
-        title="Biomedical image collaboration"
-        description="Increasing the amount of collaboration in Slice, an app for biomedical imaging"
-        buttonText="View project"
-        buttonLink="/projects/slice"
-        model={{
-          type: 'laptop',
-          alt: 'Annotating a biomedical image in the Slice app',
-          textures: [
-            {
-              srcSet: `${sliceTexture} 800w, ${sliceTextureLarge} 1920w`,
-              placeholder: sliceTexturePlaceholder,
-            },
-          ],
-        }}
-      /> */}
       <Websites
         id="websites"
         sectionRef={websites}

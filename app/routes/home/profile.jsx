@@ -18,20 +18,24 @@ import styles from './profile.module.css';
 const ProfileText = ({ visible, titleId }) => (
   <Fragment>
     <Heading className={styles.title} data-visible={visible} level={3} id={titleId}>
-      <DecoderText text="Hello, I'm Novic" start={visible} delay={500} />
+      <DecoderText text="Bonjour, je suis Novic" start={visible} delay={500} />
     </Heading>
     <Text className={styles.description} data-visible={visible} size="l" as="p">
-      I'm a passionate fullstack developer specializing in mobile and web applications.
-      With expertise in React Native, Node.js, and modern web technologies, I create
-      seamless cross-platform experiences that solve real-world problems. Check out my{' '}
-      <Link href="/cv.pdf" target="_blank" rel="noopenernoreferrer">CV</Link> to learn more about my experience.
-      If you're interested in the tools and technologies I use, check out my <Link href="/uses">uses page</Link>.
+      Développeur full stack basé au Québec, je conçois et développe des applications web
+      et mobiles de bout en bout : API, interfaces, déploiement et intégration continue. Je
+      travaille principalement avec React Native, React, Next.js et Node.js. Pour en savoir
+      plus sur mon parcours, consultez mon{' '}
+      <Link href="/cv.pdf" target="_blank" rel="noopener noreferrer">
+        CV
+      </Link>{' '}
+      ou la page <Link href="/uses">outils</Link> pour les technologies que j’utilise.
     </Text>
     <Text className={styles.description} data-visible={visible} size="l" as="p">
-      When I'm not coding, I enjoy exploring new technologies, contributing to open-source projects,
-      and building innovative apps like{' '}
-      <Link href="/projects/volkihar-knight">MediTracker Pro</Link>. I'm always excited to collaborate
-      on challenging projects and discuss new opportunities, so feel free to reach out!
+      Mes projets vont des plateformes SaaS comme{' '}
+      <Link href="/projects/planevia">Planevia</Link> aux applications de livraison comme{' '}
+      <Link href="/projects/koursier">Koursier</Link>, en passant par des sites et des outils
+      de gestion pour des entreprises d’ici. Je suis ouvert aux nouvelles collaborations :
+      n’hésitez pas à me contacter.
     </Text>
   </Fragment>
 );
@@ -63,7 +67,7 @@ export const Profile = ({ id, visible, sectionRef }) => {
                 href="/contact"
                 icon="send"
               >
-                Send me a message
+                M’écrire
               </Button>
             </div>
             <div className={styles.column}>
@@ -75,7 +79,7 @@ export const Profile = ({ id, visible, sectionRef }) => {
                   collapseDelay={1000}
                 />
                 <div className={styles.tagText} data-visible={visible}>
-                  About me
+                  À propos
                 </div>
               </div>
               <div className={styles.image}>
@@ -87,7 +91,7 @@ export const Profile = ({ id, visible, sectionRef }) => {
                   width={960}
                   height={1280}
                   sizes={`(max-width: ${media.mobile}px) 100vw, 480px`}
-                  alt="Novic, fullstack developer, working on mobile and web applications"
+                  alt="Portrait de Novic Tonleu, développeur full stack"
                 />
                 <svg className={styles.svg} data-visible={visible} viewBox="0 0 136 766">
                   <use href={`${katakana}#katakana-profile`} />

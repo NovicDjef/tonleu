@@ -1,6 +1,5 @@
 import { Fragment, useRef, useState, useEffect } from 'react';
 import { Button } from '~/components/button';
-import { DecoderText } from '~/components/decoder-text';
 import { Heading } from '~/components/heading';
 import { Section } from '~/components/section';
 import { Text } from '~/components/text';
@@ -9,7 +8,7 @@ import { baseMeta } from '~/utils/meta';
 import styles from './cv.module.css';
 
 const title = 'CV - Novic Tonleu';
-const description = 'Curriculum Vitae of Novic Tonleu, Full Stack JavaScript/TypeScript Developer specialized in React, Node.js and modern technologies.';
+const description = 'Curriculum vitae de Novic Tonleu, développeur full stack JavaScript/TypeScript spécialisé en React et Node.js.';
 
 export const meta = () => {
   return baseMeta({
@@ -21,7 +20,7 @@ export const meta = () => {
 const cvData = {
   personal: {
     name: 'NOVIC MELATAGUIA',
-    title: 'React Native Developer | Full Stack Engineer',
+    title: 'Développeur React Native | Développeur full stack',
     // subtitle: 'Visa Sponsorship Eligible | フルスタック開発者',
     subtitle: '| フルスタック開発者',
     email: 'contact@novic.dev',
@@ -33,152 +32,152 @@ const cvData = {
   },
   
   summary: {
-    text: 'Passionate React Native Developer with 3+ years of experience creating cross-platform mobile applications with continuous deployment to Play Store via GitHub Actions. Proven expertise in team collaboration and delivering scalable solutions using React Native (Expo & CLI), Redux, and TypeScript. Dedicated to creating high-performance mobile experiences on iOS and Android. Open to H-1B visa | Authorized to work in Canada | Ready to relocate to the United States.'
+    text: 'Développeur React Native avec plus de 3 ans d’expérience dans la création d’applications mobiles multiplateformes, avec déploiement continu sur le Play Store via GitHub Actions. Habitué au travail en équipe et à la livraison de solutions évolutives avec React Native (Expo et CLI), Redux et TypeScript. Je m’attache à offrir des expériences mobiles performantes sur iOS et Android. Ouvert au visa H-1B | Autorisé à travailler au Canada | Disponible pour une relocalisation aux États-Unis.'
   },
 
   skills: {
-    mobile: ['React Native (Expo & CLI)', 'Redux', 'TypeScript', 'JavaScript ES6+', 'iOS/Android Development'],
-    frontend: ['React.js', 'Next.js', 'Tailwind CSS', 'Redux', 'Modern CSS'],
-    backend: ['Node.js', 'Express.js', 'RESTful APIs', 'Prisma ORM', 'JWT Authentication'],
-    databases: ['PostgreSQL', 'MySQL', 'Database Design', 'ORM/ODM'],
-    devops: ['Git', 'GitHub Actions', 'CI/CD Pipelines', 'Bitbucket', 'Jira', 'VPS'],
+    mobile: ['React Native (Expo & CLI)', 'Redux', 'TypeScript', 'JavaScript ES6+', 'Développement iOS/Android'],
+    frontend: ['React.js', 'Next.js', 'Tailwind CSS', 'Redux', 'CSS moderne'],
+    backend: ['Node.js', 'Express.js', 'API REST', 'Prisma ORM', 'Authentification JWT'],
+    databases: ['PostgreSQL', 'MySQL', 'Modélisation de bases de données', 'ORM/ODM'],
+    devops: ['Git', 'GitHub Actions', 'Pipelines CI/CD', 'Bitbucket', 'Jira', 'VPS'],
     languages: ['TypeScript', 'JavaScript ES6+', 'SQL', 'HTML5/CSS3']
   },
 
   experience: [
     {
-      title: 'Mobile Developer (Personal Projects)',
-      company: 'Independent Development',
-      period: 'January 2025 - Present',
-      location: 'Remote',
+      title: 'Développeur mobile (projets personnels)',
+      company: 'Développement indépendant',
+      period: 'Janvier 2025 - aujourd’hui',
+      location: 'À distance',
       achievements: [
-        'Reminder (2023) - Medication reminder app with React Native Expo, Face ID, biometrics and intelligent notifications',
-        'RaphyCar Vehicle Rental (2024) - AI-powered vehicle rental platform with integrated chatbot and secure identity verification'
+        'Reminder (2023) - Application de rappel de médicaments avec React Native Expo, Face ID, biométrie et notifications intelligentes',
+        'RaphyCar, location de véhicules (2024) - Plateforme de location de véhicules avec IA, chatbot intégré et vérification d’identité sécurisée'
       ]
     },
     {
-      title: 'Full Stack Developer (Freelance)',
+      title: 'Développeur full stack (pigiste)',
       company: 'Koursier Platform',
-      period: 'August 2024 - Present',
-      location: 'Remote',
+      period: 'Août 2024 - aujourd’hui',
+      location: 'À distance',
       achievements: [
-        'Developed complete Koursier ecosystem: client and delivery mobile applications (React Native)',
-        'Created web administration platform (Next.js) for managing both mobile applications',
-        'Built scalable backend architecture with Node.js, Express and PostgreSQL with Prisma ORM',
-        'Implemented CI/CD pipelines with GitHub Actions for automated deployment'
+        'Développement de l’écosystème Koursier : applications mobiles client et livreur (React Native)',
+        'Création de la plateforme web d’administration (Next.js) pour gérer les deux applications mobiles',
+        'Mise en place d’une architecture back-end évolutive avec Node.js, Express, PostgreSQL et Prisma ORM',
+        'Mise en place de pipelines CI/CD avec GitHub Actions pour le déploiement automatisé'
       ]
     },
     {
-      title: 'React Native Developer',
+      title: 'Développeur React Native',
       company: 'iLink World Corporation (Fintech/Insurtech)',
-      period: 'February 2022 - December 2024',
-      location: 'On-site - Douala, Cameroon',
+      period: 'Février 2022 - décembre 2024',
+      location: 'Sur place - Douala, Cameroun',
       achievements: [
-        'Developed and maintained mobile applications for international money transfers and health insurance payments in Africa',
-        'Built iLinkCity - municipal tax collection platform for local business tax payments via mobile',
-        'Implemented secure payment systems with biometric authentication and intelligent push notifications',
-        'Collaborated in agile teams and automated deployment to Play Store with CI/CD pipelines'
+        'Développement et maintenance d’applications mobiles de transfert d’argent international et de paiement d’assurance santé en Afrique',
+        'Développement d’iLinkCity, plateforme de perception des taxes municipales permettant aux commerces de payer par mobile',
+        'Intégration de paiements sécurisés avec authentification biométrique et notifications push intelligentes',
+        'Travail en équipe agile et automatisation du déploiement sur le Play Store avec des pipelines CI/CD'
       ]
     }
   ],
 
   projects: [
     {
-      name: 'Koursier Delivery Mobile App (August 2024 - Present)',
-      technologies: ['React Native', 'Google Maps API', 'Push Notifications', 'Real-time Tracking', 'Payment Integration'],
-      description: 'Dedicated mobile application for Koursier delivery drivers to receive and manage orders with real-time geolocation, Google Maps notifications and integrated payments.',
-      achievements: ['Real-time GPS tracking', 'Google Maps push notifications', 'Delivery order management', 'Integrated payments']
+      name: 'Application mobile Koursier Livreur (août 2024 - aujourd’hui)',
+      technologies: ['React Native', 'Google Maps API', 'Notifications push', 'Suivi en temps réel', 'Intégration des paiements'],
+      description: 'Application mobile destinée aux livreurs Koursier pour recevoir et gérer les commandes, avec géolocalisation en temps réel, notifications Google Maps et paiements intégrés.',
+      achievements: ['Suivi GPS en temps réel', 'Notifications push Google Maps', 'Gestion des commandes de livraison', 'Paiements intégrés']
     },
     {
-      name: 'Koursier Admin Dashboard (August 2024 - Present)',
-      technologies: ['Next.js', 'React', 'PostgreSQL', 'Prisma', 'Chart.js', 'Real-time Analytics'],
-      description: 'Complete administration interface for global management of Koursier ecosystem: orders, commissions, drivers, users, analytics and complete system.',
-      achievements: ['Complete system management', 'Advanced analytics', 'Commission management', 'Real-time admin interface']
+      name: 'Tableau de bord d’administration Koursier (août 2024 - aujourd’hui)',
+      technologies: ['Next.js', 'React', 'PostgreSQL', 'Prisma', 'Chart.js', 'Statistiques en temps réel'],
+      description: 'Interface d’administration pour la gestion de l’écosystème Koursier : commandes, commissions, livreurs, utilisateurs, statistiques et configuration du système.',
+      achievements: ['Gestion complète du système', 'Statistiques détaillées', 'Gestion des commissions', 'Administration en temps réel']
     },
     {
-      name: 'RaphyCar Vehicle Rental (2024)',
-      technologies: ['Next.js', 'AI Chatbot', 'Prisma', 'PostgreSQL', 'ID Verification'],
-      description: 'AI-powered vehicle rental platform for French market with integrated chatbot, advanced filtering and secure identity verification system.',
-      achievements: ['Conversational AI', 'Automatic ID verification', 'Multilingual interface']
+      name: 'RaphyCar, location de véhicules (2024)',
+      technologies: ['Next.js', 'Chatbot IA', 'Prisma', 'PostgreSQL', 'Vérification d’identité'],
+      description: 'Plateforme de location de véhicules avec IA pour le marché français, avec chatbot intégré, filtres avancés et vérification d’identité sécurisée.',
+      achievements: ['IA conversationnelle', 'Vérification d’identité automatique', 'Interface multilingue']
     },
     {
-      name: 'Reminder Medication App (2023)',
-      technologies: ['React Native', 'Expo', 'Biometric Auth', 'Push Notifications', 'CI/CD'],
-      description: 'Complete medication management application with biometric authentication, intelligent push notifications and automated Play Store deployment.',
-      achievements: ['Biometric security', 'Intelligent notifications', 'Automated deployment']
+      name: 'Reminder, application de rappel de médicaments (2023)',
+      technologies: ['React Native', 'Expo', 'Authentification biométrique', 'Notifications push', 'CI/CD'],
+      description: 'Application de gestion des médicaments avec authentification biométrique, notifications push intelligentes et déploiement automatisé sur le Play Store.',
+      achievements: ['Sécurité biométrique', 'Notifications intelligentes', 'Déploiement automatisé']
     },
     {
-      name: 'iLinkCity Municipal Tax Platform (2022-2023)',
-      technologies: ['React Native', 'PHP Backend', 'MySQL', 'Mobile Payments', 'Municipal APIs'],
-      description: 'Mobile application for consolidating and paying municipal taxes in district communes of Douala city, Cameroon.',
-      achievements: ['Municipal tax digitalization', 'Integrated mobile payments', 'Multi-commune interface', 'Digital receipt system']
+      name: 'iLinkCity, plateforme de taxes municipales (2022-2023)',
+      technologies: ['React Native', 'Back-end PHP', 'MySQL', 'Paiements mobiles', 'API municipales'],
+      description: 'Application mobile de regroupement et de paiement des taxes municipales dans les communes d’arrondissement de Douala, au Cameroun.',
+      achievements: ['Numérisation des taxes municipales', 'Paiements mobiles intégrés', 'Interface multi-communes', 'Reçus numériques']
     },
     {
-      name: 'iLinkWorld Fintech Suite (2022-2024)',
-      technologies: ['React Native', 'Node.js', 'Payment APIs', 'Biometric Auth', 'Multi-country'],
-      description: 'Suite of fintech mobile applications for international money transfers and health insurance payments across Africa.',
-      achievements: ['Multi-country support', 'Secure payments', 'Robust authentication']
+      name: 'Suite fintech iLinkWorld (2022-2024)',
+      technologies: ['React Native', 'Node.js', 'API de paiement', 'Authentification biométrique', 'Multipays'],
+      description: 'Suite d’applications mobiles fintech pour le transfert d’argent international et le paiement d’assurance santé en Afrique.',
+      achievements: ['Prise en charge multipays', 'Paiements sécurisés', 'Authentification robuste']
     }
   ],
 
   education: [
     {
-      degree: 'Bachelor\'s Degree in Software Engineering',
+      degree: 'Baccalauréat en génie logiciel',
       school: 'Institut Universitaire de la Côte',
-      period: 'Graduated 07/2023',
-      location: 'Douala, Cameroon',
-      specialization: 'WES Evaluated - Equivalent to U.S. Bachelor\'s Degree'
+      period: 'Diplômé en 07/2023',
+      location: 'Douala, Cameroun',
+      specialization: 'Évalué par WES - équivalent d’un baccalauréat américain'
     }
   ],
 
   certifications: [
-    'React Native Certified Developer',
-    'GitHub Actions CI/CD Specialist',
-    'PostgreSQL Database Administrator',
-    'Mobile App Security Expert',
-    'Expo Platform Certified',
-    'TypeScript Advanced Developer'
+    'Développeur certifié React Native',
+    'Spécialiste CI/CD GitHub Actions',
+    'Administrateur de bases de données PostgreSQL',
+    'Expert en sécurité des applications mobiles',
+    'Certifié plateforme Expo',
+    'Développeur TypeScript avancé'
   ],
 
   languages: [
-    { name: 'English', level: 'Fluent (Professional Working)' },
-    { name: 'French', level: 'Native' }
+    { name: 'Anglais', level: 'Courant (niveau professionnel)' },
+    { name: 'Français', level: 'Langue maternelle' }
   ]
 };
 
+const skillLevels = {
+  'React Native (Expo & CLI)': 95,
+  'Redux': 90,
+  'TypeScript': 92,
+  'JavaScript ES6+': 95,
+  'Développement iOS/Android': 88,
+  'React.js': 90,
+  'Next.js': 85,
+  'Tailwind CSS': 87,
+  'CSS moderne': 85,
+  'Node.js': 90,
+  'Express.js': 88,
+  'API REST': 92,
+  'Prisma ORM': 85,
+  'Authentification JWT': 90,
+  'PostgreSQL': 87,
+  'MySQL': 85,
+  'Modélisation de bases de données': 88,
+  'ORM/ODM': 86,
+  'Git': 95,
+  'GitHub Actions': 92,
+  'Pipelines CI/CD': 90,
+  'Bitbucket': 85,
+  'Jira': 80,
+  'VPS': 82,
+  'SQL': 88,
+  'HTML5/CSS3': 90
+};
+
 const SkillCategory = ({ title, skills }) => {
-  const [hoveredSkill, setHoveredSkill] = useState(null);
   const [progressBars, setProgressBars] = useState({});
 
   // Niveaux de compétence simulés (en pourcentage)
-  const skillLevels = {
-    'React Native (Expo & CLI)': 95,
-    'Redux': 90,
-    'TypeScript': 92,
-    'JavaScript ES6+': 95,
-    'iOS/Android Development': 88,
-    'React.js': 90,
-    'Next.js': 85,
-    'Tailwind CSS': 87,
-    'Modern CSS': 85,
-    'Node.js': 90,
-    'Express.js': 88,
-    'RESTful APIs': 92,
-    'Prisma ORM': 85,
-    'JWT Authentication': 90,
-    'PostgreSQL': 87,
-    'MySQL': 85,
-    'Database Design': 88,
-    'ORM/ODM': 86,
-    'Git': 95,
-    'GitHub Actions': 92,
-    'CI/CD Pipelines': 90,
-    'Bitbucket': 85,
-    'Jira': 80,
-    'VPS': 82,
-    'SQL': 88,
-    'HTML5/CSS3': 90
-  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -200,8 +199,6 @@ const SkillCategory = ({ title, skills }) => {
           <div
             key={index} 
             className={styles.skillItem}
-            onMouseEnter={() => setHoveredSkill(index)}
-            onMouseLeave={() => setHoveredSkill(null)}
             style={{ animationDelay: `${index * 0.1}s` }}
           >
             <div className={styles.skillHeader}>
@@ -336,15 +333,15 @@ const AnimatedStats = () => {
     <div className={styles.statsContainer}>
       <div className={styles.statItem}>
         <div className={styles.statNumber}>{yearsExp}+</div>
-        <div className={styles.statLabel}>Years Experience</div>
+        <div className={styles.statLabel}>Années d’expérience</div>
       </div>
       <div className={styles.statItem}>
         <div className={styles.statNumber}>{projects}+</div>
-        <div className={styles.statLabel}>Projects Completed</div>
+        <div className={styles.statLabel}>Projets réalisés</div>
       </div>
       <div className={styles.statItem}>
         <div className={styles.statNumber}>{technologies}+</div>
-        <div className={styles.statLabel}>Technologies Mastered</div>
+        <div className={styles.statLabel}>Technologies maîtrisées</div>
       </div>
     </div>
   );
@@ -378,7 +375,7 @@ export function CV() {
                   size="s"
                   secondary
                 >
-                  Download PDF
+                  Télécharger le PDF
                 </Button>
               </div>
               
@@ -419,7 +416,7 @@ export function CV() {
           {/* Professional Summary */}
           <section className={styles.section}>
             <Heading level={2} as="h2" className={styles.sectionTitle}>
-              Professional Profile
+              Profil professionnel
             </Heading>
             <Text size="m" className={styles.summary}>
               {cvData.summary.text}
@@ -429,22 +426,22 @@ export function CV() {
           {/* Technical Skills */}
           <section className={styles.section}>
             <Heading level={2} as="h2" className={styles.sectionTitle}>
-              Technical Skills
+              Compétences techniques
             </Heading>
             <div className={styles.skillsGrid}>
-              <SkillCategory title="Mobile Development" skills={cvData.skills.mobile} />
-              <SkillCategory title="Frontend" skills={cvData.skills.frontend} />
-              <SkillCategory title="Backend" skills={cvData.skills.backend} />
-              <SkillCategory title="Databases" skills={cvData.skills.databases} />
+              <SkillCategory title="Développement mobile" skills={cvData.skills.mobile} />
+              <SkillCategory title="Front-end" skills={cvData.skills.frontend} />
+              <SkillCategory title="Back-end" skills={cvData.skills.backend} />
+              <SkillCategory title="Bases de données" skills={cvData.skills.databases} />
               <SkillCategory title="DevOps & CI/CD" skills={cvData.skills.devops} />
-              <SkillCategory title="Languages" skills={cvData.skills.languages} />
+              <SkillCategory title="Langages" skills={cvData.skills.languages} />
             </div>
           </section>
 
           {/* Professional Experience */}
           <section className={styles.section}>
             <Heading level={2} as="h2" className={styles.sectionTitle}>
-              Professional Experience
+              Expérience professionnelle
             </Heading>
             <div className={styles.experienceList}>
               {cvData.experience.map((exp, index) => (
@@ -456,7 +453,7 @@ export function CV() {
           {/* Notable Projects */}
           <section className={styles.section}>
             <Heading level={2} as="h2" className={styles.sectionTitle}>
-              Notable Projects
+              Projets marquants
             </Heading>
             <div className={styles.projectsGrid}>
               {cvData.projects.map((project, index) => (
@@ -468,7 +465,7 @@ export function CV() {
           {/* Education */}
           <section className={styles.section}>
             <Heading level={2} as="h2" className={styles.sectionTitle}>
-              Education
+              Formation
             </Heading>
             <div className={styles.educationList}>
               {cvData.education.map((edu, index) => (
@@ -493,7 +490,7 @@ export function CV() {
               
               <div className={styles.column}>
                 <Heading level={3} as="h3" className={styles.subsectionTitle}>
-                  Languages
+                  Langues
                 </Heading>
                 <div className={styles.languagesList}>
                   {cvData.languages.map((lang, index) => (
