@@ -1,1 +1,0 @@
-export { AdminDashboard as default, meta } from './admin-dashboard';

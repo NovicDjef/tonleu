@@ -4,6 +4,8 @@ import hotelTexture from '~/assets/case-studies/hotel/hero.webp';
 import hotelTexture2 from '~/assets/case-studies/hotel/suites.webp';
 import hotelAdminTexture from '~/assets/case-studies/hotel-admin/overview.webp';
 import hotelAdminTexture2 from '~/assets/case-studies/hotel-admin/rooms-plan.webp';
+import j3Texture from '~/assets/case-studies/j3-immobilier/hero.webp';
+import j3Texture2 from '~/assets/case-studies/j3-immobilier/collection.webp';
 import jtTradeTexture from '~/assets/case-studies/jt-trade/hero.webp';
 import jtTradeTexture2 from '~/assets/case-studies/jt-trade/countries.webp';
 import koursierTexture1 from '~/assets/koursier/588.png';
@@ -68,11 +70,12 @@ export const Home = () => {
   const projectSeven = useRef();
   const projectEight = useRef();
   const projectNine = useRef();
+  const projectTen = useRef();
   const websites = useRef();
   const details = useRef();
 
   useEffect(() => {
-    const sections = [intro, projectOne, projectTwo, projectThree, projectFour, projectFive, projectSix, projectSeven, projectEight, projectNine, websites, details];
+    const sections = [intro, projectOne, projectTwo, projectThree, projectFour, projectFive, projectSix, projectSeven, projectEight, projectNine, projectTen, websites, details];
 
     const sectionObserver = new IntersectionObserver(
       (entries, observer) => {
@@ -144,80 +147,6 @@ export const Home = () => {
         sectionRef={projectTwo}
         visible={visibleSections.includes(projectTwo.current)}
         index={2}
-        title="Hôtel Sept-Îles"
-        description="Site web et moteur de réservation directe d’un hôtel de la Côte-Nord : disponibilités en temps réel, paiement en ligne, spa et restaurant."
-        buttonText="Voir le projet"
-        buttonLink="/projects/hotel-sept-iles"
-        model={{
-          type: 'laptop',
-          alt: 'Page d’accueil du site de l’Hôtel Sept-Îles',
-          textures: [
-            {
-              srcSet: `${hotelTexture} 800w, ${hotelTexture} 1920w`,
-              placeholder: hotelTexture,
-            },
-            {
-              srcSet: `${hotelTexture2} 800w, ${hotelTexture2} 1920w`,
-              placeholder: hotelTexture2,
-            },
-          ],
-        }}
-      />
-      <ProjectSummary
-        id="project-3"
-        alternate
-        sectionRef={projectThree}
-        visible={visibleSections.includes(projectThree.current)}
-        index={3}
-        title="Hôtel Sept-Îles — Gestion"
-        description="Console de gestion interne de l’hôtel : réservations, plan des 155 chambres, clients, alertes, comptabilité TPS/TVQ et paiements."
-        buttonText="Voir le projet"
-        buttonLink="/projects/hotel-sept-iles-admin"
-        model={{
-          type: 'laptop',
-          alt: 'Console de gestion de l’Hôtel Sept-Îles',
-          textures: [
-            {
-              srcSet: `${hotelAdminTexture} 800w, ${hotelAdminTexture} 1920w`,
-              placeholder: hotelAdminTexture,
-            },
-            {
-              srcSet: `${hotelAdminTexture2} 800w, ${hotelAdminTexture2} 1920w`,
-              placeholder: hotelAdminTexture2,
-            },
-          ],
-        }}
-      />
-      <ProjectSummary
-        id="project-4"
-        sectionRef={projectFour}
-        visible={visibleSections.includes(projectFour.current)}
-        index={4}
-        title="JT Trade and Services"
-        description="Site web d’une entreprise de transport de colis entre l’Afrique, le Canada et l’Europe, avec demande de devis, simulateur de tarifs et formations en langues."
-        buttonText="Voir le projet"
-        buttonLink="/projects/jt-trade-services"
-        model={{
-          type: 'laptop',
-          alt: 'Page d’accueil du site JT Trade and Services',
-          textures: [
-            {
-              srcSet: `${jtTradeTexture} 800w, ${jtTradeTexture} 1920w`,
-              placeholder: jtTradeTexture,
-            },
-            {
-              srcSet: `${jtTradeTexture2} 800w, ${jtTradeTexture2} 1920w`,
-              placeholder: jtTradeTexture2,
-            },
-          ],
-        }}
-      />
-      <ProjectSummary
-        id="project-5"
-        alternate
-        sectionRef={projectFive}
-        visible={visibleSections.includes(projectFive.current)}
-        index={5}
         title="Koursier"
         description="Application mobile de livraison au Cameroun : repas, colis et bouteilles de gaz, avec suivi en temps réel et paiement par mobile money."
         buttonText="Voir le projet"
@@ -238,10 +167,11 @@ export const Home = () => {
         }}
       />
       <ProjectSummary
-        id="project-6"
-        sectionRef={projectSix}
-        visible={visibleSections.includes(projectSix.current)}
-        index={6}
+        id="project-3"
+        alternate
+        sectionRef={projectThree}
+        visible={visibleSections.includes(projectThree.current)}
+        index={3}
         title="Koursier Livreur"
         description="Application des livreurs Koursier : réception des commandes en temps réel, navigation vers le client, suivi des livraisons et portefeuille de gains."
         buttonText="Voir le projet"
@@ -262,11 +192,10 @@ export const Home = () => {
         }}
       />
       <ProjectSummary
-        id="project-7"
-        alternate
-        sectionRef={projectSeven}
-        visible={visibleSections.includes(projectSeven.current)}
-        index={7}
+        id="project-4"
+        sectionRef={projectFour}
+        visible={visibleSections.includes(projectFour.current)}
+        index={4}
         title="RaphyCar"
         description="Application mobile de location de véhicules au Cameroun : recherche filtrée, réservation, messagerie avec les propriétaires et gestion de flotte pour les agences."
         buttonText="Voir le projet"
@@ -287,10 +216,11 @@ export const Home = () => {
         }}
       />
       <ProjectSummary
-        id="project-8"
-        sectionRef={projectEight}
-        visible={visibleSections.includes(projectEight.current)}
-        index={8}
+        id="project-5"
+        alternate
+        sectionRef={projectFive}
+        visible={visibleSections.includes(projectFive.current)}
+        index={5}
         title="MedRemind"
         description="Application mobile de gestion des médicaments : planification des prises, rappels, suivi des recharges et historique pour mieux suivre son traitement."
         buttonText="Voir le projet"
@@ -311,11 +241,108 @@ export const Home = () => {
         }}
       />
       <ProjectSummary
+        id="project-6"
+        sectionRef={projectSix}
+        visible={visibleSections.includes(projectSix.current)}
+        index={6}
+        title="Hôtel Sept-Îles"
+        description="Site web et moteur de réservation directe d’un hôtel de la Côte-Nord : disponibilités en temps réel, paiement en ligne, spa et restaurant."
+        buttonText="Voir le projet"
+        buttonLink="/projects/hotel-sept-iles"
+        model={{
+          type: 'laptop',
+          alt: 'Page d’accueil du site de l’Hôtel Sept-Îles',
+          textures: [
+            {
+              srcSet: `${hotelTexture} 800w, ${hotelTexture} 1920w`,
+              placeholder: hotelTexture,
+            },
+            {
+              srcSet: `${hotelTexture2} 800w, ${hotelTexture2} 1920w`,
+              placeholder: hotelTexture2,
+            },
+          ],
+        }}
+      />
+      <ProjectSummary
+        id="project-7"
+        alternate
+        sectionRef={projectSeven}
+        visible={visibleSections.includes(projectSeven.current)}
+        index={7}
+        title="Hôtel Sept-Îles — Gestion"
+        description="Console de gestion interne de l’hôtel : réservations, plan des 155 chambres, clients, alertes, comptabilité TPS/TVQ et paiements."
+        buttonText="Voir le projet"
+        buttonLink="/projects/hotel-sept-iles-admin"
+        model={{
+          type: 'laptop',
+          alt: 'Console de gestion de l’Hôtel Sept-Îles',
+          textures: [
+            {
+              srcSet: `${hotelAdminTexture} 800w, ${hotelAdminTexture} 1920w`,
+              placeholder: hotelAdminTexture,
+            },
+            {
+              srcSet: `${hotelAdminTexture2} 800w, ${hotelAdminTexture2} 1920w`,
+              placeholder: hotelAdminTexture2,
+            },
+          ],
+        }}
+      />
+      <ProjectSummary
+        id="project-8"
+        sectionRef={projectEight}
+        visible={visibleSections.includes(projectEight.current)}
+        index={8}
+        title="J3 Immobilier"
+        description="Site et plateforme de gestion locative d’un gestionnaire immobilier de Gatineau : collection de logements, réservation de visites, espace locataire et back-office de maintenance."
+        buttonText="Voir le projet"
+        buttonLink="/projects/j3-immobilier"
+        model={{
+          type: 'laptop',
+          alt: 'Page d’accueil du site J3 Immobilier',
+          textures: [
+            {
+              srcSet: `${j3Texture} 800w, ${j3Texture} 1920w`,
+              placeholder: j3Texture,
+            },
+            {
+              srcSet: `${j3Texture2} 800w, ${j3Texture2} 1920w`,
+              placeholder: j3Texture2,
+            },
+          ],
+        }}
+      />
+      <ProjectSummary
         id="project-9"
         alternate
         sectionRef={projectNine}
         visible={visibleSections.includes(projectNine.current)}
         index={9}
+        title="JT Trade and Services"
+        description="Site web d’une entreprise de transport de colis entre l’Afrique, le Canada et l’Europe, avec demande de devis, simulateur de tarifs et formations en langues."
+        buttonText="Voir le projet"
+        buttonLink="/projects/jt-trade-services"
+        model={{
+          type: 'laptop',
+          alt: 'Page d’accueil du site JT Trade and Services',
+          textures: [
+            {
+              srcSet: `${jtTradeTexture} 800w, ${jtTradeTexture} 1920w`,
+              placeholder: jtTradeTexture,
+            },
+            {
+              srcSet: `${jtTradeTexture2} 800w, ${jtTradeTexture2} 1920w`,
+              placeholder: jtTradeTexture2,
+            },
+          ],
+        }}
+      />
+      <ProjectSummary
+        id="project-10"
+        sectionRef={projectTen}
+        visible={visibleSections.includes(projectTen.current)}
+        index={10}
         title="Burns Immobilier"
         description="Site web d’un gestionnaire immobilier de Sept-Îles : types de logements, albums photo par appartement et demande de visite en ligne."
         buttonText="Voir le projet"

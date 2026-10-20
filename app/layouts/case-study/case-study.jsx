@@ -37,6 +37,34 @@ const Screen = ({ device, src, alt, className, sizes }) => {
   );
 };
 
+const FeatureRow = ({ device, feature, index, isDark }) => {
+  const isPhone = device === 'phone';
+
+  return (
+    <ProjectSection light={index % 2 === 1 && isDark}>
+      <ProjectSectionColumns
+        className={classes(
+          styles.feature,
+          isPhone && styles.featurePhone,
+          index % 2 === 1 && styles.reverse
+        )}
+      >
+        <ProjectTextRow>
+          <ProjectSectionHeading>{feature.title}</ProjectSectionHeading>
+          <ProjectSectionText>{feature.text}</ProjectSectionText>
+        </ProjectTextRow>
+        <Screen
+          device={device}
+          src={feature.src}
+          alt={feature.alt}
+          className={styles.featureImage}
+          sizes={isPhone ? '300px' : `(max-width: ${media.tablet}px) 100vw, 50vw`}
+        />
+      </ProjectSectionColumns>
+    </ProjectSection>
+  );
+};
+
 export const CaseStudy = ({
   slug,
   device = 'phone',
@@ -49,6 +77,7 @@ export const CaseStudy = ({
   challenge,
   solution,
   features = [],
+  web,
   outcome,
 }) => {
   const { theme } = useTheme();
@@ -60,6 +89,8 @@ export const CaseStudy = ({
     links.appStore && { label: 'App Store', url: links.appStore },
     links.googlePlay && { label: 'Google Play', url: links.googlePlay },
   ].filter(Boolean);
+
+  const sectionCount = features.length + (web ? web.features.length + 1 : 0);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -128,36 +159,56 @@ export const CaseStudy = ({
           </ProjectSection>
         )}
 
-        {features.map((feature, index) => (
-          <ProjectSection key={feature.title} light={index % 2 === 1 && isDark}>
-            <ProjectSectionColumns
-              className={classes(
-                styles.feature,
-                isPhone && styles.featurePhone,
-                index % 2 === 1 && styles.reverse
-              )}
-            >
-              <ProjectTextRow>
-                <ProjectSectionHeading>{feature.title}</ProjectSectionHeading>
-                <ProjectSectionText>{feature.text}</ProjectSectionText>
-              </ProjectTextRow>
-              <Screen
-                device={device}
-                src={feature.src}
-                alt={feature.alt}
-                className={styles.featureImage}
-                sizes={
-                  isPhone
-                    ? '300px'
-                    : `(max-width: ${media.tablet}px) 100vw, 50vw`
-                }
-              />
-            </ProjectSectionColumns>
+        {web && (
+          <ProjectSection padding="top">
+            <ProjectTextRow center centerMobile noMargin>
+              <ProjectSectionHeading>L’application mobile</ProjectSectionHeading>
+            </ProjectTextRow>
           </ProjectSection>
+        )}
+
+        {features.map((feature, index) => (
+          <FeatureRow
+            key={feature.title}
+            device={device}
+            feature={feature}
+            index={index}
+            isDark={isDark}
+          />
+        ))}
+
+        {web && (
+          <ProjectSection light={features.length % 2 === 1 && isDark}>
+            <ProjectSectionContent>
+              <ProjectTextRow center centerMobile>
+                <ProjectSectionHeading>{web.title}</ProjectSectionHeading>
+                <ProjectSectionText>{web.text}</ProjectSectionText>
+              </ProjectTextRow>
+              <ProjectImage
+                raised
+                srcSet={`${web.hero.src} ${browserSize.width}w`}
+                width={browserSize.width}
+                height={browserSize.height}
+                placeholder={web.hero.src}
+                alt={web.hero.alt}
+                sizes={`(max-width: ${media.mobile}px) 100vw, (max-width: ${media.tablet}px) 800px, 1000px`}
+              />
+            </ProjectSectionContent>
+          </ProjectSection>
+        )}
+
+        {web?.features.map((feature, index) => (
+          <FeatureRow
+            key={feature.title}
+            device="browser"
+            feature={feature}
+            index={features.length + 1 + index}
+            isDark={isDark}
+          />
         ))}
 
         {outcome && (
-          <ProjectSection light={features.length % 2 === 1 && isDark}>
+          <ProjectSection light={sectionCount % 2 === 1 && isDark}>
             <ProjectSectionContent>
               <ProjectTextRow center centerMobile noMargin>
                 <ProjectSectionHeading>{outcome.title}</ProjectSectionHeading>

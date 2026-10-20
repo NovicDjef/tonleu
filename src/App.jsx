@@ -13,6 +13,7 @@ import { Koursier } from '../app/routes/projects.koursier/koursier';
 import { Planevia } from '../app/routes/projects.planevia/planevia';
 import { HotelSeptIles } from '../app/routes/projects.hotel-sept-iles/hotel-sept-iles';
 import { HotelSeptIlesAdmin } from '../app/routes/projects.hotel-sept-iles-admin/hotel-sept-iles-admin';
+import { J3Immobilier } from '../app/routes/projects.j3-immobilier/j3-immobilier';
 import { JtTradeServices } from '../app/routes/projects.jt-trade-services/jt-trade-services';
 import { Reminder } from '../app/routes/projects.reminder/reminder';
 import { KoursierDelivery } from '../app/routes/projects.koursier-delivery/koursier-delivery';
@@ -131,6 +132,7 @@ function App() {
               <Route path="/projects/planevia" element={<Planevia />} />
               <Route path="/projects/hotel-sept-iles" element={<HotelSeptIles />} />
               <Route path="/projects/hotel-sept-iles-admin" element={<HotelSeptIlesAdmin />} />
+              <Route path="/projects/j3-immobilier" element={<J3Immobilier />} />
               <Route path="/projects/jt-trade-services" element={<JtTradeServices />} />
               <Route path="/projects/koursier" element={<Koursier />} />
               <Route path="/projects/reminder" element={<Reminder />} />

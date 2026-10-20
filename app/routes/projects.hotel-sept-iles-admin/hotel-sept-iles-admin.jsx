@@ -7,7 +7,7 @@ import background from '~/assets/case-studies/hotel-admin/background.webp';
 import { CaseStudy } from '~/layouts/case-study';
 import { baseMeta } from '~/utils/meta';
 
-const title = 'Hôtel Sept-Îles Gestion';
+const title = 'Hôtel Sept-Îles — Gestion';
 const description =
   'Console de gestion interne de l’Hôtel Sept-Îles : réservations, plan des 155 chambres, clients et fidélité, ménage, alertes, comptabilité TPS/TVQ et paiements, synchronisés avec le site public.';
 

@@ -3,6 +3,8 @@ import available from '~/assets/case-studies/koursier-delivery/available.webp';
 import dashboard from '~/assets/case-studies/koursier-delivery/dashboard.webp';
 import wallet from '~/assets/case-studies/koursier-delivery/wallet.webp';
 import background from '~/assets/case-studies/koursier-delivery/background.webp';
+import adminPerformance from '~/assets/case-studies/koursier-delivery/admin-performance.webp';
+import webDrivers from '~/assets/case-studies/koursier-delivery/web-drivers.webp';
 import { CaseStudy } from '~/layouts/case-study';
 import { baseMeta } from '~/utils/meta';
 
@@ -22,6 +24,7 @@ export const KoursierDelivery = () => (
     description={description}
     links={{
       appStore: 'https://apps.apple.com/ca/app/koursier-app/id6810741237?l=fr-CA',
+      website: 'https://koursier.cm',
     }}
     hero={[
       { src: available, alt: 'Commandes disponibles pour le livreur' },
@@ -56,7 +59,20 @@ export const KoursierDelivery = () => (
         alt: 'Portefeuille et gains',
       },
     ]}
-    roles={['React Native', 'Node.js', 'WebSocket', 'Géolocalisation', 'Notifications push']}
+    web={{
+      title: 'Côté web',
+      text: 'Le site koursier.cm présente l’application aux futurs livreurs, et le back-office suit la qualité du service pour orienter les courses vers les meilleurs livreurs.',
+      hero: { src: webDrivers, alt: 'Page livreurs de koursier.cm' },
+      features: [
+        {
+          title: 'Performance des livreurs',
+          text: 'Notes des clients, taux d’acceptation et signalements : les livreurs les mieux notés sont sollicités en priorité par le dispatch.',
+          src: adminPerformance,
+          alt: 'Tableau de performance des livreurs',
+        },
+      ],
+    }}
+    roles={['React Native', 'Next.js', 'Node.js', 'WebSocket', 'Géolocalisation']}
     outcome={{
       title: 'Résultat',
       text: 'L’application livreur est publiée sur l’App Store et reçoit en temps réel les commandes passées depuis l’application client Koursier.',
