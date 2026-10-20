@@ -279,6 +279,12 @@
     }
   }
 
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spaceS);
+  }
+
   .linkButton {
     padding-left: var(--spaceXS);
 

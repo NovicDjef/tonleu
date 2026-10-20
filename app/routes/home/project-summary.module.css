@@ -258,6 +258,9 @@
 }
 
 .button {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spaceS);
   transition-property: opacity;
   transition-timing-function: var(--bezierFastoutSlowin);
   transition-duration: var(--durationXL);

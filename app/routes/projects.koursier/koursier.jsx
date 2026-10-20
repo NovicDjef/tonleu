@@ -56,7 +56,10 @@ export const Koursier = () => {
         <ProjectHeader
           title={title}
           description={description}
-          url="https://play.google.com/store/apps/details?id=com.novic.koursier"
+          links={[
+            { label: 'App Store', url: 'https://apps.apple.com/ca/app/koursier/id6761641187?l=fr-CA' },
+            { label: 'Google Play', url: 'https://play.google.com/store/apps/details?id=com.novic.koursier' },
+          ]}
           roles={roles}
         />
 

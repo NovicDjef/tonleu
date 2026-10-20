@@ -52,7 +52,10 @@ export const KoursierDelivery = () => {
         <ProjectHeader
           title={title}
           description={description}
-          url="https://play.google.com/store/apps/details?id=com.Lkoursier.app"
+          links={[
+            { label: 'App Store', url: 'https://apps.apple.com/ca/app/koursier-app/id6810741237?l=fr-CA' },
+            { label: 'Google Play', url: 'https://play.google.com/store/apps/details?id=com.Lkoursier.app' },
+          ]}
           roles={roles}
         />
 

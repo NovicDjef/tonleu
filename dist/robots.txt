@@ -1,1 +1,35 @@
 User-agent: *
+Allow: /
+
+# Optimisation pour les moteurs de recherche
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+# Bloquer les bots indésirables
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# Sitemap
+Sitemap: https://novic.dev/sitemap.xml
+
+# Fichiers à ne pas indexer
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /draco/

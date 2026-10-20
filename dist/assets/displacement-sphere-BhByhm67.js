@@ -1,4 +1,4 @@
-import{k as R,r as e,b as L,u as C,a as E,c as y,m as z,j as h,T as I}from"./index-DMwg7sQA.js";import{b as M,W as k,y as G,a as F,h as j,N as A,U as D,X as q,G as T,m as U,n as V,l as B,k as H,r as N}from"./three-taO7SZWr.js";import{t as W}from"./throttle-BgiUmwhn.js";const X=`#define PHONG
+import{k as R,r as e,b as L,u as C,a as E,c as y,m as z,j as h,T as I}from"./index-C3yNUibo.js";import{b as M,W as k,y as G,a as F,h as j,N as A,U as D,X as q,G as T,m as U,n as V,l as B,k as H,r as N}from"./three-taO7SZWr.js";import{t as W}from"./throttle-BgiUmwhn.js";const X=`#define PHONG
 
 uniform vec3 diffuse;
 uniform vec3 emissive;

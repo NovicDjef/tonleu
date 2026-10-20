@@ -1,38 +1,124 @@
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Page d'accueil -->
   <url>
-    <loc>https://tonleu.com/</loc>
+    <loc>https://novic.dev/</loc>
+    <lastmod>2025-01-17</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://novic.dev/social-image.png</image:loc>
+      <image:title>Novic Tonleu - Développeur Mobile React Native Portfolio</image:title>
+      <image:caption>Portfolio de Novic Tonleu, développeur mobile React Native expert au Cameroun</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Projets principaux -->
+  <url>
+    <loc>https://novic.dev/projects/planevia</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://tonleu.com/contact/</loc>
+    <loc>https://novic.dev/projects/koursier</loc>
+    <lastmod>2025-01-17</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://novic.dev/assets/koursier/588.png</image:loc>
+      <image:title>Koursier - Application de livraison multi-services</image:title>
+      <image:caption>Interface de l'application mobile Koursier développée en React Native</image:caption>
+    </image:image>
   </url>
+
   <url>
-    <loc>https://tonleu.com/articles/</loc>
+    <loc>https://novic.dev/projects/admin-dashboard</loc>
+    <lastmod>2025-01-17</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://novic.dev/assets/dashb/homeresto.jpg</image:loc>
+      <image:title>Dashboard Administratif - Gestion de livraison</image:title>
+      <image:caption>Tableau de bord administratif pour la gestion des opérations de livraison</image:caption>
+    </image:image>
   </url>
+
   <url>
-    <loc>https://tonleu.com/uses/</loc>
+    <loc>https://novic.dev/projects/koursier-delivery</loc>
+    <lastmod>2025-01-17</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://novic.dev/assets/Delivery/home.png</image:loc>
+      <image:title>Koursier Delivery - Application livreur</image:title>
+      <image:caption>Application mobile pour les livreurs Koursier développée en React Native</image:caption>
+    </image:image>
   </url>
+
   <url>
-    <loc>https://tonleu.com/projects/slice/</loc>
+    <loc>https://novic.dev/projects/raphycar</loc>
+    <lastmod>2025-01-17</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://novic.dev/assets/raphy/home2.png</image:loc>
+      <image:title>RaphyCar - Plateforme de location de véhicules avec IA</image:title>
+      <image:caption>Application mobile RaphyCar avec chatbot IA pour la location de véhicules au Cameroun</image:caption>
+    </image:image>
   </url>
+
   <url>
-    <loc>https://tonleu.com/projects/smart-sparrow/</loc>
+    <loc>https://novic.dev/projects/reminder</loc>
+    <lastmod>2025-01-17</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://novic.dev/assets/reminder1.png</image:loc>
+      <image:title>Reminder - Gestion intelligente des médicaments</image:title>
+      <image:caption>Application mobile de gestion des médicaments avec rappels intelligents</image:caption>
+    </image:image>
   </url>
+
   <url>
-    <loc>https://tonleu.com/projects/volkihar-knight/</loc>
+    <loc>https://novic.dev/projects/burns-immobilier</loc>
+    <lastmod>2025-01-17</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://novic.dev/assets/burns/home-page.png</image:loc>
+      <image:title>Burns Immobilier - Gestion locative Côte-Nord</image:title>
+      <image:caption>Site web de gestion immobilière pour la région de la Côte-Nord au Québec</image:caption>
+    </image:image>
   </url>
+
   <url>
-    <loc>https://tonleu.com/articles/hello-world</loc>
+    <loc>https://novic.dev/projects/smart-sparrow</loc>
+    <lastmod>2025-01-17</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://novic.dev/assets/spr-lesson-builder-dark.jpg</image:loc>
+      <image:title>Smart Sparrow - Plateforme éducative</image:title>
+      <image:caption>Constructeur de leçons interactives pour l'éducation en ligne</image:caption>
+    </image:image>
   </url>
+
+  <!-- Pages de contact et informations -->
   <url>
-    <loc>https://tonleu.com/articles/modern-styling-in-react</loc>
-    <changefreq>monthly</changefreq>
+    <loc>https://novic.dev/contact</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
   </url>
+
+  <url>
+    <loc>https://novic.dev/articles</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
 </urlset>

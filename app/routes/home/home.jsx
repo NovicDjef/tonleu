@@ -1,3 +1,5 @@
+import planeviaTexture1 from '~/assets/planevia/calendar-day.png';
+import planeviaTexture2 from '~/assets/planevia/calendar-week.png';
 import koursierTexture1 from '~/assets/koursier/588.png';
 import koursierTexture2 from '~/assets/koursier/608.png';
 import reminder1 from '~/assets/reminder1.png';
@@ -18,6 +20,7 @@ import { baseMeta } from '~/utils/meta';
 import { Intro } from './intro';
 import { Profile } from './profile';
 import { ProjectSummary } from './project-summary';
+import { Websites } from './websites';
 import { useEffect, useRef, useState } from 'react';
 import config from '~/config.json';
 import styles from './home.module.css';
@@ -62,11 +65,12 @@ export const Home = () => {
   const projectFive = useRef();
   const projectSix = useRef();
   const projectSeven = useRef();
-  // const projectEight = useRef();
+  const projectEight = useRef();
+  const websites = useRef();
   const details = useRef();
 
   useEffect(() => {
-    const sections = [intro, projectOne, projectTwo, projectThree, projectFour, projectFive, projectSix, projectSeven, details];
+    const sections = [intro, projectOne, projectTwo, projectThree, projectFour, projectFive, projectSix, projectSeven, projectEight, websites, details];
 
     const sectionObserver = new IntersectionObserver(
       (entries, observer) => {
@@ -114,10 +118,41 @@ export const Home = () => {
         sectionRef={projectOne}
         visible={visibleSections.includes(projectOne.current)}
         index={1}
+        title="Planevia - Plateforme SaaS Web & Mobile"
+        description="Solution SaaS pour spas, cliniques et salons au Québec : réservation en ligne 24/7, dossiers clients, rappels automatiques, pointage des employés et comptabilité TPS/TVQ, sur le web, iOS et Android."
+        buttonText="View project"
+        buttonLink="/projects/planevia"
+        storeLinks={[
+          { text: 'App Store', href: 'https://apps.apple.com/ca/app/planevia/id6761085786?l=fr-CA' },
+          { text: 'Google Play', href: 'https://play.google.com/store/apps/details?id=ca.planevia.app' },
+        ]}
+        model={{
+          type: 'phone',
+          alt: 'Calendrier journalier et hebdomadaire de l’application Planevia',
+          textures: [
+            {
+              srcSet: `${planeviaTexture1} 375w, ${planeviaTexture1} 750w`,
+              placeholder: planeviaTexture1,
+            },
+            {
+              srcSet: `${planeviaTexture2} 375w, ${planeviaTexture2} 750w`,
+              placeholder: planeviaTexture2,
+            },
+          ],
+        }}
+      />
+      <ProjectSummary
+        id="project-2"
+        sectionRef={projectTwo}
+        visible={visibleSections.includes(projectTwo.current)}
+        index={2}
         title="Multi-Service Delivery Platform"
         description="A comprehensive mobile delivery platform enabling real-time tracking, multi-category ordering, and seamless user experience for gas, packages, and food delivery services."
         buttonText="View project"
         buttonLink="/projects/koursier"
+        storeLinks={[
+          { text: 'App Store', href: 'https://apps.apple.com/ca/app/koursier/id6761641187?l=fr-CA' },
+        ]}
         model={{
           type: 'phone',
           alt: 'Koursier app interface',
@@ -134,10 +169,11 @@ export const Home = () => {
         }}
       />
       <ProjectSummary
-        id="project-2"
-        sectionRef={projectTwo}
-        visible={visibleSections.includes(projectTwo.current)}
-        index={2}
+        id="project-3"
+        alternate
+        sectionRef={projectThree}
+        visible={visibleSections.includes(projectThree.current)}
+        index={3}
         title="Comprehensive Admin Dashboard System"
         description="A powerful administrative dashboard designed for managing delivery operations, driver coordination, revenue tracking, and comprehensive business analytics for multi-service delivery platforms."
         buttonText="View project"
@@ -154,15 +190,17 @@ export const Home = () => {
         }}
       />
       <ProjectSummary
-        id="project-3"
-        alternate
-        sectionRef={projectThree}
-        visible={visibleSections.includes(projectThree.current)}
-        index={3}
+        id="project-4"
+        sectionRef={projectFour}
+        visible={visibleSections.includes(projectFour.current)}
+        index={4}
         title="Koursier Delivery Management System"
         description="Professional delivery driver application for managing orders, real-time tracking, and seamless coordination with the main Koursier platform to ensure efficient delivery operations."
         buttonText="View project"
         buttonLink="/projects/koursier-delivery"
+        storeLinks={[
+          { text: 'App Store', href: 'https://apps.apple.com/ca/app/koursier-app/id6810741237?l=fr-CA' },
+        ]}
         model={{
           type: 'phone',
           alt: 'Koursier Delivery app order management interface',
@@ -179,10 +217,11 @@ export const Home = () => {
         }}
       />
       <ProjectSummary
-        id="project-4"
-        sectionRef={projectFour}
-        visible={visibleSections.includes(projectFour.current)}
-        index={4}
+        id="project-5"
+        alternate
+        sectionRef={projectFive}
+        visible={visibleSections.includes(projectFive.current)}
+        index={5}
         title="RaphyCar - AI-Powered Vehicle Rental Platform"
         description="A comprehensive car rental mobile application designed for the Cameroonian market, featuring intelligent filtering, AI-powered chatbot customer support, and complete administrative management for vehicle fleet operations."
         buttonText="View project"
@@ -203,11 +242,10 @@ export const Home = () => {
         }}
       />
       <ProjectSummary
-        id="project-5"
-        alternate
-        sectionRef={projectFive}
-        visible={visibleSections.includes(projectFive.current)}
-        index={5}
+        id="project-6"
+        sectionRef={projectSix}
+        visible={visibleSections.includes(projectSix.current)}
+        index={6}
         title="Smart Medication Management System"
         description="A comprehensive mobile application designed to help users manage their medication schedules with intelligent reminders, tracking capabilities, and detailed intake history for improved healthcare compliance."
         buttonText="View project"
@@ -228,10 +266,11 @@ export const Home = () => {
         }}
       />
       <ProjectSummary
-        id="project-6"
-        sectionRef={projectSix}
-        visible={visibleSections.includes(projectSix.current)}
-        index={6}
+        id="project-7"
+        alternate
+        sectionRef={projectSeven}
+        visible={visibleSections.includes(projectSeven.current)}
+        index={7}
         title="Design the future through programming"
         description="Designing a platform to help educators build better online courseware"
         buttonText="View project"
@@ -248,11 +287,10 @@ export const Home = () => {
         }}
       />
       <ProjectSummary
-        id="project-7"
-        alternate
-        sectionRef={projectSeven}
-        visible={visibleSections.includes(projectSeven.current)}
-        index={7}
+        id="project-8"
+        sectionRef={projectEight}
+        visible={visibleSections.includes(projectEight.current)}
+        index={8}
         title="Burns Immobilier - Gestion Locative Côte-Nord"
         description="Plateforme complète de gestion immobilière pour la région de la Côte-Nord au Québec. Offrant des appartements variés à prix compétitifs, avec système de demande en ligne et support technique 24/7."
         buttonText="View project"
@@ -292,6 +330,11 @@ export const Home = () => {
           ],
         }}
       /> */}
+      <Websites
+        id="websites"
+        sectionRef={websites}
+        visible={visibleSections.includes(websites.current)}
+      />
       <Profile
         sectionRef={details}
         visible={visibleSections.includes(details.current)}
