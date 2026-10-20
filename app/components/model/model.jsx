@@ -385,7 +385,7 @@ const Device = ({
 
     // Generate promises to await when ready
     const load = async () => {
-      const { texture, position, url, scale, rotation } = model;
+      const { texture, position, url } = model;
       let loadFullResTexture;
       let playAnimation;
 
@@ -395,9 +395,6 @@ const Device = ({
       ]);
 
       modelGroup.current.add(gltf.scene);
-
-      if (scale) gltf.scene.scale.setScalar(scale);
-      if (rotation) gltf.scene.rotation.set(rotation.x || 0, rotation.y || 0, rotation.z || 0);
 
       gltf.scene.traverse(async node => {
         if (node.material) {

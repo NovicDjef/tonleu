@@ -128,8 +128,9 @@ export const Home = () => {
         buttonText="Voir le projet"
         buttonLink="/projects/planevia"
         model={{
-          type: 'combo',
+          type: 'showcase',
           alt: 'Site web et application mobile Planevia',
+          domain: 'planevia.ca',
           textures: [
             {
               srcSet: `${planeviaWeb} 1280w, ${planeviaWeb} 1920w`,
@@ -152,8 +153,9 @@ export const Home = () => {
         buttonText="Voir le projet"
         buttonLink="/projects/koursier"
         model={{
-          type: 'combo',
+          type: 'showcase',
           alt: 'Site web et application mobile Koursier',
+          domain: 'koursier.cm',
           textures: [
             {
               srcSet: `${koursierWeb} 1280w, ${koursierWeb} 1920w`,
@@ -177,8 +179,9 @@ export const Home = () => {
         buttonText="Voir le projet"
         buttonLink="/projects/koursier-delivery"
         model={{
-          type: 'combo',
+          type: 'showcase',
           alt: 'Page livreurs du site et application Koursier Livreur',
+          domain: 'koursier.cm',
           textures: [
             {
               srcSet: `${koursierDriversWeb} 1280w, ${koursierDriversWeb} 1920w`,
@@ -201,8 +204,9 @@ export const Home = () => {
         buttonText="Voir le projet"
         buttonLink="/projects/raphycar"
         model={{
-          type: 'combo',
+          type: 'showcase',
           alt: 'Site web et application mobile RaphyCar',
+          domain: 'raphycar.com',
           textures: [
             {
               srcSet: `${raphycarWeb} 1280w, ${raphycarWeb} 1920w`,

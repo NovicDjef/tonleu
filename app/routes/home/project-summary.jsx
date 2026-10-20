@@ -14,6 +14,16 @@ import { useHydrated } from '~/hooks/useHydrated';
 import katakana from './katakana.svg';
 import styles from './project-summary.module.css';
 
+// Horizontal bounds of each character in the katakana-project symbol (viewBox 751 × 136)
+const katakanaGlyphs = [
+  [0, 130],
+  [130, 250],
+  [250, 385],
+  [385, 498],
+  [498, 643],
+  [643, 751],
+];
+
 const Model = lazy(() =>
   import('~/components/model').then(module => ({ default: module.Model }))
 );
@@ -57,8 +67,28 @@ export function ProjectSummary({
         className={styles.svg}
         data-device={device}
         viewBox="0 0 751 136"
+        aria-hidden
       >
-        <use href={`${katakana}#katakana-project`} />
+        <defs>
+          {katakanaGlyphs.map(([start, end], index) => (
+            <clipPath key={start} id={`${id}-kana-${index}`}>
+              <rect x={start} y="0" width={end - start} height="136" />
+            </clipPath>
+          ))}
+        </defs>
+        {katakanaGlyphs.map(([start, end], index) => (
+          <g
+            key={start}
+            className={styles.kana}
+            clipPath={`url(#${id}-kana-${index})`}
+            style={{
+              '--index': index,
+              transformOrigin: `${(start + end) / 2}px 68px`,
+            }}
+          >
+            <use href={`${katakana}#katakana-project`} />
+          </g>
+        ))}
       </svg>
     );
   }
@@ -131,43 +161,46 @@ export function ProjectSummary({
             </div>
           </>
         )}
-        {model.type === 'combo' && (
+        {model.type === 'showcase' && (
           <>
-            {renderKatakana('laptop', visible)}
-            <div className={styles.model} data-device="laptop">
-              {!modelLoaded && (
-                <Loader center className={styles.loader} data-visible={visible} />
-              )}
-              {isHydrated && visible && (
-                <Suspense>
-                  <Model
-                    alt={model.alt}
-                    cameraPosition={{ x: 0, y: 0, z: 10.5 }}
-                    showDelay={700}
-                    onLoad={handleModelLoad}
-                    show={visible}
-                    models={[
-                      {
-                        ...deviceModels.laptop,
-                        position: { x: alternate ? -0.85 : -0.55, y: 0.2, z: 0 },
-                        texture: {
-                          ...model.textures[0],
-                          sizes: laptopSizes,
-                        },
-                      },
-                      {
-                        ...deviceModels.phone,
-                        position: { x: alternate ? -2.85 : 1.75, y: -0.15, z: 0.6 },
-                        scale: 0.5,
-                        texture: {
-                          ...model.textures[1],
-                          sizes: phoneSizes,
-                        },
-                      },
-                    ]}
-                  />
-                </Suspense>
-              )}
+            <div
+              className={styles.showcase}
+              data-visible={visible}
+              data-alternate={alternate}
+              role="img"
+              aria-label={model.alt}
+            >
+              {renderKatakana('showcase', visible)}
+              <div className={styles.showcaseGlow} aria-hidden />
+              <div className={styles.browser}>
+                <div className={styles.browserBar} aria-hidden>
+                  <span className={styles.browserDots}>
+                    <i />
+                    <i />
+                    <i />
+                  </span>
+                  <span className={styles.browserUrl}>{model.domain}</span>
+                </div>
+                <img
+                  className={styles.browserScreen}
+                  src={model.textures[0].placeholder}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  onLoad={handleModelLoad}
+                  ref={img => img?.complete && !modelLoaded && handleModelLoad()}
+                />
+                <span className={styles.scan} aria-hidden />
+              </div>
+              <div className={styles.phone}>
+                <img
+                  className={styles.phoneScreen}
+                  src={model.textures[1].placeholder}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
             </div>
           </>
         )}
