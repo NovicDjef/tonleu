@@ -3,7 +3,7 @@
 module.exports = {
   apps: [
     {
-      name: 'tonleus',
+      name: 'tonleu',
       script: 'node_modules/vite/bin/vite.js',
       args: `preview --host 0.0.0.0 --port ${process.env.PORT || 4173} --strictPort`,
       env_production: {
