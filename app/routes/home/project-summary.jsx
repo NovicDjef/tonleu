@@ -131,6 +131,46 @@ export function ProjectSummary({
             </div>
           </>
         )}
+        {model.type === 'combo' && (
+          <>
+            {renderKatakana('laptop', visible)}
+            <div className={styles.model} data-device="laptop">
+              {!modelLoaded && (
+                <Loader center className={styles.loader} data-visible={visible} />
+              )}
+              {isHydrated && visible && (
+                <Suspense>
+                  <Model
+                    alt={model.alt}
+                    cameraPosition={{ x: 0, y: 0, z: 10.5 }}
+                    showDelay={700}
+                    onLoad={handleModelLoad}
+                    show={visible}
+                    models={[
+                      {
+                        ...deviceModels.laptop,
+                        position: { x: alternate ? -0.85 : -0.55, y: 0.2, z: 0 },
+                        texture: {
+                          ...model.textures[0],
+                          sizes: laptopSizes,
+                        },
+                      },
+                      {
+                        ...deviceModels.phone,
+                        position: { x: alternate ? -2.85 : 1.75, y: -0.15, z: 0.6 },
+                        scale: 0.5,
+                        texture: {
+                          ...model.textures[1],
+                          sizes: phoneSizes,
+                        },
+                      },
+                    ]}
+                  />
+                </Suspense>
+              )}
+            </div>
+          </>
+        )}
         {model.type === 'phone' && (
           <>
             {renderKatakana('phone', visible)}

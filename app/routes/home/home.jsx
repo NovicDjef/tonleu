@@ -1,5 +1,8 @@
+import planeviaWeb from '~/assets/case-studies/planevia/web-hero.webp';
+import koursierWeb from '~/assets/case-studies/koursier/web-hero.webp';
+import koursierDriversWeb from '~/assets/case-studies/koursier-delivery/web-drivers.webp';
+import raphycarWeb from '~/assets/case-studies/raphycar/web-hero.webp';
 import planeviaTexture1 from '~/assets/planevia/calendar-day.png';
-import planeviaTexture2 from '~/assets/planevia/calendar-week.png';
 import hotelTexture from '~/assets/case-studies/hotel/hero.webp';
 import hotelTexture2 from '~/assets/case-studies/hotel/suites.webp';
 import hotelAdminTexture from '~/assets/case-studies/hotel-admin/overview.webp';
@@ -9,12 +12,9 @@ import j3Texture2 from '~/assets/case-studies/j3-immobilier/collection.webp';
 import jtTradeTexture from '~/assets/case-studies/jt-trade/hero.webp';
 import jtTradeTexture2 from '~/assets/case-studies/jt-trade/countries.webp';
 import koursierTexture1 from '~/assets/koursier/588.png';
-import koursierTexture2 from '~/assets/koursier/608.png';
 import reminder1 from '~/assets/reminder1.png';
 import reminder2 from '~/assets/reminder2.png';
 import deliveryHome from '~/assets/Delivery/home.png';
-import deliveryWallet from '~/assets/Delivery/wallet.png';
-import raphycarTexture from '~/assets/raphy/home2.png';
 import raphycarTexture2 from '~/assets/raphy/home.png';
 import burnsTexture from '~/assets/burns/home-page.png';
 import burnsTexture2 from '~/assets/burns/apartments.png';
@@ -128,16 +128,16 @@ export const Home = () => {
         buttonText="Voir le projet"
         buttonLink="/projects/planevia"
         model={{
-          type: 'phone',
-          alt: 'Agenda journalier et vue semaine de l’application Planevia',
+          type: 'combo',
+          alt: 'Site web et application mobile Planevia',
           textures: [
+            {
+              srcSet: `${planeviaWeb} 1280w, ${planeviaWeb} 1920w`,
+              placeholder: planeviaWeb,
+            },
             {
               srcSet: `${planeviaTexture1} 375w, ${planeviaTexture1} 750w`,
               placeholder: planeviaTexture1,
-            },
-            {
-              srcSet: `${planeviaTexture2} 375w, ${planeviaTexture2} 750w`,
-              placeholder: planeviaTexture2,
             },
           ],
         }}
@@ -148,20 +148,20 @@ export const Home = () => {
         visible={visibleSections.includes(projectTwo.current)}
         index={2}
         title="Koursier"
-        description="Application mobile de livraison au Cameroun : repas, colis et bouteilles de gaz, avec suivi en temps réel et paiement par mobile money."
+        description="Plateforme de livraison au Cameroun : application mobile, site de commande en ligne, espace restaurant et back-office, pour les repas, les colis et le gaz, avec paiement par mobile money."
         buttonText="Voir le projet"
         buttonLink="/projects/koursier"
         model={{
-          type: 'phone',
-          alt: 'Écrans de l’application Koursier',
+          type: 'combo',
+          alt: 'Site web et application mobile Koursier',
           textures: [
+            {
+              srcSet: `${koursierWeb} 1280w, ${koursierWeb} 1920w`,
+              placeholder: koursierWeb,
+            },
             {
               srcSet: `${koursierTexture1} 375w, ${koursierTexture1} 750w`,
               placeholder: koursierTexture1,
-            },
-            {
-              srcSet: `${koursierTexture2} 375w, ${koursierTexture2} 750w`,
-              placeholder: koursierTexture2,
             },
           ],
         }}
@@ -177,16 +177,16 @@ export const Home = () => {
         buttonText="Voir le projet"
         buttonLink="/projects/koursier-delivery"
         model={{
-          type: 'phone',
-          alt: 'Tableau de bord et portefeuille de l’application Koursier Livreur',
+          type: 'combo',
+          alt: 'Page livreurs du site et application Koursier Livreur',
           textures: [
             {
-              srcSet: `${deliveryHome} 375w, ${deliveryWallet} 750w`,
-              placeholder: deliveryHome,
+              srcSet: `${koursierDriversWeb} 1280w, ${koursierDriversWeb} 1920w`,
+              placeholder: koursierDriversWeb,
             },
             {
-              srcSet: `${deliveryWallet} 375w, ${deliveryHome} 750w`,
-              placeholder: deliveryWallet,
+              srcSet: `${deliveryHome} 375w, ${deliveryHome} 750w`,
+              placeholder: deliveryHome,
             },
           ],
         }}
@@ -197,16 +197,16 @@ export const Home = () => {
         visible={visibleSections.includes(projectFour.current)}
         index={4}
         title="RaphyCar"
-        description="Application mobile de location de véhicules au Cameroun : recherche filtrée, réservation, messagerie avec les propriétaires et gestion de flotte pour les agences."
+        description="Location de véhicules au Cameroun : une application mobile pour réserver et payer, et un espace pro web où les agences gèrent leur flotte, leurs réservations et leurs revenus."
         buttonText="Voir le projet"
         buttonLink="/projects/raphycar"
         model={{
-          type: 'phone',
-          alt: 'Écrans de l’application RaphyCar',
+          type: 'combo',
+          alt: 'Site web et application mobile RaphyCar',
           textures: [
             {
-              srcSet: `${raphycarTexture} 375w, ${raphycarTexture} 750w`,
-              placeholder: raphycarTexture,
+              srcSet: `${raphycarWeb} 1280w, ${raphycarWeb} 1920w`,
+              placeholder: raphycarWeb,
             },
             {
               srcSet: `${raphycarTexture2} 375w, ${raphycarTexture2} 750w`,
