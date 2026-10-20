@@ -1,0 +1,118 @@
+---
+title: 'Planevia : concevoir une API publique pour un SaaS'
+abstract: "Deux API pour une seule clé, des permissions explicites, des conventions de dates pensées pour des entreprises locales et une documentation qui dit aussi ce qui n'existe pas encore : les choix derrière l'API de Planevia."
+category: "Retour d'expérience · Planevia"
+readingTime: 5
+featured: false
+---
+
+import { Post } from '~/layouts/post';
+
+export const meta = () => {
+  return [
+    { title: frontmatter.title },
+    { name: 'description', content: frontmatter.abstract },
+  ];
+};
+
+export default function MDXContent({ children }) {
+  return (
+    <Post {...frontmatter}>
+      {children}
+    </Post>
+  );
+}
+
+## Pourquoi une API
+
+Planevia gère l'agenda, les clients, les paiements et la comptabilité de spas, de cliniques et de salons au Québec. Très vite, les mêmes demandes sont revenues : afficher les disponibilités sur le site de l'entreprise, synchroniser les fiches clients avec un CRM, déclencher une automatisation quand un rendez-vous est pris.
+
+Plutôt que de multiplier les intégrations sur mesure, nous avons ouvert une API, incluse dans tous les forfaits, essai compris. L'idée : tout ce qu'un développeur peut faire pour une entreprise doit passer par la même porte, documentée.
+
+## Deux API, une seule clé
+
+Les besoins se répartissent naturellement en deux familles, qui ont des exigences de sécurité très différentes.
+
+- **Réservation**, à l'adresse `https://api.planevia.ca/api/public` : lire les soins et les heures libres, créer un rendez-vous. La clé est facultative.
+- **Gestion**, à l'adresse `https://api.planevia.ca/api/v1` : lire et mettre à jour les clients, les rendez-vous, les reçus et les webhooks. La clé est obligatoire, avec permissions.
+
+L'API de réservation expose ce qu'une page de réservation publique montre déjà : il n'y a rien à protéger de plus. L'API de gestion, elle, touche à des données personnelles et de santé. Séparer les deux permet d'appliquer à chacune le bon niveau de contrôle, tout en gardant une seule clé pour l'intégrateur.
+
+## Des clés à permissions
+
+Une clé de gestion ne donne pas accès à tout. Chaque permission ouvre un ensemble de routes précis, et l'entreprise coche le minimum dont son outil a besoin.
+
+- `clients:read` : `GET /v1/clients` et `GET /v1/clients/:id`
+- `clients:write` : `POST /v1/clients` et `PATCH /v1/clients/:id`
+- `bookings:read` : `GET /v1/bookings` et `GET /v1/bookings/:id`
+- `professionals:read` : `GET /v1/professionals`
+- `receipts:read` : `GET /v1/receipts` et `GET /v1/receipts/:id`
+
+La clé passe dans un en-tête, et une route `/v1/me` permet à l'intégrateur de vérifier à quelle entreprise et à quelles permissions elle correspond :
+
+```bash
+curl https://api.planevia.ca/api/v1/me \
+  -H "x-api-key: pk_live_xxxxxxxxxxxxxxxx"
+```
+
+```json
+{
+  "success": true,
+  "data": {
+    "organization": { "id": "org_1", "name": "Spa Exemple", "slug": "spa-exemple" },
+    "apiKey": {
+      "id": "key_1",
+      "name": "CRM",
+      "keyPrefix": "pk_live_01234567",
+      "permissions": ["clients:read", "bookings:read"],
+      "expiresAt": null
+    }
+  }
+}
+```
+
+Côté serveur, la vérification tient dans un middleware que chaque route déclare explicitement. Exemple simplifié avec Express :
+
+```ts
+export function requirePermission(permission: Permission) {
+  return async (req: Request, res: Response, next: NextFunction) => {
+    const key = await findApiKey(req.header('x-api-key'));
+
+    if (!key || key.revokedAt || (key.expiresAt && key.expiresAt < new Date())) {
+      return res.status(401).json({ success: false, error: 'invalid_api_key' });
+    }
+
+    if (!key.permissions.includes(permission)) {
+      return res.status(403).json({ success: false, error: 'missing_permission', permission });
+    }
+
+    req.organizationId = key.organizationId;
+    next();
+  };
+}
+
+router.get('/v1/clients', requirePermission('clients:read'), listClients);
+```
+
+Deux principes comptent plus qu'il n'y paraît. Une clé ne se stocke pas en clair : on conserve son empreinte et un préfixe lisible, comme le `keyPrefix` renvoyé par `/v1/me`, qui permet de l'identifier dans l'interface sans pouvoir la reconstituer. Et l'organisation se déduit de la clé, jamais d'un paramètre de la requête : une intégration ne peut pas lire les données d'une autre entreprise, même par erreur.
+
+## Des conventions pensées pour des entreprises locales
+
+Les réponses sont en JSON, les dates au format `AAAA-MM-JJ`, et les heures sont exprimées **dans l'heure locale de l'entreprise**. Ce dernier choix va à l'encontre du réflexe habituel « tout en UTC », et il est délibéré.
+
+Un spa de Sept-Îles ouvre à 9 h, été comme hiver. Si l'API renvoyait des créneaux en UTC, chaque intégrateur devrait connaître le fuseau de l'entreprise et gérer lui-même le changement d'heure, avec un risque d'erreur d'une heure deux fois par an. En renvoyant `09:00`, l'API dit exactement ce que la réceptionniste voit à l'écran. La conversion se fait une seule fois, côté Planevia, là où le fuseau de chaque entreprise est connu.
+
+## Des webhooks plutôt que du polling
+
+Un CRM qui veut savoir qu'un rendez-vous a été pris ou annulé ne devrait pas interroger l'API toutes les minutes. Les webhooks inversent le flux : Planevia prévient l'outil de l'intégrateur quand quelque chose change. C'est plus simple pour lui, et beaucoup moins coûteux pour nous qu'un trafic de polling multiplié par le nombre d'entreprises.
+
+## Documenter aussi ce qui n'existe pas
+
+La documentation est versionnée et datée, et elle comporte une section « Ce qui n'existe pas encore ». Elle évite à l'intégrateur de chercher une route qui n'est pas là, et elle pose clairement les limites actuelles de l'API. Une page « Tester » complète le tout pour essayer une clé sans écrire de code.
+
+## Ce que j'en retiens
+
+- **Séparer selon le risque.** Une API publique sans clé et une API de gestion à permissions valent mieux qu'une seule API où tout est protégé de la même façon.
+- **Le moindre privilège, rendu facile.** Des permissions lisibles, que l'entreprise coche elle-même, sont plus souvent respectées qu'une politique de sécurité expliquée dans un PDF.
+- **Choisir ses conventions selon ses utilisateurs.** L'heure locale de l'entreprise est moins « pure » que l'UTC, mais elle supprime une classe entière de bogues chez les intégrateurs.
+- **La documentation fait partie du produit.** Une API sans documentation honnête, y compris sur ses limites, n'est pas utilisée.

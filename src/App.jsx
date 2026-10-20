@@ -1,4 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
+import { MDXProvider } from '@mdx-js/react';
+import { postMarkdown } from '../app/layouts/post';
 import { useState, useEffect } from 'react';
 import { ThemeProvider, themeStyles } from '../app/components/theme-provider';
 import { VisuallyHidden } from '../app/components/visually-hidden';
@@ -18,6 +20,8 @@ import { JtTradeServices } from '../app/routes/projects.jt-trade-services/jt-tra
 import { Reminder } from '../app/routes/projects.reminder/reminder';
 import { KoursierDelivery } from '../app/routes/projects.koursier-delivery/koursier-delivery';
 import { Raphycar } from '../app/routes/projects.raphycar/raphycar';
+import { KoursierDispatch } from '../app/routes/articles.koursier-dispatch/koursier-dispatch';
+import { PlaneviaApi } from '../app/routes/articles.planevia-api/planevia-api';
 import { AdvancedReactPatterns } from '../app/routes/articles.advanced-react-patterns/advanced-react-patterns';
 import { FullstackNodejsArchitecture } from '../app/routes/articles.fullstack-nodejs-architecture/fullstack-nodejs-architecture';
 import { BurnsImmobilier } from '../app/routes/projects.burns-immobilier/burns-immobilier';
@@ -124,6 +128,7 @@ function App() {
             className={styles.container}
             tabIndex={-1}
           >
+            <MDXProvider components={postMarkdown}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/contact" element={<Contact />} />
@@ -138,6 +143,8 @@ function App() {
               <Route path="/projects/reminder" element={<Reminder />} />
               <Route path="/projects/koursier-delivery" element={<KoursierDelivery />} />
               <Route path="/projects/raphycar" element={<Raphycar />} />
+              <Route path="/articles/koursier-dispatch" element={<KoursierDispatch />} />
+              <Route path="/articles/planevia-api" element={<PlaneviaApi />} />
               <Route path="/articles/advanced-react-patterns" element={<AdvancedReactPatterns />} />
               <Route path="/articles/fullstack-nodejs-architecture" element={<FullstackNodejsArchitecture />} />
               <Route path="/projects/burns-immobilier" element={<BurnsImmobilier />} />
@@ -145,6 +152,7 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="*" element={<Error error={{ status: 404, statusText: 'Not Found' }} />} />
             </Routes>
+            </MDXProvider>
           </main>
         </ThemeProvider>
       </div>

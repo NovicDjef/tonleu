@@ -121,4 +121,14 @@
     <priority>0.5</priority>
   </url>
 
+  <url>
+    <loc>https://novic.dev/articles/planevia-api</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://novic.dev/articles/koursier-dispatch</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>

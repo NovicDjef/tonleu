@@ -126,7 +126,7 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
               </div>
               <Heading level={0} as="h2" className={styles.title}>
                 <VisuallyHidden className={styles.label}>
-                  {`${config.role} + ${introLabel}`}
+                  {`${config.introRole} ${introLabel}`}
                 </VisuallyHidden>
                 <span aria-hidden className={styles.row}>
                   <span
@@ -135,7 +135,7 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
                     data-main-role={true}
                     style={cssProps({ delay: tokens.base.durationXS })}
                   >
-                    {config.role}
+                    {config.introRole}
                   </span>
                   
                   <span className={styles.line} data-status={status} />

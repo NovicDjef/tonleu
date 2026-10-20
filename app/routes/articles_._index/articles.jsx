@@ -1,77 +1,40 @@
+import { frontmatter as koursierDispatch } from '~/routes/articles.koursier-dispatch.mdx';
+import { frontmatter as planeviaApi } from '~/routes/articles.planevia-api.mdx';
+import { frontmatter as reactPatterns } from '~/routes/articles.advanced-react-patterns.mdx';
+import { frontmatter as nodeArchitecture } from '~/routes/articles.fullstack-nodejs-architecture.mdx';
 import { Button } from '~/components/button';
 import { DecoderText } from '~/components/decoder-text';
 import { Divider } from '~/components/divider';
 import { Footer } from '~/components/footer';
 import { Heading } from '~/components/heading';
-import { Image } from '~/components/image';
 import { Section } from '~/components/section';
 import { Text } from '~/components/text';
-import { useReducedMotion } from 'framer-motion';
-import { useWindowSize } from '~/hooks';
 import { Link as RouterLink } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import { formatDate } from '~/utils/date';
 import { cssProps } from '~/utils/style';
 import styles from './articles.module.css';
 
-function ArticlesPost({ slug, frontmatter, timecode, index }) {
-  const [hovered, setHovered] = useState(false);
-  const [dateTime, setDateTime] = useState(null);
-  const reduceMotion = useReducedMotion();
-  const { title, abstract, date, featured, banner } = frontmatter;
+const posts = [
+  { slug: 'planevia-api', frontmatter: planeviaApi },
+  { slug: 'koursier-dispatch', frontmatter: koursierDispatch },
+  { slug: 'fullstack-nodejs-architecture', frontmatter: nodeArchitecture },
+  { slug: 'advanced-react-patterns', frontmatter: reactPatterns },
+];
 
-  useEffect(() => {
-    setDateTime(formatDate(date));
-  }, [date, dateTime]);
-
-  const handleMouseEnter = () => {
-    setHovered(true);
-  };
-
-  const handleMouseLeave = () => {
-    setHovered(false);
-  };
+function ArticlesPost({ slug, frontmatter, index }) {
+  const { title, abstract, category, readingTime } = frontmatter;
 
   return (
-    <article
-      className={styles.post}
-      data-featured={!!featured}
-      style={index !== undefined ? cssProps({ delay: index * 100 + 200 }) : undefined}
-    >
-      {featured && (
-        <Text className={styles.postLabel} size="s">
-          À la une
-        </Text>
-      )}
-      {featured && !!banner && (
-        <div className={styles.postImage}>
-          <Image
-            noPauseButton
-            play={!reduceMotion ? hovered : undefined}
-            src={banner}
-            placeholder={`${banner.split('.')[0]}-placeholder.jpg`}
-            alt=""
-            role="presentation"
-          />
-        </div>
-      )}
-      <RouterLink
-        unstable_viewTransition
-        prefetch="intent"
-        to={`/articles/${slug}`}
-        className={styles.postLink}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
+    <article className={styles.post} style={cssProps({ delay: index * 100 + 200 })}>
+      <RouterLink to={`/articles/${slug}`} className={styles.postLink}>
         <div className={styles.postDetails}>
           <div aria-hidden className={styles.postDate}>
             <Divider notchWidth="64px" notchHeight="8px" />
-            {dateTime}
+            {category}
           </div>
-          <Heading as="h2" level={featured ? 2 : 4}>
+          <Heading as="h2" level={4}>
             {title}
           </Heading>
-          <Text size={featured ? 'l' : 's'} as="p">
+          <Text size="s" as="p">
             {abstract}
           </Text>
           <div className={styles.postFooter}>
@@ -79,87 +42,32 @@ function ArticlesPost({ slug, frontmatter, timecode, index }) {
               Lire l’article
             </Button>
             <Text className={styles.timecode} size="s">
-              {timecode}
+              {`${readingTime} min de lecture`}
             </Text>
           </div>
         </div>
       </RouterLink>
-      {featured && (
-        <Text aria-hidden className={styles.postTag} size="s">
-          477
-        </Text>
-      )}
     </article>
   );
 }
 
 export function Articles() {
-  // For now using static data since loader was removed
-  const posts = [
-    {
-      slug: 'advanced-react-patterns',
-      frontmatter: {
-        title: 'Patterns React avancés et TypeScript',
-        abstract: 'Patterns React avancés, hooks personnalisés et bonnes pratiques TypeScript pour construire des applications maintenables à grande échelle.',
-        date: '2024-03-15',
-        featured: false,
-        banner: '/static/modern-styling-in-react-banner.jpg'
-      },
-      timecode: '00:15:42:10'
-    },
-    {
-      slug: 'fullstack-nodejs-architecture',
-      frontmatter: {
-        title: 'Architecture full stack avec Node.js',
-        abstract: 'Architecture full stack, conception d’API, optimisation des bases de données et stratégies de déploiement avec Node.js et le cloud.',
-        date: '2024-04-01',
-        featured: false,
-        banner: '/static/nodejs-backend-banner.jpg'
-      },
-      timecode: '00:22:15:08'
-    }
-  ];
-  const featured = null;
-  const { width } = useWindowSize();
-  const singleColumnWidth = 1190;
-  const isSingleColumn = width <= singleColumnWidth;
-
-  const postsHeader = (
-    <header className={styles.header}>
-      <Heading className={styles.heading} level={5} as="h1">
-        <DecoderText text="Articles récents" />
-      </Heading>
-      <Barcode className={styles.barcode} />
-    </header>
-  );
-
-  const postList = (
-    <div className={styles.list}>
-      {!isSingleColumn && postsHeader}
-      {posts.map(({ slug, ...post }, index) => (
-        <ArticlesPost key={slug} slug={slug} index={index} {...post} />
-      ))}
-    </div>
-  );
-
-  const featuredPost = featured ? <ArticlesPost {...featured} /> : null;
-
   return (
     <article className={styles.articles}>
       <Section className={styles.content}>
-        {!isSingleColumn && (
-          <div className={styles.grid}>
-            {postList}
-            {featuredPost}
+        <div className={styles.grid} data-single>
+          <div className={styles.list}>
+            <header className={styles.header}>
+              <Heading className={styles.heading} level={5} as="h1">
+                <DecoderText text="Articles" />
+              </Heading>
+              <Barcode className={styles.barcode} />
+            </header>
+            {posts.map(({ slug, frontmatter }, index) => (
+              <ArticlesPost key={slug} slug={slug} index={index} frontmatter={frontmatter} />
+            ))}
           </div>
-        )}
-        {isSingleColumn && (
-          <div className={styles.grid}>
-            {postsHeader}
-            {featuredPost}
-            {postList}
-          </div>
-        )}
+        </div>
       </Section>
       <Footer />
     </article>

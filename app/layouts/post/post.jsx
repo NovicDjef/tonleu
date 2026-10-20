@@ -7,21 +7,16 @@ import { Text } from '~/components/text';
 import { tokens } from '~/components/theme-provider/theme';
 import { Transition } from '~/components/transition';
 import { useParallax, useScrollToHash } from '~/hooks';
-import { useRef, useState, useEffect } from 'react';
+import { useRef } from 'react';
 import { clamp } from '~/utils/clamp';
-import { formatDate } from '~/utils/date';
 import { cssProps, msToNum, numToMs } from '~/utils/style';
 import styles from './post.module.css';
 import { Link as RouterLink } from 'react-router-dom';
 
-export const Post = ({ children, title, date, banner, timecode }) => {
+export const Post = ({ children, title, category, banner, readingTime }) => {
   const scrollToHash = useScrollToHash();
   const imageRef = useRef();
-  const [dateTime, setDateTime] = useState(null);
 
-  useEffect(() => {
-    setDateTime(formatDate(date));
-  }, [date, dateTime]);
 
   useParallax(0.004, value => {
     if (!imageRef.current) return;
@@ -60,7 +55,7 @@ export const Post = ({ children, title, date, banner, timecode }) => {
                 <div className={styles.date} ref={nodeRef}>
                   <Divider notchWidth="64px" notchHeight="8px" collapsed={!visible} />
                   <Text className={styles.dateText} data-visible={visible}>
-                    {dateTime}
+                    {category}
                   </Text>
                 </div>
               )}
@@ -95,7 +90,7 @@ export const Post = ({ children, title, date, banner, timecode }) => {
                   <path d="M1 1l20.5 12L42 1" strokeWidth="2" fill="none" />
                 </svg>
               </RouterLink>
-              <div className={styles.timecode}>{timecode}</div>
+              <div className={styles.timecode}>{`${readingTime} min de lecture`}</div>
             </div>
           </div>
         </header>

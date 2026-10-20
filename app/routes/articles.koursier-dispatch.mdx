@@ -1,0 +1,122 @@
+---
+title: 'Koursier : envoyer chaque course au bon livreur'
+abstract: "Frais de livraison connus avant la commande, course proposée aux livreurs les plus proches, 30 secondes pour accepter et remise validée par un code : les règles métier derrière le dispatch de Koursier, et la façon de les traduire en code."
+category: "Retour d'expérience · Koursier"
+readingTime: 6
+featured: false
+---
+
+import { Post } from '~/layouts/post';
+
+export const meta = () => {
+  return [
+    { title: frontmatter.title },
+    { name: 'description', content: frontmatter.abstract },
+  ];
+};
+
+export default function MDXContent({ children }) {
+  return (
+    <Post {...frontmatter}>
+      {children}
+    </Post>
+  );
+}
+
+## Le contexte
+
+Koursier livre des repas, des colis et des bouteilles de gaz à Douala et à Yaoundé. La plateforme réunit quatre interfaces : l'application client, l'application des livreurs (Koursier Go), l'espace des restaurants et le back-office d'administration. Le cœur du système, c'est le moment où une commande devient une course et où il faut trouver quelqu'un pour la faire.
+
+Dans ce contexte, deux contraintes dominent. Le client veut connaître le prix avant de payer, souvent en Mobile Money. Et le livreur, sur sa moto, n'a ni le temps ni l'envie de parcourir une liste de courses : il faut lui proposer la bonne, au bon moment.
+
+## Les règles du métier d'abord
+
+Avant d'écrire la moindre ligne, nous avons fixé des règles simples, que l'on retrouve telles quelles sur le site et dans les applications :
+
+- les frais de livraison sont affichés avant la commande ;
+- une course est proposée aux 3 livreurs en ligne les plus proches du restaurant, dans un rayon de 8 km ;
+- un livreur a 30 secondes pour accepter une course ;
+- un livreur ne fait qu'une course à la fois ;
+- les livreurs les mieux notés sont sollicités en priorité ;
+- la remise se valide avec un code donné par le client.
+
+Ces règles sont visibles par tout le monde. C'est volontaire : un client ou un livreur qui comprend comment le système décide lui fait davantage confiance.
+
+## Un prix connu avant la commande
+
+La grille est publique : 500 F CFA jusqu'à 2 km, puis 50 F par kilomètre entamé. Une course de 3,4 km coûte donc 600 F. La règle tient en quelques lignes, et surtout elle s'exécute côté serveur : l'application affiche le montant, mais c'est l'API qui fait foi au moment de créer la commande.
+
+```ts
+const BASE_FEE = 500; // F CFA, jusqu'à 2 km
+const BASE_DISTANCE_KM = 2;
+const FEE_PER_KM = 50;
+
+export function deliveryFee(distanceKm: number): number {
+  const extraKm = Math.max(0, distanceKm - BASE_DISTANCE_KM);
+  return BASE_FEE + Math.ceil(extraKm) * FEE_PER_KM;
+}
+
+deliveryFee(1.2); // 500
+deliveryFee(3.4); // 600
+deliveryFee(7.5); // 800
+```
+
+Le kilomètre entamé est arrondi à l'unité supérieure. C'est une décision métier plus qu'une décision technique, mais elle évite des montants à virgule qu'aucun livreur ne veut rendre en monnaie.
+
+## Choisir les livreurs à solliciter
+
+Pour trouver les candidats, on part de la position du restaurant et de la dernière position connue de chaque livreur en ligne et disponible. La distance à vol d'oiseau suffit pour un premier tri ; le calcul d'itinéraire précis n'intervient qu'une fois la course acceptée.
+
+```ts
+type Driver = {
+  id: string;
+  position: { lat: number; lng: number };
+  rating: number; // note moyenne des clients, sur 5
+};
+
+const MAX_RADIUS_KM = 8;
+const CANDIDATES = 3;
+
+export function pickCandidates(restaurant: LatLng, drivers: Driver[]) {
+  return drivers
+    .map(driver => ({ driver, km: haversineKm(restaurant, driver.position) }))
+    .filter(({ km }) => km <= MAX_RADIUS_KM)
+    .sort((a, b) => a.km - b.km || b.driver.rating - a.driver.rating)
+    .slice(0, CANDIDATES)
+    .map(({ driver }) => driver);
+}
+```
+
+Exemple simplifié : la liste de départ ne contient que des livreurs en ligne, vérifiés et sans course en cours, puisqu'un livreur ne fait qu'une course à la fois. La note sert à départager les livreurs à distance comparable, sans jamais envoyer une course à quelqu'un de beaucoup plus loin.
+
+## Une offre, 30 secondes
+
+Une fois les candidats choisis, la course leur est envoyée en temps réel. Côté livreur, Koursier Go tourne en arrière-plan : quand une course arrive, elle s'affiche avec le montant, le restaurant, l'adresse de livraison et un compte à rebours.
+
+Le point délicat est la concurrence. Plusieurs livreurs peuvent appuyer sur « Accepter » presque en même temps. La règle est simple, le premier gagne, mais elle doit être garantie par la base de données et non par l'application :
+
+```ts
+// Le premier livreur qui accepte obtient la course.
+// La condition sur le statut rend l'opération atomique.
+const accepted = await db.delivery.updateMany({
+  where: { id: deliveryId, status: 'OFFERED' },
+  data: { status: 'ACCEPTED', driverId, acceptedAt: new Date() },
+});
+
+if (accepted.count === 0) {
+  throw new ConflictError('Cette course a déjà été acceptée.');
+}
+```
+
+Si personne n'accepte dans les 30 secondes, l'offre expire et la course repart vers les candidats suivants. Le compte à rebours affiché sur le téléphone est indicatif ; c'est l'horodatage enregistré côté serveur qui décide.
+
+## Valider la remise
+
+À la livraison, le client communique un code au livreur, qui le saisit dans l'application. Tant que le code n'est pas validé, la course n'est pas terminée et le gain n'est pas crédité. Ce mécanisme donne une preuve simple de la remise en cas de litige, et il fonctionne de la même façon pour les repas, les colis et le gaz.
+
+## Ce que j'en retiens
+
+- **Écrire les règles avant le code.** Une phrase comme « 30 secondes pour accepter » est plus facile à tester, à expliquer et à faire évoluer qu'un algorithme enfoui dans un service.
+- **Le serveur fait foi.** Prix, attribution et validation sont décidés côté API. Les applications affichent, elles ne tranchent pas.
+- **Rendre les règles visibles.** Afficher le prix, le rayon et le délai répond d'avance aux questions que clients et livreurs se posent.
+- **Commencer simple.** Un tri par distance et par note couvre l'essentiel. Un dispatch plus fin (charge des livreurs, temps de préparation réel des restaurants) ne vaut la peine qu'une fois que les données sont là pour le justifier.

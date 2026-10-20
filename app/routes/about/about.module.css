@@ -629,7 +629,11 @@
 }
 
 .serviceIcon {
-  font-size: 2.5rem;
+  font-family: var(--monoFontStack);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgb(0 255 255);
+  font-size: 1.4rem;
   display: block;
   filter: 
     drop-shadow(0 0 15px rgba(0, 255, 255, 0.6))
@@ -941,6 +945,7 @@
 }
 
 .clientType {
+  display: block;
   color: rgb(var(--rgbText) / 0.8);
   font-weight: 500;
   margin-bottom: var(--spaceS);
@@ -948,6 +953,7 @@
 }
 
 .clientDescription {
+  display: block;
   color: rgb(var(--rgbText));
   line-height: 1.6;
   margin-bottom: var(--spaceM);
@@ -1175,6 +1181,8 @@
 }
 
 .companyItem {
+  flex-shrink: 0;
+  white-space: nowrap;
   display: flex;
   align-items: center;
   gap: var(--spaceS);
@@ -1636,4 +1644,14 @@
 [data-theme='light'] .footerText {
   color: rgba(0, 150, 0, 0.9);
   text-shadow: 0 0 5px rgba(0, 150, 0, 0.4);
+}
+.clientCardLink {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.clientCardLink:focus-visible {
+  outline: 2px solid rgb(0 255 255);
+  outline-offset: 3px;
 }

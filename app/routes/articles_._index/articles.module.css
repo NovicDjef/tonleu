@@ -579,3 +579,8 @@
 [data-theme='light'] .post:hover {
   box-shadow: 0 8px 25px rgba(0, 100, 255, 0.2);
 }
+
+.grid[data-single] {
+  grid-template-columns: minmax(0, 880px);
+  justify-content: center;
+}
