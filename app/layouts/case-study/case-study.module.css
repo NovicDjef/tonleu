@@ -10,6 +10,11 @@
 
   & > * {
     flex: 0 1 280px;
+    min-width: 0;
+
+    @media (--mediaMobile) {
+      flex: 1 1 0;
+    }
   }
 
   & > :nth-child(2) {
@@ -45,6 +50,10 @@
   width: 100%;
   max-width: 300px;
   justify-self: center;
+
+  @media (--mediaMobile) {
+    max-width: 230px;
+  }
 }
 
 .reverse {

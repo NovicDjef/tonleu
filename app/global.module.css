@@ -169,6 +169,10 @@
     pointer-events: none;
     z-index: -1;
     overflow: hidden;
+
+    @media (--mediaMobile) {
+      display: none;
+    }
   }
 
   :global(.skill-particle) {

@@ -2,7 +2,8 @@
   min-height: 72vh;
   width: 100%;
   max-height: 1080px;
-  padding: var(--space2XL) 0;
+  padding-top: var(--space2XL);
+  padding-bottom: var(--space2XL);
   margin: 0;
   position: relative;
   display: flex;
@@ -291,7 +292,9 @@
   width: 100%;
 
   @media (--mediaTablet) {
-    bottom: -10%;
+    bottom: -12%;
+    width: 80%;
+    left: 10%;
   }
 }
 
@@ -300,6 +303,7 @@
 
   position: relative;
   width: 112%;
+  max-width: 100%;
   aspect-ratio: 16 / 11;
   perspective: 1600px;
 
@@ -309,7 +313,9 @@
   }
 
   @media (--mediaMobile) {
-    --phoneWidth: 30%;
+    --phoneWidth: 28%;
+
+    margin-bottom: var(--spaceXL);
   }
 }
 
